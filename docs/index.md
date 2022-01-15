@@ -43,7 +43,7 @@ Lecture will be synchronous with both an in-person and remote option, and will a
 
 ## Discussion Forum
 
-[Campuswire](https://campuswire.com/c/GC4DB42F3)
+[Campuswire](https://campuswire.com/c/GF2D039DE)
 
 ## Course Description
 
