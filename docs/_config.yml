@@ -27,23 +27,14 @@ description: >- # this means to ignore newlines until "baseurl:"
 # baseurl: "" # the subpath of your site, e.g. /blog
 baseurl: "/ae353-sp22" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+github_username:  tbretl
 
-# # Build settings
-# theme: minima
-# plugins:
-#   - jekyll-feed
-
-# theme: jekyll-theme-cayman
-# markdown: kramdown
-# kramdown:
-#   parse_block_html: false
-
-# remote_theme: pages-themes/cayman@v0.2.0
-theme: cayman
+# Theme (followed instructions here: https://github.com/pages-themes/cayman)
+remote_theme: pages-themes/cayman@v0.2.0
 plugins:
 - jekyll-remote-theme
+
+# Markdown
 markdown: kramdown
 kramdown:
   parse_block_html: false
