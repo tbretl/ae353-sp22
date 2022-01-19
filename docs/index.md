@@ -67,11 +67,11 @@ There is no required textbook.
 
 ## In-Class Activities
 
-You will complete a short activity during every lecture using [PrairieLearn](https://www.prairielearn.org/pl/course_instance/129078). For this reason, it is important that you **bring your laptop to class each day** (or some other device that can run PrairieLearn).
+You will complete a short activity during (nearly) every lecture using [PrairieLearn](https://www.prairielearn.org/pl/course_instance/129078). For this reason, it is important that you **bring your laptop to class each day** (or some other device that can run PrairieLearn).
 
 ## Homework
 
-You will complete a homework assignment after every lecture using [PrairieLearn](https://www.prairielearn.org/pl/course_instance/129078).
+You will complete a homework assignment after (nearly) every lecture using [PrairieLearn](https://www.prairielearn.org/pl/course_instance/129078).
 
 ## Exams
 
