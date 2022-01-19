@@ -101,6 +101,8 @@ There will be no final exam.
 
 ## Grading
 
+Grades will be posted to [canvas](https://canvas.illinois.edu/courses/17243/).
+
 ##### Distribution
 * 5% in-class activities
 * 20% homework
