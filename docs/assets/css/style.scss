@@ -12,6 +12,8 @@ $body-text-color: #13294B !default;
 $body-link-color: #009FD4 !default;
 $blockquote-text-color: #4D69A0 !default;
 
+$hr-border-color: #000000 !default;
+
 @import "{{ site.theme }}";
 
 .btn {
