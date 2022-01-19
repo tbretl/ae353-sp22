@@ -48,7 +48,7 @@ Lecture will also be recorded for later review:
 
 ## Discussion Forum
 
-[Campuswire](https://campuswire.com/c/GF2D039DE)
+[Campuswire](https://campuswire.com/c/GF2D039DE) ([ask Prof. Bretl for an invitation](mailto:tbretl@illinois.edu) if you haven't received one yet)
 
 ## Course Description
 
