@@ -65,13 +65,17 @@ The following book is available online for free, as a reference:
 
 There is no required textbook.
 
+## In-Class Activities
+
+You will complete a short activity during every lecture using [PrairieLearn](https://www.prairielearn.org/pl/course_instance/129078). For this reason, it is important that you **bring your laptop to class each day** (or some other device that can run PrairieLearn).
+
 ## Homework
 
-There will be many homework assignments. You will complete them online using [PrairieLearn](https://www.prairielearn.org/pl/course_instance/129078). You are encouraged to work with your colleagues on these assignments.
+You will complete a homework assignment after every lecture using [PrairieLearn](https://www.prairielearn.org/pl/course_instance/129078).
 
 ## Exams
 
-There will be four 50-minute exams. You will take them in the [Computer-Based Testing Facility (CBTF)](https://cbtf.engr.illinois.edu). Our use of CBTF will give you flexibility in scheduling each exam, will show your results immediately, and will allow you to retake each exam exactly once. If you retake an exam, your score will be computed as follows:
+You will take four 50-minute exams during the semester in the [Computer-Based Testing Facility (CBTF)](https://cbtf.engr.illinois.edu). Optionally, you may retake each exam exactly once. If you retake an exam, your score will be computed as follows:
 
 $$
 \text{final score} = \frac{9}{10}\left(\text{higher score}\right) + \frac{1}{10}\left(\text{lower score}\right)
@@ -85,24 +89,23 @@ If you have any issue during an exam, inform the proctor immediately. Work with 
 
 If you do not have a physical i-card, and therefore no ID photo with the i-card office, submit a photo to the CBTF as soon as possible to avoid problems when checking in for exams. Email photos to [cbtf@illinois.edu](mailto:cbtf@illinois.edu).
 
-Review all instructions on the CBTF website before your first exam: https://cbtf.illinois.edu/students
+Review all instructions on the [CBTF website](https://cbtf.illinois.edu/students) before your first exam.
+
+## Design Projects
+
+You will complete four design projects in groups of two that require the submission of python code, a short video, and a written report. You may talk with other colleagues about these projects, so long as all materials submitted are those of your own group (see [academic integrity](#academic-integrity)).
 
 ## Final Exam
 
 There will be no final exam.
 
-## Design Problems
-
-There will be four design problems. These problems will require some python implementation as well as the submission of a short video and a written report. You will work in groups of two on these problems. You are encouraged to talk with other colleagues about these problems, so long as all materials submitted are those of your own group.
-
-FIXME (gradescope, groups, etc.)
-
 ## Grading
 
 ##### Distribution
+* 5% in-class activities
 * 20% homework
-* 40% exams
-* 40% design problems
+* 35% exams
+* 40% design projects
 
 ##### Scale
 * 97-100 (A+), 93-97 (A), 90-93 (A-), 87-90 (B+), etc.
