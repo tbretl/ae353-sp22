@@ -19,4 +19,4 @@ description: What we will do from day to day
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | 1/19 | [WS1 (not for credit)](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316729) | [HW1](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316731) | | |
 | 1/21 | [WS2](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316748) | [HW2](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316751) | [L2](notes/Day02-StateSpace.pdf) | [State space models](reference#state-space-models) |
-| 1/21 | [WS3](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316828) | [HW3](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316827) |  |  |
+| 1/24 | [WS3](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316828) | [HW3](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316827) |  |  |
