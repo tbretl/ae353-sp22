@@ -42,7 +42,7 @@ class Simulator:
             pybullet.connect(pybullet.GUI, options=f'--width={width} --height={height}')
             pybullet.configureDebugVisualizer(
                 pybullet.COV_ENABLE_GUI, 0,
-                lightPosition=[0., 10., 10.],
+                lightPosition=[10., 10., 10.],
             )
         else:
             pybullet.connect(pybullet.DIRECT)
@@ -348,7 +348,14 @@ class Simulator:
         aspect = self.width / self.height
         view_matrix = pybullet.computeViewMatrixFromYawPitchRoll(pos, self.camera_distance, yaw, -self.camera_pitch, 0., 2)
         projection_matrix = pybullet.computeProjectionMatrixFOV(fov=90, aspect=aspect, nearVal=0.01, farVal=100.0)
-        im = pybullet.getCameraImage(self.width, self.height, viewMatrix=view_matrix, projectionMatrix=projection_matrix, renderer=pybullet.ER_BULLET_HARDWARE_OPENGL, shadow=1)
+        im = pybullet.getCameraImage(
+            self.width, self.height,
+            viewMatrix=view_matrix,
+            projectionMatrix=projection_matrix,
+            renderer=pybullet.ER_BULLET_HARDWARE_OPENGL,
+            shadow=1,
+            lightDirection=[10., 10., 10.],
+        )
         rgba = im[2]
         return rgba
 
