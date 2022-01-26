@@ -12,7 +12,7 @@ class Simulator:
                 seed=None,
                 width=640,
                 height=480,
-                ground_pitch=(np.pi / 2),
+                roll=(np.pi / 2),
                 rotor_velocity=1000.,
                 load_mass=1.,
                 damping=0.,
@@ -31,7 +31,7 @@ class Simulator:
         self.dt = 0.01
 
         # Other parameters
-        self.ground_pitch = ground_pitch
+        self.roll = roll
         self.load_mass = load_mass
         self.damping = damping
         self.tau_max = tau_max
@@ -61,7 +61,7 @@ class Simulator:
         self.plane_id = pybullet.loadURDF(
             os.path.join('.', 'urdf', 'plane.urdf'),
             basePosition=np.array([0., 0., 0.]),
-            baseOrientation=pybullet.getQuaternionFromEuler([0., self.ground_pitch, 0.]),
+            baseOrientation=pybullet.getQuaternionFromEuler([0., self.roll, 0.]),
             useFixedBase=1,
         )
         
@@ -72,8 +72,8 @@ class Simulator:
                     pybullet.URDF_USE_IMPLICIT_CYLINDER |
                     pybullet.URDF_USE_INERTIA_FROM_FILE
             ),
-            basePosition=np.array([1.1 * np.sin(self.ground_pitch), 0., 1.1 * np.cos(self.ground_pitch)]),
-            baseOrientation=pybullet.getQuaternionFromEuler([np.pi / 2, self.ground_pitch, 0.]),
+            basePosition=np.array([1.1 * np.sin(self.roll), 0., 1.1 * np.cos(self.roll)]),
+            baseOrientation=pybullet.getQuaternionFromEuler([np.pi / 2, self.roll, 0.]),
         )
 
         # Create a dictionary that maps joint names to joint indices and
@@ -370,7 +370,7 @@ class Simulator:
     def camera_topview(self):
         self.camera_target = np.array([0.0, 0.0, 0.0])
         self.camera_distance = 5.
-        self.camera_pitch = np.clip(90. - np.rad2deg(self.ground_pitch), -89.9, 89.9)
+        self.camera_pitch = np.clip(90. - np.rad2deg(self.roll), -89.9, 89.9)
         self.camera_yaw = 180.
         self.camera()
 
