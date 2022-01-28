@@ -214,11 +214,6 @@ See documentation on [Find and Open Files using Windows Command Prompt](https://
 
 ### Do this once
 
-##### Install git
-
-Follow the [instructions to download and install Git for Windows](https://git-scm.com/download/win).
-
-
 ##### Install conda
 
 [Conda](https://docs.conda.io/) is a package manager that you will use to install python, along with a number of required tools.
@@ -253,12 +248,22 @@ conda config --env --add channels conda-forge
 conda config --env --set channel_priority strict
 conda install python=3 numpy scipy sympy matplotlib
 conda install notebook ipywidgets imageio imageio-ffmpeg pybullet
+conda install git
 ```
 
+Note that (unlike for MacOS) we are using conda to install [git](https://git-scm.com/) --- this seemed simplest, rather than figuring out how to make system-installed software accessible to the anaconda powershell. The only consequence of this choice is that you will need to be in the `ae353` environment to run git.
 
 ##### Get the code
 
-Open an **anaconda powershell** and change the working directory to a folder in which you would like to put all your files. Then, use [git](https://git-scm.com/) to download the code from our [ae353 github repository]({{ site.github.repository_url }}) by running this command:
+Open an **anaconda powershell** and change the working directory to a folder in which you would like to put all your files.
+
+Then, activate your conda environment:
+
+```
+conda activate ae353
+```
+
+Finally, use [git](https://git-scm.com/) to download the code from our [ae353 github repository]({{ site.github.repository_url }}) by running this command:
 
 ```
 git clone https://github.com/tbretl/ae353-sp22.git
@@ -272,16 +277,6 @@ This process will take very little time. When it completes, you should find a ne
 
 Open an **anaconda powershell** and change your working directory to `ae353-sp22`, wherever you put this.
 
-##### Get the latest version of the code
-
-Run this command:
-
-```
-git pull
-```
-
-Do not worry, this will not overwrite any of your own work. If you see any errors or warnings, post a note to [Campuswire](https://campuswire.com/c/GF2D039DE) and course staff will help resolve them.
-
 ##### Activate your conda environment
 
 Run this command:
@@ -291,6 +286,16 @@ conda activate ae353
 ```
 
 You should see the prefix to your powershell prompt change from `(base)` to `(ae353)`. This means you are in the conda environment you created for work with AE353.
+
+##### Get the latest version of the code
+
+Run this command:
+
+```
+git pull
+```
+
+Do not worry, this will not overwrite any of your own work. If you see any errors or warnings, post a note to [Campuswire](https://campuswire.com/c/GF2D039DE) and course staff will help resolve them.
 
 ##### Start a jupyter notebook
 
