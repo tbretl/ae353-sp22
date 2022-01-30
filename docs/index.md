@@ -30,8 +30,8 @@ Mr. Jacob Kraft
 * Email: <jacobgk2@illinois.edu>
 * Phone: 440-409-1499
 * Office Hours:
-    * TBD
-    * TBD
+    * Mondays, 3:00pm-4:00pm CST, in Talbot 321D
+    * Wednesdays, 3:00pm-4:00pm CST, in Talbot 321D
     * [By appointment on Zoom](https://calendly.com/jacobgk2)
 
 ## Time and Place
