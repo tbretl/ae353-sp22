@@ -196,7 +196,7 @@ To do this, we run the command
 cd path\to\directory
 ```
 
-where "`path\to\directory`" is replaced by the location of the directory in which you want to work. One easy way way to find this location (i.e., the "path" to your directory) is by dragging its folder from the File Explorer into your powershell window (see documentation on [Quickly Copy Files Paths to Your Command Prompt via Drag and Drop (Links to an external site.)](https://lifehacker.com/quickly-copy-file-paths-to-your-command-prompt-via-drag-5382503). In particular, I would first type "`cd `" (note the single trailing space):
+where "`path\to\directory`" is replaced by the location of the directory in which you want to work. One easy way way to find this location (i.e., the "path" to your directory) is by dragging its folder from the File Explorer into your powershell window (see documentation on [Quickly Copy Files Paths to Your Command Prompt via Drag and Drop](https://lifehacker.com/quickly-copy-file-paths-to-your-command-prompt-via-drag-5382503). In particular, I would first type "`cd `" (note the single trailing space):
 
 ```
 C:\Users\jakek>cd 
@@ -228,7 +228,7 @@ conda update -n base conda
 
 If this process succeeds, then conda is installed properly, and you should skip to the next step. If this process does not succeed, or if you couldn't open an anaconda powershell in the first place, then you still need to install conda, and you should continue with this step.
 
-Follow the instructions for [Installing on Windows](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html). It is easiest to use the [Miniconda installer](https://conda.io/miniconda.html), in particular the [Miniconda3 Windows 64-bit (Links to an external site.)](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe) --- just double-click the `.exe` file after it downloads and accept all the default options (you need not "verify your installer hashes").
+Follow the instructions for [Installing on Windows](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html). It is easiest to use the [Miniconda installer](https://conda.io/miniconda.html), in particular the [Miniconda3 Windows 64-bit](https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe) --- just double-click the `.exe` file after it downloads and accept all the default options (you need not "verify your installer hashes").
 
 ##### Create a conda environment
 
