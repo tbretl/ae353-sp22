@@ -22,3 +22,6 @@ description: What we will do from day to day
 | 1/24 | [WS3](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316828) | [HW3](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316827) | [L3](notes/Day03-Linearization.pdf) | [State space models](reference#state-space-models) |
 | 1/26 |  |  |  |  |
 | 1/28 | [WS5](https://www.prairielearn.org/pl/course_instance/129078/assessment/2316967) |  |  |  |
+| 1/31 | | [HW6](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317020) |  |  |
+| 2/2 | | [HW7](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317073) |  |  |
+| 2/4 | [WS8](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317107) | [HW8](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317106) |  |  |
