@@ -58,3 +58,7 @@ description: What we will do from day to day
 * [Day 11 (plots for analysis of models and closed-loop systems)](https://mediaspace.illinois.edu/media/t/1_61esk1zn/243767652)
 * [Day 12 (eigenvalue placement)](https://mediaspace.illinois.edu/media/t/1_026wll6d/243767652)
 * [Day 13 (ackermann's method and DP2)](https://mediaspace.illinois.edu/media/t/1_4f9icom6/243767652)
+
+# Examples
+
+* See [examples folder of the ae353 github repository]({{ site.github.repository_url }}/tree/main/examples)
