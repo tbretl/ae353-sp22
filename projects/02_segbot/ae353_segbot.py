@@ -5,23 +5,6 @@ import os
 import json
 import importlib
 
-# CHOOSE NOT TO DO
-# detect and stop upon a crash? (maybe not - maybe i will add this later)
-# check correspondence between linear and nonlinear models (?)
-
-# DONE
-# add bumps and/or fiducials
-# detect crossing the finish line (I didn't detect it - just logged "laps")
-# camera views (more?) - fix snapshots
-# change default torque limits
-# change the signs of things if you want (I chose not to do this)
-# check that you can produce a working controller from the model
-# equations of motion
-# allow switching between bumpy and non-bumpy station
-# clean up code
-
-
-
 
 class Simulator:
     def __init__(
