@@ -23,6 +23,8 @@ description: What we will do from day to day
 * [HW8](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317106)
 * [HW12](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317506)
 * [HW13](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317548)
+* [HW14](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317606)
+* [HW15](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317630)
 
 # Activities
 
@@ -33,6 +35,7 @@ description: What we will do from day to day
 * [WS8](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317107)
 * [WS10](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317236)
 * [WS11](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317296)
+* [WS15](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317632)
 
 # Notes
 
@@ -58,6 +61,8 @@ description: What we will do from day to day
 * [Day 11 (plots for analysis of models and closed-loop systems)](https://mediaspace.illinois.edu/media/t/1_61esk1zn/243767652)
 * [Day 12 (eigenvalue placement)](https://mediaspace.illinois.edu/media/t/1_026wll6d/243767652)
 * [Day 13 (ackermann's method and DP2)](https://mediaspace.illinois.edu/media/t/1_4f9icom6/243767652)
+* [Day 14 (controllability)](https://mediaspace.illinois.edu/media/t/1_t206zxiv/243767652)
+* [Day 15 (condition number, error/effort activity)](https://mediaspace.illinois.edu/media/t/1_svo8okjr/243767652)
 
 # Examples
 
