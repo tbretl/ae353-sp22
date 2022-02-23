@@ -183,3 +183,11 @@ _site
 
 #
 #############################
+
+#############################
+# Added by Bretl to avoid committing files for development
+
+do_not_commit
+
+#
+#############################
