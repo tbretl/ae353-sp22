@@ -35,6 +35,7 @@ Mr. Jacob Kraft
     * [By appointment on Zoom](https://calendly.com/jacobgk2)
 
 ## Aerolab Schedule
+
 ![Image of aerolab schedule](./images/schedule.png)
 
 ## Time and Place
