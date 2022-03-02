@@ -34,6 +34,10 @@ Mr. Jacob Kraft
     * Wednesdays, 3:00pm-4:00pm CST, in Talbot 321D
     * [By appointment on Zoom](https://calendly.com/jacobgk2)
 
+## Aerolab Schedule
+
+![Image of aerolab schedule](./images/schedule.png)
+
 ## Time and Place
 
 Lecture will be in-person:
