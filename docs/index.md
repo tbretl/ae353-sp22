@@ -36,7 +36,18 @@ Mr. Jacob Kraft
 
 ## Aerolab Schedule
 
-![Image of aerolab schedule](./images/schedule.png)
+|              | **Sun** |        **Mon**       |          **Tues**         |      **Wed**     |         **Thurs**         |     **Fri**     |        **Sat**       |
+|:------------:|:-------:|:--------------------:|:-------------------------:|:----------------:|:-------------------------:|:---------------:|:--------------------:|
+| **11:00 AM** |         |       **Class**      |                           |     **Class**    | Prof. Bretl (Talbot 321A) |    **Class**    |                      |
+| **12:00 PM** |         |    Michael Beshara   |                           |  Michael Beshara |                           | Michael Beshara |                      |
+|  **1:00 PM** |         |    Michael Beshara   | Prof. Bretl (Talbot 321A) |                  |                           | Michael Beshara |                      |
+|  **2:00 PM** |         |                      |                           |                  |                           |                 | Anshuk Chigullapalli |
+|  **3:00 PM** |         |   Jacob Kraft (TA)   |                           | Jacob Kraft (TA) |    Anshuk Chigullapalli   | Parthiv Kukadia |                      |
+|  **4:00 PM** |         | Anshuk Chigullapalli |                           |  Parthiv Kukadia |    Anshuk Chigullapalli   | Parthiv Kukadia |                      |
+|  **5:00 PM** |         | Anshuk Chigullapalli |      Parthiv Kukadia      |  Parthiv Kukadia |       Rahul Navadgi       |  Pallavi Ravada |                      |
+|  **6:00 PM** |         |    Pallavi Ravada    |       Rahul Navadgi       |  Pallavi Ravada  |       Rahul Navadgi       |    Eric Dobek   |                      |
+|  **7:00 PM** |         |    Pallavi Ravada    |         Eric Dobek        |   Rahul Navadgi  |                           |    Eric Dobek   |                      |
+|  **8:00 PM** |         |                      |         Eric Dobek        |   Rahul Navadgi  |                           |    Eric Dobek   |                      |
 
 ## Time and Place
 
