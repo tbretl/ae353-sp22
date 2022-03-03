@@ -38,16 +38,16 @@ Mr. Jacob Kraft
 
 |              | **Sun** |        **Mon**       |          **Tues**         |      **Wed**     |         **Thurs**         |     **Fri**     |        **Sat**       |
 |:------------:|:-------:|:--------------------:|:-------------------------:|:----------------:|:-------------------------:|:---------------:|:--------------------:|
-| **11:00 AM** | Michael Montanile |       **Class**      |                           |     **Class**    | Prof. Bretl (Talbot 321A) |    **Class**    |   Michael Montanile  |
-| **12:00 PM** | Michael Montanile |    Michael Beshara   |     Michael Montanile     |  Michael Beshara |                           | Michael Beshara |   Michael Montanile  |
-|  **1:00 PM** |                   |    Michael Beshara   | Prof. Bretl (Talbot 321A) |                  |                           | Michael Beshara |                      |
-|  **2:00 PM** |                   |                      |                           |                  |                           |                 | Anshuk Chigullapalli |
-|  **3:00 PM** |                   |   Jacob Kraft (TA)   |                           | Jacob Kraft (TA) |    Anshuk Chigullapalli   | Parthiv Kukadia |                      |
-|  **4:00 PM** |                   | Anshuk Chigullapalli |                           |  Parthiv Kukadia |    Anshuk Chigullapalli   | Parthiv Kukadia |                      |
-|  **5:00 PM** |                   | Anshuk Chigullapalli |      Parthiv Kukadia      |  Parthiv Kukadia |       Rahul Navadgi       |  Pallavi Ravada |                      |
-|  **6:00 PM** |                   |    Pallavi Ravada    |       Rahul Navadgi       |  Pallavi Ravada  |       Rahul Navadgi       |    Eric Dobek   |                      |
-|  **7:00 PM** |                   |    Pallavi Ravada    |         Eric Dobek        |   Rahul Navadgi  |                           |    Eric Dobek   |                      |
-|  **8:00 PM** |                   |                      |         Eric Dobek        |   Rahul Navadgi  |                           |    Eric Dobek   |                      |
+| **11:00 AM** | Michael Montanile |        **Class**       |                           |     **Class**    | Prof. Bretl (Talbot 321A) |    **Class**    |   Michael Montanile  |
+| **12:00 PM** | Michael Montanile |     Michael Beshara    |     Michael Montanile     |  Michael Beshara |       Dennis McCann       | Michael Beshara |   Michael Montanile  |
+|  **1:00 PM** |                   |     Michael Beshara    | Prof. Bretl (Talbot 321A) |                  |                           | Michael Beshara |                      |
+|  **2:00 PM** |                   | Konstantinos Morakalis |                           |   Dennis McCann  |                           |                 | Anshuk Chigullapalli |
+|  **3:00 PM** |                   |    Jacob Kraft (TA)    |       Dennis McCann       | Jacob Kraft (TA) |    Anshuk Chigullapalli   | Parthiv Kukadia |                      |
+|  **4:00 PM** |                   |  Anshuk Chigullapalli  |       Dennis McCann       |  Parthiv Kukadia |    Anshuk Chigullapalli   | Parthiv Kukadia |                      |
+|  **5:00 PM** |                   |  Anshuk Chigullapalli  |      Parthiv Kukadia      |  Parthiv Kukadia |       Rahul Navadgi       |  Pallavi Ravada |                      |
+|  **6:00 PM** |                   |     Pallavi Ravada     |       Rahul Navadgi       |  Pallavi Ravada  |       Rahul Navadgi       |    Eric Dobek   |                      |
+|  **7:00 PM** |                   |     Pallavi Ravada     |         Eric Dobek        |   Rahul Navadgi  |   Konstantinos Morakalis  |    Eric Dobek   |                      |
+|  **8:00 PM** |                   |      Dennis McCann     |         Eric Dobek        |   Rahul Navadgi  |   Konstantinos Morakalis  |    Eric Dobek   |                      |
 
 ## Time and Place
 
