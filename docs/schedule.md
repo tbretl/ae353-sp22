@@ -25,6 +25,7 @@ description: What we will do from day to day
 * [HW13](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317548)
 * [HW14](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317606)
 * [HW15](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317630)
+* [HW17](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317709)
 
 # Activities
 
@@ -45,6 +46,10 @@ description: What we will do from day to day
 * [Day 08 (diagonalization)](notes/Day08-Diagonalization.pdf)
 * [Day 12 (eigenvalue placement)](notes/Day12-EigenvaluePlacement.pdf)
 * [Day 13 (ackermann's method)](notes/Day13-AckermannsMethod.pdf)
+* [Day 14 (controllability)](notes/Day14-Controllability.pdf)
+* [Day 16 (LQR for scalar system)](notes/Day16-LQR-Scalar.pdf)
+* [Day 17 (LQR for general system)](notes/Day17-LQR-General.pdf)
+* Day 18 ([example design report]({{ site.github.repository_url }}/tree/main/projects/00_example/report/main.pdf) and [example code]({{ site.github.repository_url }}/tree/main/projects/00_example/code/PlatformDemo-ForReport.ipynb))
 
 # Videos
 
@@ -63,6 +68,9 @@ description: What we will do from day to day
 * [Day 13 (ackermann's method and DP2)](https://mediaspace.illinois.edu/media/t/1_4f9icom6/243767652)
 * [Day 14 (controllability)](https://mediaspace.illinois.edu/media/t/1_t206zxiv/243767652)
 * [Day 15 (condition number, error/effort activity)](https://mediaspace.illinois.edu/media/t/1_svo8okjr/243767652)
+* [Day 16 (more LQR)](https://mediaspace.illinois.edu/media/t/1_8yro7wse/243767652)
+* [Day 17 (yet more LQR, and design project feedback)](https://mediaspace.illinois.edu/media/t/1_8q6hzas5/243767652)
+* [Day 18 (example design report and code)](https://mediaspace.illinois.edu/media/t/1_77zvw83g/243767652)
 
 # Examples
 
