@@ -177,7 +177,7 @@ dmypy.json
 #############################
 # Added by Bretl to avoid committing files that are used only for local testing
 
-Gemfile
+#Gemfile
 Gemfile.lock
 _site
 
