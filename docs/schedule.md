@@ -26,6 +26,7 @@ description: What we will do from day to day
 * [HW14](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317606)
 * [HW15](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317630)
 * [HW17](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317709)
+* [HW20](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317860)
 
 # Activities
 
