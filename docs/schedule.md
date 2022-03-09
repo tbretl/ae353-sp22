@@ -72,6 +72,17 @@ description: What we will do from day to day
 * [Day 17 (yet more LQR, and design project feedback)](https://mediaspace.illinois.edu/media/t/1_8q6hzas5/243767652)
 * [Day 18 (example design report and code)](https://mediaspace.illinois.edu/media/t/1_77zvw83g/243767652)
 
+# Supplementary Videos
+
+##### Observers
+
+* [What is an observer?](https://mediaspace.illinois.edu/media/t/1_bwsv03zv/243767652)
+* [Do observers make sense?](https://mediaspace.illinois.edu/media/t/1_xf9cytda/243767652)
+* [When does an observer work?](https://mediaspace.illinois.edu/media/t/1_ma7mf2v3/243767652)
+* [How to choose $L$ for an observer?](https://mediaspace.illinois.edu/media/t/1_6kd1vo4k/243767652)
+* [Do observers break controllers?](https://mediaspace.illinois.edu/media/t/1_93pesfka/243767652)
+* [When is observer design possible?](https://mediaspace.illinois.edu/media/t/1_rxgahknr/243767652)
+
 # Examples
 
 * See [examples folder of the ae353 github repository]({{ site.github.repository_url }}/tree/main/examples)
