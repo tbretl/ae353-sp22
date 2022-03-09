@@ -50,6 +50,8 @@ description: What we will do from day to day
 * [Day 16 (LQR for scalar system)](notes/Day16-LQR-Scalar.pdf)
 * [Day 17 (LQR for general system)](notes/Day17-LQR-General.pdf)
 * Day 18 ([example design report]({{ site.github.repository_url }}/tree/main/projects/00_example/report/main.pdf) and [example code]({{ site.github.repository_url }}/tree/main/projects/00_example/code/PlatformDemo-ForReport.ipynb))
+* [Day 19 (project videos)](https://docs.google.com/document/d/1XggcJWQ1uRCqQvlQwUoprhI2KRj-ux5pGxMiAPtYdEU/edit?usp=sharing)
+* [Day 20 (introduction to observers)](notes/Day20-Observers.pdf)
 
 # Videos
 
@@ -71,6 +73,8 @@ description: What we will do from day to day
 * [Day 16 (more LQR)](https://mediaspace.illinois.edu/media/t/1_8yro7wse/243767652)
 * [Day 17 (yet more LQR, and design project feedback)](https://mediaspace.illinois.edu/media/t/1_8q6hzas5/243767652)
 * [Day 18 (example design report and code)](https://mediaspace.illinois.edu/media/t/1_77zvw83g/243767652)
+* [Day 19 (project videos)](https://mediaspace.illinois.edu/media/t/1_v870t5lp/243767652)
+* [Day 20 (introduction to observers)](https://mediaspace.illinois.edu/media/t/1_yc8yxfnv/243767652)
 
 # Supplementary Videos
 
