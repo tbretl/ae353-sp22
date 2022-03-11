@@ -589,3 +589,503 @@ $$\dot{x} = (A - BK)x.$$
 The controller "works" when this system is asymptotically stable, i.e., when $x$ goes to zero as time gets large. We now know, therefore, that the controller "works" when all eigenvalues of $A - BK$ have negative real part.
 
 We may not have a systematic way of *finding* a matrix $K$ to make the closed-loop system stable yet, but we certainly do have a systematic way now of deciding whether or not a *given* matrix $K$ makes the closed-loop system stable.
+
+# Ackermann's Method
+## Eigenvalue placement by controllable canonical form
+
+Apply the input 
+
+$$u=-Kx$$ 
+
+to the open-loop system 
+
+$$\begin{aligned}
+\dot{x} &= Ax+Bu \\
+y &= Cx\end{aligned}$$ 
+
+and you get the closed-loop system
+
+$$\begin{aligned}
+\dot{x} &= (A-BK)x \\
+y &= Cx.\end{aligned}$$ 
+
+Suppose we want to choose $K$ to put the
+eigenvalues of the closed-loop system, i.e., the eigenvalues of the
+matrix $A-BK$, at given locations. We will derive a formula that allows
+us to do this when possible, and will show how to decide when doing so
+is impossible.
+
+### Eigenvalues are invariant to coordinate transformation
+
+Consider the system 
+
+$$\begin{align*}
+\tag{1}
+\dot{x} = Ax+Bu.
+\end{align*}$$ 
+
+Suppose we define a new state variable $z$ so that
+
+$$x = Vz$$ 
+
+for some invertible matrix $V$, and so 
+
+$$
+\begin{align*}
+\dot{x} = V\dot{z}
+\end{align*}$$
+
+by differentiation. (We have called this process "coordinate
+transformation.") Plug these two things into (1) and
+we get 
+
+$$
+\begin{align*}
+V\dot{z} = AVz+Bu
+\end{align*}$$ 
+
+Solve for $\dot{z}$, and we get
+
+$$
+\begin{align*}
+\tag{2}
+\dot{z} = V^{-1}AV z + V^{-1}B u
+\end{align*}$$ 
+
+Finding a solution $z(t)$ to (2)
+allows us to recover a solution $x(t) = Vz(t)$ to (1). We
+would like to know if these two solutions "behave" the same way. In
+particular, we would like to know if the eigenvalues of $A$ are the same
+as the eigenvalues of $V^{-1}AV$. First, let's look at the eigenvalues
+of $A$. We know that they are the roots of 
+
+$$
+\begin{align*}
+\det\left(sI-A\right)
+\end{align*}$$
+
+Second, let's look at the eigenvalues of $V^{-1}AV$. We know that they
+are the roots of 
+
+$$
+\begin{align*}
+\det\left( sI-V^{-1}AV \right)
+\end{align*}$$ 
+
+We can play a trick.
+Notice that 
+
+$$
+\begin{align*}
+V^{-1}(sI)V = s V^{-1}V = sI
+\end{align*}$$ 
+
+so 
+
+$$\begin{aligned}
+\det\left( sI-V^{-1}AV \right)
+&= \det\left( V^{-1}(sI)V-V^{-1}AV \right) && \text{because of our trick} \\
+&= \det\left( V^{-1}(sI - A) V \right)
+\end{aligned}$$ 
+
+It is a fact that
+
+$$
+\begin{align*}
+\det(MN)=\det(M)\det(N)
+\end{align*}$$ 
+
+for any square matrices $M$ and $N$.
+Applying this fact, we find
+
+$$
+\begin{align*}
+\det\left( V^{-1}(sI - A) V \right) = \det(V^{-1})\det(sI-A)\det(V)
+\end{align*}$$
+
+It is another fact that
+
+$$
+\begin{align*}
+\det(M^{-1}) = (\det(M))^{-1} = \dfrac{1}{\det(M)}
+\end{align*}$$ 
+
+Applying this
+other fact, we find 
+
+$$
+\begin{align*}
+\det(V^{-1})\det(sI-A)\det(V)
+= \dfrac{\det(sI-A)\det(V)}{\det(V)}
+= \det(sI-A)
+\end{align*}$$ 
+
+In summary, we have established that
+
+$$
+\begin{align*}
+\det(sI-A) = \det\left( sI-V^{-1}AV \right)
+\end{align*}$$ 
+
+and so the eigenvalues
+of $A$ and $V^{-1}AV$ are the same. The consequence is, if you design
+state feedback for the transformed system, you'll recover the behavior
+you want on the original system. In particular, suppose you apply the
+input 
+
+$$u = -Lz$$ 
+
+to the transformed system and choose $L$ to place the
+eigenvalues of $V^{-1}AV$ in given locations. Applying the input
+
+$$u = -LV^{-1}x$$ 
+
+to the original system, i.e., choosing
+
+$$K = LV^{-1},$$ 
+
+will result in placing the eigenvalues of $A$ at these
+same locations. The reason this is important is that it is often easier
+to choose $L$ than to choose $K$. (The process of diagonalization was
+important for a similar reason.)
+
+### Controllable canonical form
+
+In the previous section, we showed that eigenvalues are invariant to
+coordinate transformation. The next question is what coordinates are
+useful for control design. The answer to that question turns out to be
+something called "controllable canonical form." A system is in this form
+if it looks like: 
+
+$$
+\begin{align*}
+\dot{z} = A_\text{ccf}z + B_\text{ccf} u
+\end{align*}$$ 
+
+where
+
+$$
+\begin{align*}
+A_\text{ccf} =
+\begin{bmatrix}
+-a_{1} & -a_{2} & \dotsm & -a_{n-1} & -a_{n} \\
+1 & 0 & \dotsm & 0 & 0 \\
+0 & 1 & \dotsm & 0 & 0 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & \dotsm & 1 & 0
+\end{bmatrix}
+\qquad\qquad
+B_\text{ccf} = \begin{bmatrix} 1 \\ 0 \\ 0 \\ \vdots \\ 0 \end{bmatrix}
+\end{align*}$$
+
+for some integer $n$ (so $A_\text{ccf}$ is a matrix of size $n \times n$
+and $B_\text{ccf}$ is a matrix of size $n \times 1$). Now, it is a fact
+that the characteristic equation of this system is given by
+
+$$
+\begin{align*}
+\det(sI-A_\text{ccf}) = s^{n} + a_{1}s^{n-1} + \dotsm + a_{n-1}s + a_{n}
+\end{align*}$$
+
+It is easy to see that this formula is true for $n=2$ and $n=3$. In
+particular:
+
+-   If $n=2$, then: 
+
+$$\begin{aligned}
+\det(sI-A_\text{ccf})
+&= \det\begin{bmatrix} s+a_{1} & a_{2} \\ -1 & s \end{bmatrix} \\
+&= (s+a_{1})s+a_{2} = s^{2}+a_{1}s+a_{2}
+\end{aligned}$$
+
+-   If $n=3$, then: 
+
+$$\begin{aligned}
+\det(sI-A_\text{ccf})
+&= \det\begin{bmatrix} s+a_{1} & a_{2} & a_{3}\\ -1 & s & 0 \\ 0 & -1 & s \end{bmatrix} \\
+&= (s+a_{1})s^{2}+a_{3}-(-a_{2}s)= s^{3}+a_{1}s^{2}+a_{2}s+a_{3}
+\end{aligned}$$
+
+There are a variety of ways to prove that this same formula is true in
+general. Applying the general formula to compute the matrix determinant,
+for example, we would find: 
+
+$$\begin{aligned}
+\det(sI-A_\text{ccf})
+&= \det
+\begin{bmatrix}
+s+a_{1} & a_{2} & \dotsm & a_{n-1} & a_{n} \\
+-1 & s & \dotsm & 0 & 0 \\
+0 & -1 & \dotsm & 0 & 0 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & \dotsm & -1 & s
+\end{bmatrix} \\
+&= (s+a_{1}) \det(T_{1})-a_{2}\det(T_{2})+a_{3}\det(T_{3})-\dotsm
+\end{aligned}$$
+
+where each matrix $T_{i}$ is upper-triangular with $-1$ in $i-1$
+diagonal entries and $s$ in $n-i$ diagonal entries. Since the
+determinant of an upper-triangular matrix is the product of its diagonal
+entries, we have
+
+$$
+\begin{align*}
+\det(T_{i}) = \begin{cases} s^{n-i} & \text{when $i$ is odd} \\ -s^{n-i} & \text{when $i$ is even} \end{cases}
+\end{align*}$$
+
+Plug this in, and our result follows. Now, the reason that controllable
+canonical form is useful is that if we choose the input 
+
+$$u = -Lz$$ 
+
+for some choice of gains
+
+$$
+\begin{align*}
+L = \begin{bmatrix} \ell_{1} & \dotsm & \ell_{n} \end{bmatrix}
+\end{align*}$$ 
+
+then the "$A$ matrix" of the closed-loop system is
+
+$$
+\begin{align*}
+A_\text{ccf}-B_\text{ccf}L =
+\begin{bmatrix}
+-a_{1}-\ell_{1} & -a_{2}-\ell_{2} & \dotsm & -a_{n-1}-\ell_{n-1} & -a_{n}-\ell_{n} \\
+1 & 0 & \dotsm & 0 & 0 \\
+0 & 1 & \dotsm & 0 & 0 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & \dotsm & 1 & 0
+\end{bmatrix}
+\end{align*}$$ 
+
+The characteristic equation of this closed-loop system,
+computed in the same way as for $A_\text{ccf}$, is
+
+$$
+\begin{align*}
+s^{n} + (a_{1}+\ell_{1}) s^{n-1} + \dotsm + (a_{n-1}+\ell_{n-1}) s + (a_{n}+\ell_{n}).
+\end{align*}$$
+
+If you want this characteristic equation to look like
+
+$$
+\begin{align*}
+s^{n} + r_{1} s^{n-1} + \dotsm + r_{n-1} s + r_{n}
+\end{align*}$$ 
+
+then it's obvious
+what gains you should choose:
+
+$$
+\begin{align*}
+\ell_{1} = r_{1}-a_{1} \qquad\qquad \ell_{2} = r_{2}-a_{2} \qquad\qquad \dotsm \qquad\qquad \ell_{n}=r_{n}-a_{n}.
+\end{align*}$$
+
+So, if you have a system in controllable canonical form, then it is
+extremely easy to choose gains that make the characteristic equation of
+the closed-loop system look like anything you want (i.e., to put the
+closed-loop eigenvalues anywhere you want). In other words, it is
+extremely easy to do control design.
+
+### Putting a system in controllable canonical form
+
+We have seen that controllable canonical form is useful. Now we'll see
+how to put a system in this form. Suppose we have a system
+
+$$
+\begin{align*}
+\dot{x} = Ax+Bu
+\end{align*}$$ 
+
+and we want to choose an invertible matrix $V$ so
+that if we define a new state variable $z$ by 
+
+$$
+\begin{align*}
+x = Vz
+\end{align*}$$ 
+
+then we can rewrite the system as 
+
+$$
+\begin{align*}
+\dot{z} = A_\text{ccf}z+B_\text{ccf}u
+\end{align*}$$ 
+
+where
+
+$$
+\begin{align*}
+A_\text{ccf} = V^{-1}AV
+\qquad\qquad\text{and}\qquad\qquad
+B_\text{ccf} = V^{-1}B
+\end{align*}$$ 
+
+are in controllable canonical form. The trick
+is to look at the so-called *controllability matrix* that is associated
+with the transformed system:
+
+$$
+\begin{align*}
+W_\text{ccf} = \begin{bmatrix} B_\text{ccf} & A_\text{ccf}B_\text{ccf} & \dotsm & A_\text{ccf}^{n-1}B_\text{ccf} \end{bmatrix}.
+\end{align*}$$
+
+We will talk later about the controllability matrix---why we define it
+this way, what it means, etc. For now, notice: 
+
+$$\begin{aligned}
+B_\text{ccf} &= V^{-1}B \\
+A_\text{ccf}B_\text{ccf} &= V^{-1}AVV^{-1}B = V^{-1}AB \\
+A_\text{ccf}^{2}B_\text{ccf} &= A_\text{ccf} (A_\text{ccf}B_\text{ccf}) = V^{-1}AVV^{-1}AB = V^{-1}A^{2}B \\
+\vdots\qquad &= \qquad\vdots
+\end{aligned}$$ 
+
+You see the pattern here,
+I'm sure. The result is: 
+
+$$\begin{aligned}
+W_\text{ccf} &= \begin{bmatrix} V^{-1}B & V^{-1}AB & \dotsm & V^{-1}A^{n-1}B \end{bmatrix} \\
+&= V^{-1}\begin{bmatrix} B & AB & \dotsm & A^{n-1}B \end{bmatrix} \\
+&= V^{-1}W
+\end{aligned}$$ 
+
+where
+
+$$
+\begin{align*}
+W = \begin{bmatrix} B & AB & \dotsm & A^{n-1}B \end{bmatrix}
+\end{align*}$$ 
+
+is the
+controllability matrix associated with the original system. Note that
+$A$ and $B$ are things that you know (because you have a description of
+the original system, as always), so you can compute $W$. Note that
+$A_\text{ccf}$ and $B_\text{ccf}$ are also things that you know (because
+they are written in terms of the eigenvalues of the original system,
+which you can find from the matrix $A$), so you can compute
+$W_\text{ccf}$. As a consequence, you can solve for the matrix $V^{-1}$:
+
+$$
+\begin{align*}
+V^{-1} = W_\text{ccf}W^{-1}.
+\end{align*}$$ 
+
+Now, suppose you design a control
+policy for the transformed system: 
+
+$$
+\begin{align*}
+u = -K_\text{ccf}z.
+\end{align*}$$ 
+
+Remember, you
+can do this easily, because the transformed system is in controllable
+canonical form. We can compute the equivalent control policy, that would
+be applied to the original system:
+
+$$
+\begin{align*}
+u = -K_\text{ccf}z = -K_\text{ccf}V^{-1}x = -K_\text{ccf}W_\text{ccf}W^{-1}x.
+\end{align*}$$
+
+In particular, if we choose 
+
+$$
+\begin{align*}
+K = K_\text{ccf}W_\text{ccf}W^{-1}
+\end{align*}$$ 
+
+then
+we get the behavior that we want. Note that this only works if $W$ is
+invertible, and that $W$ is only invertible if $\det(W)\neq 0$. This is
+why we say that: "a system is controllable if and only if
+$\det(W) \neq 0$." Remember that what we mean by "controllable" is that
+it's possible to design a control policy that puts the closed-loop
+eigenvalues anywhere we want.
+
+### A systematic process for control design
+
+Apply the input 
+
+$$u=-Kx$$ 
+
+to the open-loop system 
+
+$$
+\begin{align*}
+\dot{x} = Ax+Bu
+\end{align*}$$
+
+and you get the closed-loop system 
+
+$$
+\begin{align*}
+\dot{x} = (A-BK)x
+\end{align*}$$ 
+
+Suppose we want
+to choose $K$ to put the eigenvalues of the closed-loop system at
+$p_{1},\dotsc,p_{n}$. Using the results of the previous sections, we
+know we can do this as follows:
+
+-   Compute the characteristic equation that we want:
+    
+$$
+\begin{align*}
+(s-p_{1})\dotsm(s-p_{n}) = s^{n}+r_{1}s^{n-1}+ \dotsm + r_{n-1}s + r_{n}
+\end{align*}$$
+
+-   Compute the characteristic equation that we have:
+    
+$$
+\begin{align*}
+\det(sI-A) = s^{n}+a_{1}s^{n-1}+ \dotsm + a_{n-1}s + a_{n}
+\end{align*}$$
+
+-   Compute the controllability matrix of the original system (and check that $\det(W)\neq 0$):
+    
+$$
+\begin{align*}
+W = \begin{bmatrix} B & AB & \dotsm & A^{n-1}B \end{bmatrix}
+\end{align*}$$
+
+-   Compute the controllability matrix of the transformed system:
+    
+$$
+\begin{align*}
+W_\text{ccf} = \begin{bmatrix} B_\text{ccf} & A_\text{ccf}B_\text{ccf} & \dotsm & A_\text{ccf}^{n-1}B_\text{ccf} \end{bmatrix}
+\end{align*}$$
+
+where 
+
+$$
+\begin{align*}
+A_\text{ccf} =
+\begin{bmatrix}
+-a_{1} & -a_{2} & \dotsm & -a_{n-1} & -a_{n} \\
+1 & 0 & \dotsm & 0 & 0 \\
+0 & 1 & \dotsm & 0 & 0 \\
+\vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & \dotsm & 1 & 0
+\end{bmatrix}
+\qquad\qquad
+B_\text{ccf} = \begin{bmatrix} 1 \\ 0 \\ 0 \\ \vdots \\ 0 \end{bmatrix}
+\end{align*}$$
+
+-   Compute the gains for the transformed system:
+    
+$$
+\begin{align*}
+K_\text{ccf} = \begin{bmatrix} r_{1}-a_{1} & \dotsm & r_{n}-a_{n} \end{bmatrix}
+\end{align*}$$
+
+-   Compute the gains for the original system:
+    
+$$
+\begin{align*}
+K = K_\text{ccf}W_\text{ccf}W^{-1}
+\end{align*}$$
+
+And we're done! This process is easy to implement, without any symbolic
+computation.
