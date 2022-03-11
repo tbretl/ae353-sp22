@@ -589,3 +589,146 @@ $$\dot{x} = (A - BK)x.$$
 The controller "works" when this system is asymptotically stable, i.e., when $x$ goes to zero as time gets large. We now know, therefore, that the controller "works" when all eigenvalues of $A - BK$ have negative real part.
 
 We may not have a systematic way of *finding* a matrix $K$ to make the closed-loop system stable yet, but we certainly do have a systematic way now of deciding whether or not a *given* matrix $K$ makes the closed-loop system stable.
+
+# Observer Design
+## Observers {#secObs}
+
+Consider the linear state-space system 
+
+$$
+\begin{align*}
+\tag{1}
+\dot{x} &= A x + B u \\ y &= C x.
+\end{align*}$$ 
+
+When designing state feedback controllers of the form
+$u = -K x$ for the system (1),
+we have thus far assumed that we know the state $x$ at the current time
+$t$. However, this is often not the case. In most situations, we only
+know the output $y$, and not the full state $x$. The output $y$ can be
+thought of as a set of measurements that we have access to. These
+measurements, however, may not be sufficient to describe the full state
+of the system. If we don't know $x$, how can we implement state feedback
+control?
+
+Our approach will be to estimate the state $x$ by using the output $y$.
+Our estimate of the state will be denoted by $\hat{x}$. Note that
+$\hat{x}$ is a variable that we have introduced. The system (1)
+doesn't care what $\hat{x}$ is. We are introducing $\hat{x}$ to help us
+choose what control input to apply. Using our estimate $\hat{x}$, we
+will apply the input $u = -K \hat{x}$.
+
+We still need to decide how $\hat{x}$ will estimate the state $x$. One
+approach would be to let $\hat{x}$ satisfy the same differential
+equation as $x$, and we would therefore have 
+
+$$
+\begin{align*}
+\tag{2}
+\dot{\hat{x}} = A \hat{x} + B u.
+\end{align*}$$ 
+
+However, if $\hat{x}(t_0)$ is not
+close to $x(t_0)$ at the initial time $t_0$, then we shouldn't expect
+$\hat{x}$ to give us a good estimate of $x$ at a later time.
+
+Let's think back to our discussions on controller design for the system (1).
+Without input, the system (1) is $\dot{x} = A x$. We wanted the state of this system to approach $0$,
+so we added a term that is proportional to the error, i.e., we added
+$-B K (x-0) = -B K x$, and the system became
+$\dot{x} = A x - B K x = (A-BK)x$. We can apply the same logic to the
+observer. Let's add a term to (2)
+that is proportional to the error $C \hat{x} - y$, which gives
+
+$$
+\begin{align*}
+\dot{\hat{x}} = A \hat{x} + B u - L (C \hat{x} - y)
+\end{align*}$$ 
+
+for some matrix
+$L$.
+
+It's not immediately obvious that we should expect $\hat{x}$ to approach
+$x$, since we are only penalizing $C \hat{x} - y$. However, let's look
+at what happens to $\hat{x} - x$ by taking its derivative.
+
+$$
+\begin{align*}
+\tag{4}
+\frac{d}{dt} (\hat{x} - x) = \dot{\hat{x}} - \dot{x} = (A \hat{x} + B u - L (C \hat{x} - y)) - (A x + B u)
+\end{align*}$$
+
+After canceling terms, we find that 
+
+$$
+\begin{align*}
+\frac{d}{dt} (\hat{x} - x) = (A - L C ) (\hat{x} - x)
+\end{align*}$$ 
+
+Note that this
+differential equation has the same structure as many equations we've
+already dealt with this semester, namely $\dot{x} = (A - B K)x$. We
+therefore know that $\hat{x} - x$ approaches 0 if and only if the
+eigenvalues of $A-LC$ have negative real parts. We've shown that by only
+penalizing $C\hat{x} - y$, we can make the difference between the
+estimate $\hat{x}$ and the state $x$ approach 0 if we correctly choose
+the matrix $L$.
+
+## Observer Design {#secObsDes}
+
+We can choose $L$ using the same tools we've used earlier this semester
+to choose $K$. Let's choose $L$ using the Matlab function `acker`.
+Recall that to place the eigenvalues of $A-BK$ at locations designated
+by the row vector $p$, we write
+
+>     K = acker(A,B,p);
+
+However, note that $A-BK$ is different than $A-LC$, specifically because
+the matrices that we must choose, $K$ and $L$, appear in different
+orders in each of the expressions. This problem goes away after we
+recall the following fact from linear algebra: A matrix $M$ and its
+transpose $M^T$ have the same eigenvalues. Therefore, rather than
+placing the eigenvalues of the matrix $A-LC$, we can equivalently place
+the eigenvalues of $(A-LC)^T = A^T - C^T L^T$. The matrix
+$A^T - C^T L^T$ has the same structure as the matrix $A-BK$. We can
+place the eigenvalues of $A^T - C^T L^T$ by using the following Matlab
+command:
+
+>     L = acker(A',C',p)';
+
+Note that `acker(A’,C’,p)` gives the matrix $L'$, and we therefore must
+take the transpose of `acker(A’,C’,p)` to find $L$.
+
+## Principle of Separation {#secSepPrin}
+
+We can now ask how our choice of $L$ affects the state $x$, and
+similarly, how does our choice of $K$ affect the estimate $\hat{x}$. In
+other words, can we choose $L$ and $K$ independently and still place the
+eigenvalues of the state-space system (1)
+and the observer (4) at desired locations? The answer turns out to be
+yes. To see that this is true, let's plug the controller
+$u = -K \hat{x}$ into the state-space system (1).
+We can write this system along with the observer (4) together as 
+
+$$
+\begin{align*}
+\tag{5}
+\begin{bmatrix}
+\dot{x} \\ \dot{\hat{x}} - \dot{x}
+\end{bmatrix} =
+\begin{bmatrix}
+A-BK & -BK \\ 0 & A-LC
+\end{bmatrix}
+\begin{bmatrix}
+x \\ \hat{x} - x
+\end{bmatrix}
+\end{align*}$$ 
+
+The matrix in
+(5) is
+an upper triangular block matrix. A fact from linear algebra is that the
+eigenvalues of the matrix in
+(5) are
+the eigenvalues of $A-BK$ and $A-LC$. Therefore, we can place the
+eigenvalues of $A-BK$ and $A-LC$ independently. This fact is known as
+the principle of separation.
