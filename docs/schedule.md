@@ -27,6 +27,8 @@ description: What we will do from day to day
 * [HW15](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317630)
 * [HW17](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317709)
 * [HW20](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317860)
+* [HW21](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317891)
+* [HW22](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318052)
 
 # Activities
 
@@ -38,6 +40,8 @@ description: What we will do from day to day
 * [WS10](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317236)
 * [WS11](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317296)
 * [WS15](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317632)
+* [WS21](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317861)
+* [WS23](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318057)
 
 # Notes
 
@@ -53,6 +57,8 @@ description: What we will do from day to day
 * Day 18 ([example design report]({{ site.github.repository_url }}/tree/main/projects/00_example/report/main.pdf) and [example code]({{ site.github.repository_url }}/tree/main/projects/00_example/code/PlatformDemo-ForReport.ipynb))
 * [Day 19 (project videos)](https://docs.google.com/document/d/1XggcJWQ1uRCqQvlQwUoprhI2KRj-ux5pGxMiAPtYdEU/edit?usp=sharing)
 * [Day 20 (introduction to observers)](notes/Day20-Observers.pdf)
+* [Day 21 (observer implementation, design, and analysis)](notes/Day21-MoreObservers.pdf)
+* [Day 22 (more about observer implementation, design, and analysis)](notes/Day22-EvenMoreObservers.pdf)
 
 # Videos
 
@@ -76,6 +82,8 @@ description: What we will do from day to day
 * [Day 18 (example design report and code)](https://mediaspace.illinois.edu/media/t/1_77zvw83g/243767652)
 * [Day 19 (project videos)](https://mediaspace.illinois.edu/media/t/1_v870t5lp/243767652)
 * [Day 20 (introduction to observers)](https://mediaspace.illinois.edu/media/t/1_yc8yxfnv/243767652)
+* [Day 21 (observer implementation, design, and analysis)](https://mediaspace.illinois.edu/media/t/1_ycmlgk8m/243767652)
+* [Day 22 (more about observer implementation, design, and analysis)](https://mediaspace.illinois.edu/media/t/1_zznp17o8/243767652)
 
 # Supplementary Videos
 
