@@ -29,6 +29,8 @@ description: What we will do from day to day
 * [HW20](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317860)
 * [HW21](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317891)
 * [HW22](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318052)
+* [HW23](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318085)
+* [HW24](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318114)
 
 # Activities
 
@@ -59,6 +61,7 @@ description: What we will do from day to day
 * [Day 20 (introduction to observers)](notes/Day20-Observers.pdf)
 * [Day 21 (observer implementation, design, and analysis)](notes/Day21-MoreObservers.pdf)
 * [Day 22 (more about observer implementation, design, and analysis)](notes/Day22-EvenMoreObservers.pdf)
+* [Day 23 (nonlinear sensor models)](notes/Day23-NonlinearSensorModels.pdf)
 
 # Videos
 
@@ -84,6 +87,7 @@ description: What we will do from day to day
 * [Day 20 (introduction to observers)](https://mediaspace.illinois.edu/media/t/1_yc8yxfnv/243767652)
 * [Day 21 (observer implementation, design, and analysis)](https://mediaspace.illinois.edu/media/t/1_ycmlgk8m/243767652)
 * [Day 22 (more about observer implementation, design, and analysis)](https://mediaspace.illinois.edu/media/t/1_zznp17o8/243767652)
+* [Day 23 (nonlinear sensor models)](https://mediaspace.illinois.edu/media/t/1_hu9beo6t/243767652)
 
 # Supplementary Videos
 
@@ -95,6 +99,12 @@ description: What we will do from day to day
 * [How to choose $L$ for an observer?](https://mediaspace.illinois.edu/media/t/1_6kd1vo4k/243767652)
 * [Do observers break controllers?](https://mediaspace.illinois.edu/media/t/1_93pesfka/243767652)
 * [When is observer design possible?](https://mediaspace.illinois.edu/media/t/1_rxgahknr/243767652)
+
+##### Optimal observers
+
+* [What is an optimal observer?](https://mediaspace.illinois.edu/media/t/1_m5ku4a2i/243767652)
+* [What problem is solved to produce an optimal observer?](https://mediaspace.illinois.edu/media/t/1_cvfqo0i0/243767652)
+* [Do optimal observers make any sense at all?](https://mediaspace.illinois.edu/media/t/1_axx6h2yg/243767652)
 
 # Examples
 
