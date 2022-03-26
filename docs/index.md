@@ -38,8 +38,8 @@ Mr. Jacob Kraft
 
 |              | **Sun** |        **Mon**       |          **Tues**         |      **Wed**     |         **Thurs**         |     **Fri**     |        **Sat**       |
 |:------------:|:-------:|:--------------------:|:-------------------------:|:----------------:|:-------------------------:|:---------------:|:--------------------:|
-| **11:00 AM** | Michael Montanile |        **Class**       |                           |     **Class**    | Prof. Bretl (Talbot 321A) |    **Class**    |   Michael Montanile  |
-| **12:00 PM** | Michael Montanile |     Michael Beshara    |     Michael Montanile     |  Michael Beshara |       Dennis McCann       | Michael Beshara |   Michael Montanile  |
+| **11:00 AM** |  |        **Class**       |                           |     **Class**    | Prof. Bretl (Talbot 321A) |    **Class**    |     |
+| **12:00 PM** |  |     Michael Beshara    |          |  Michael Beshara |       Dennis McCann       | Michael Beshara |     |
 |  **1:00 PM** |                   |     Michael Beshara    | Prof. Bretl (Talbot 321A) |                  |                           | Michael Beshara |                      |
 |  **2:00 PM** |                   | Konstantinos Morakalis |                           |   Dennis McCann  |                           |                 | Anshuk Chigullapalli |
 |  **3:00 PM** |                   |    Jacob Kraft (TA)    |       Dennis McCann       | Jacob Kraft (TA) |    Anshuk Chigullapalli   | Parthiv Kukadia |                      |
