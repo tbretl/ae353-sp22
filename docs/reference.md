@@ -1089,3 +1089,42 @@ K = K_\text{ccf}W_\text{ccf}W^{-1}
 
 And we're done! This process is easy to implement, without any symbolic
 computation.
+
+## Ackermann's Method Code
+Let's take a look at how to implement Ackermann's method using Python.
+
+```
+def acker(A, B, p):
+    """
+    INPUTS
+    - A and B are 2d numpy arrays that describe a state-space system
+    - p is a list of desired eigenvalue locations
+    OUTPUTS
+    - K, a 2d numpy array, is a gain matrix that would put closed-loop eigenvalues at p
+
+    We assume that B has only one column (i.e., the system described by A and B has only one input) and that every complex number in p has a conjugate pair
+    """
+    n = A.shape[0]
+    # Find the coefficients of the characterisitc polynomial with  roots at p
+    r = np.poly(p)[1:].real
+    # Find the coefficients of the characteristic polynomial of A
+    a = np.poly(A)[1:]
+    # Find the state space system (Accf, Bccf) that is equivalent    to   (A, B) but that is in controllable canonical form
+    Accf = np.block([[-a], [np.eye(n-1), np.zeros((n, 1))]])
+    Bccf = np.block([[1.], [np.zeros((B.shape[0], 1))]])
+    # Find state feedback for (Accf, Bccf)
+    Kccf = (r - a).reshape([1, -1])
+    # Find the coordinate transformation between (Accf, Bccf) and    (A,  B)
+    W = B
+    for i in range(1, n):
+        col = np.linalg.matrix_power(A, i) @ B
+        W = np.block([W, col])
+    Wccf = Bccf
+    for i in range(1, n):
+        col = np.linalg.matrix_power(Accf, i) @ Bccf
+        Wccf = np.block([Wccf, col])
+    inverse_of_V = Wccf @ linalg.inv(W)
+    # Find and return state feedback for (A, B)
+    K = Kccf @ inverse_of_V
+    return K
+```
