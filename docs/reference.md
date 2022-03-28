@@ -1094,6 +1094,9 @@ computation.
 Let's take a look at how to implement Ackermann's method using Python.
 
 ```
+import numpy as np
+from scipy import linalg
+
 def acker(A, B, p):
     """
     INPUTS
