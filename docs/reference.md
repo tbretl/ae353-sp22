@@ -1360,3 +1360,15 @@ u = -Kx
 for 
 
 $$ \begin{aligned} K = R^{-1}B^{T}P. \end{aligned}$$
+
+### LQR Code
+Let's take a look at how to implement LQR using Python. The basic method is shown below:
+
+```
+from scipy import linalg
+
+def LQR(A, B, Q, R):
+    P = linalg.solve_continous_are(A, B, Q, R)  # Solves the continuous algebraic Riccati equation
+    K = linalg.inv(R) @ B.T @ P  # Generates gain matrix
+    return K
+```
