@@ -1365,6 +1365,7 @@ $$ \begin{aligned} K = R^{-1}B^{T}P. \end{aligned}$$
 Let's take a look at how to implement LQR using Python. The basic method is shown below:
 
 ```
+import numpy as np
 from scipy import linalg
 
 def LQR(A, B, Q, R):
