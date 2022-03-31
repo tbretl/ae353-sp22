@@ -972,6 +972,7 @@ produces an optimal controller. **WWWWWOOOOOWWWWW!!!!!!!**
 
 Remember that:
 ```
+import numpy as np
 from scipy import linalg
 
 def LQR(A,B,Q,R):
