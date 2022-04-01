@@ -592,6 +592,9 @@ We may not have a systematic way of *finding* a matrix $K$ to make the closed-lo
 
 
 # Optimization and Optimal Control
+
+These notes were originally written by T. Bretl and were transcribed for this reference page by S. Bout.
+
 ## Optimization
 
 The following thing is called an *optimization problem*:
@@ -620,14 +623,14 @@ two different ways to arrive at this result:
     ![image](optim01.jpg)
 
 -   We could apply the first derivative test. We compute the first
-    derivative: 
-    
+    derivative:
+
     $$\begin{aligned}
-    \frac{d}{du}  (u^{2}-2u+3) = 2 u - 2 
+    \frac{d}{du}  (u^{2}-2u+3) = 2 u - 2
     \end{aligned}$$
 
     Then, we set the first derivative equal to zero and solve for $u$:
-    
+
     $$
     \begin{align*}
     2u-2 = 0 \qquad \Rightarrow \qquad u=1
@@ -647,11 +650,11 @@ In general, we write optimization problems like this:
 $$
 \begin{align*}
 \mathop{\mathrm{minimize}}_{u} \qquad g(u)
-\end{align*}$$ 
+\end{align*}$$
 
 Again, $u$ is the
 decision variable and $g(u)$ is the cost function. In the previous
-example: 
+example:
 
 $$
 \begin{align*}
@@ -690,15 +693,15 @@ there are at least two ways of finding the solution to this problem:
 
 -   We could apply the first derivative test. We compute the partial
     derivative of $g(u_{1},u_{2})$ with respect to both $u_{1}$ and
-    $u_{2}$: 
-    
+    $u_{2}$:
+
     $$\begin{aligned}
     \frac{\partial}{\partial u_{1}} g(u_{1},u_{2}) &= 2u_{1}-2u_{2}+2 \\
     \frac{\partial}{\partial u_{2}} g(u_{1},u_{2}) &= 6u_{2}-2u_{1}+2\end{aligned}$$
 
     Then, we set both partial derivatives equal to zero and solve for
-    $u_{1}$ and $u_{2}$: 
-    
+    $u_{1}$ and $u_{2}$:
+
     $$
     \begin{align*}
     \begin{split}
@@ -707,8 +710,8 @@ there are at least two ways of finding the solution to this problem:
     \end{split}
     \qquad \Rightarrow \qquad
     (u_{1},u_{2}) = (-2,-1)
-    \end{align*}$$ 
-    
+    \end{align*}$$
+
     As before, we would have to apply a
     further test in order to verify that this choice of $(u_{1},u_{2})$
     is actually a minimum. But it is certainly consistent with what we
@@ -741,11 +744,11 @@ The point here is that the "decision variable" in an optimization
 problem can be a variety of different things: a scalar, a vector (i.e.,
 an $n\times 1$ matrix), and---as we will see---even a function of time.
 Before proceeding, however, let's look at one more example of an
-optimization problem: 
+optimization problem:
 
 $$\begin{aligned}
 \mathop{\mathrm{minimize}}_{u,x} &\qquad u^{2}+3x^{2}-2ux+2u+2x+6 \\
-\text{subject to} &\qquad u+x=3\end{aligned}$$ 
+\text{subject to} &\qquad u+x=3\end{aligned}$$
 
 This example is exactly
 the same as the previous example, except that the two decision variables
@@ -760,22 +763,22 @@ constraint. First, we solve the constraint equation:
 $$
 \begin{align*}
 u+x=3 \qquad\Rightarrow\qquad x = 3-u
-\end{align*}$$ 
+\end{align*}$$
 
 Then, we plug this result into
-the cost function: 
+the cost function:
 
 $$\begin{aligned}
 u^{2}+3x^{2}-2ux+2u+2x+6
 &= u^{2}+3(3-u)^{2}-2u(3-u)+2u+2(3-u)+6 \\
-&= 6u^{2}-24u+39\end{aligned}$$ 
+&= 6u^{2}-24u+39\end{aligned}$$
 
 By doing so, we have shown that solving
-the constrained optimization problem 
+the constrained optimization problem
 
 $$\begin{aligned}
 \mathop{\mathrm{minimize}}_{u,x} &\qquad u^{2}+3x^{2}-2ux+2u+2x+6 \\
-\text{subject to} &\qquad u+x=3\end{aligned}$$ 
+\text{subject to} &\qquad u+x=3\end{aligned}$$
 
 is equivalent to solving
 the unconstrained optimization problem
@@ -783,7 +786,7 @@ the unconstrained optimization problem
 $$
 \begin{align*}
 \mathop{\mathrm{minimize}}_{u} \qquad 6u^{2}-24u+39
-\end{align*}$$ 
+\end{align*}$$
 
 and then taking
 $x=3-u$. We can do so easily by taking the first derivative and setting
@@ -801,7 +804,7 @@ example optimization problem we've been considering written as
 
 $$\begin{aligned}
 \mathop{\mathrm{minimize}}_{u} &\qquad u^{2}+3x^{2}-2ux+2u+2x+6 \\
-\text{subject to} &\qquad u+x=3\end{aligned}$$ 
+\text{subject to} &\qquad u+x=3\end{aligned}$$
 
 The meaning is exactly
 the same, but $x$ isn't listed as one of the decision variables under
@@ -818,7 +821,7 @@ We have seen three example problems. In each case, we were looking for
 the minimizer, i.e., the choice of decision variable that made the cost
 function as small as possible:
 
--   The solution to 
+-   The solution to
 
 $$
 \begin{align*}
@@ -829,7 +832,7 @@ $$
 was $u=1$.
 
 -   The solution to
-    
+
     $$
     \begin{align*}
     \mathop{\mathrm{minimize}}_{u_{1},u_{2}} \qquad u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6
@@ -837,12 +840,12 @@ was $u=1$.
 
 was $(u_{1},u_{2})=(-2,-1)$.
 
--   The solution to 
+-   The solution to
 
 $$\begin{aligned}
     \mathop{\mathrm{minimize}}_{u} &\qquad u^{2}+3x^{2}-2ux+2u+2x+6 \\
-    \text{subject to} &\qquad u+x=3\end{aligned}$$ 
-    
+    \text{subject to} &\qquad u+x=3\end{aligned}$$
+
 was $(u,x)=(2,1)$.
 
 It is sometimes useful to focus on the minimum instead of on the
@@ -850,31 +853,31 @@ minimizer, i.e., what the "smallest value" was that we were able to
 achieve. When focusing on the minimum, we often use the following "set
 notation" instead:
 
--   The problem 
+-   The problem
 
 $$
 \begin{align*}
 \mathop{\mathrm{minimize}}_{u} \qquad u^{2}-2u+3
-\end{align*}$$ 
+\end{align*}$$
 
 is rewritten
-    
+
 $$
 \begin{align*}
 \mathop{\mathrm{minimum}}_{u} \left\{ u^{2}-2u+3 \right\}.
-\end{align*}$$ 
-    
+\end{align*}$$
+
 The meaning is---find the minimum value of $u^{2}-2u+3$ over all choices of $u$. The solution to this problem can be found by plugging in what we already know is the minimizer, $u=1$. In particular, we find that the solution is $2$.
 
 -   The problem
-    
+
 $$
 \begin{align*}
 \mathop{\mathrm{minimize}}_{u_{1},u_{2}} \qquad u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6
 \end{align*}$$
 
 is rewritten
-    
+
 $$
 \begin{align*}
 \mathop{\mathrm{minimum}}_{u_{1},u_{2}} \left\{ u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6 \right\}.
@@ -882,14 +885,14 @@ $$
 
 Again, the meaning is---find the minimum value of $u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6$ over all choices of $u_{1}$ and $u_{2}$. We plug in what we already know is the minimizer $(u_{1},u_{2})=(-2,-1)$ to find the solution---it is $3$.
 
--   The problem 
+-   The problem
 
 $$\begin{aligned}
 \mathop{\mathrm{minimize}}_{u} &\qquad u^{2}+3x^{2}-2ux+2u+2x+6 \\
-\text{subject to} &\qquad u+x=3\end{aligned}$$ 
-    
+\text{subject to} &\qquad u+x=3\end{aligned}$$
+
 is rewritten
-    
+
 $$
 \begin{align*}
 \mathop{\mathrm{minimum}}_{u} \left\{ u^{2}+3x^{2}-2ux+2u+2x+6 \;\colon\; u+x=3  \right\}.
@@ -911,11 +914,11 @@ $$
 \tag{1}
 \mathop{\mathrm{minimize}}_{u_{[t_{0},t_{1}]}} &\qquad h(x(t_{1})) + \int_{t_{0}}^{t_{1}}g(x(t),u(t))dt \\
 \text{subject to} &\qquad \frac{dx(t)}{dt} = f(x(t),u(t)), \quad x(t_{0})=x_{0}
-\end{align*}$$ 
+\end{align*}$$
 
 Let's try to understand what it means.
 
--   The statement 
+-   The statement
 
 $$\begin{align*}
 \mathop{\mathrm{minimize}}_{u_{[t_{0},t_{1}]}}
@@ -930,40 +933,40 @@ being asked to choose the value of $u(t)$ at all times in between,
 i.e., for all $t\in[t_{0},t_{1}]$.
 
 -   The statement
-    
+
 $$
 \begin{align*}
 \frac{dx(t)}{dt} = f(x(t),u(t)), \quad x(t_{0})=x_{0}
-\end{align*}$$ 
-    
+\end{align*}$$
+
 is a
 constraint. It implies that we are restricted to choices of $u$ for
 which there exists an $x$ satisfying a given initial condition
-    
+
 $$
 \begin{align*}
 x(t_{0}) = x_{0}
-\end{align*}$$ 
-    
+\end{align*}$$
+
 and satisfying the ordinary differential
-equation 
-    
+equation
+
 $$
 \begin{align*}
 \frac{dx(t)}{dt} = f(x(t),u(t)).
-\end{align*}$$ 
-    
+\end{align*}$$
+
 One example of an
 ordinary differential equation that looks like this is our usual
-description of a system in state-space form: 
-    
+description of a system in state-space form:
+
 $$
 \begin{align*}
 \dot{x} = Ax+Bu,
 \end{align*}$$
 
--   The statement 
-    
+-   The statement
+
 $$
 \begin{align*}
 h(x(t_{1})) + \int_{t_{0}}^{t_{1}}g(x(t),u(t))dt
@@ -974,7 +977,7 @@ this problem. Notice that the cost function depends on both $x$ and
 $u$. Part of it---$g(\cdot)$---is integrated (i.e., "added up") over
 time. Part of it---$h(\cdot)$---is applied only at the final time.
 One example of a cost function that looks like this is
-    
+
 $$\begin{align*}
 x(t_{1})^{T}Mx(t_{1}) + \int_{t_{0}}^{t_{1}} \left( x(t)^{T}Qx(t)+u(t)^{T}Ru(t) \right) dt
 \end{align*}$$
@@ -996,7 +999,7 @@ $$
 
 Nothing has changed here, we're just asking for the minimum and not the
 minimizer. Next, rather than solve this problem outright, we will first
-state a slightly different problem: 
+state a slightly different problem:
 
 $$\begin{align*}
 \tag{2}
@@ -1033,14 +1036,14 @@ We call $v(t,x)$ the *value function*. Notice that $v(t_{0},x_{0})$ is
 the solution to the original optimal control problem that we wanted to
 solve---the one where the initial time is $t_{0}$ and the initial state
 is $x_{0}$. More importantly, notice that $v(t,x)$ satisfies the
-following recursion: 
+following recursion:
 
 $$
 \begin{align*}
 \tag{4}
-v(t,x) = \mathop{\mathrm{minimum}}_{\bar{u}_{[t,t+\Delta t]}} \{ v(t+\Delta t, \bar{x}(t+\Delta t)) + \int_{t}^{t+\Delta t}g(\bar{x}(s),\bar{u}(s))ds\colon \\ 
+v(t,x) = \mathop{\mathrm{minimum}}_{\bar{u}_{[t,t+\Delta t]}} \{ v(t+\Delta t, \bar{x}(t+\Delta t)) + \int_{t}^{t+\Delta t}g(\bar{x}(s),\bar{u}(s))ds\colon \\
 \qquad\qquad\qquad\qquad\qquad\qquad\qquad \frac{d\bar{x}(s)}{ds} = f(\bar{x}(s),\bar{u}(s)), \quad \bar{x}(t)=x\}
-\end{align*}$$ 
+\end{align*}$$
 
 The reason this equation is called a "recursion" is that
 it expresses the function $v$ in terms of itself. In particular, it
@@ -1070,11 +1073,11 @@ $u_{[t,t+\Delta t]}$), which we recognize as the definition of
 $$
 \begin{align*}
 v\left(t+\Delta t, \bar{x}(t+\Delta t)\right).
-\end{align*}$$ 
+\end{align*}$$
 
 We now proceed to
 approximate the terms in (4) by first-order series expansions. In
-particular, we have 
+particular, we have
 
 $$\begin{aligned}
 v\left(t+\Delta t, \bar{x}(t+\Delta t)\right)
@@ -1082,18 +1085,18 @@ v\left(t+\Delta t, \bar{x}(t+\Delta t)\right)
 &= v\left(t+\Delta t, x + f(x,\bar{u}(t))\Delta t\right) \\
 &\approx v(t,x)+\frac{\partial v(t,x)}{\partial t} \Delta t + \frac{\partial v(t,x)}{\partial x} f(x,\bar{u}(t))\Delta t\end{aligned}$$
 
-and we also have 
+and we also have
 
 $$\begin{aligned}
 \int_{t}^{t+\Delta t}g(\bar{x}(s),\bar{u}(s))ds
 &\approx g(\bar{x}(t),\bar{u}(t)) \Delta t \\
-&= g(x,\bar{u}(t))\Delta t.\end{aligned}$$ 
+&= g(x,\bar{u}(t))\Delta t.\end{aligned}$$
 
 If we plug both of these
-into (4), we find 
+into (4), we find
 
 $$\begin{align*}
-v(t,x) = \mathop{\mathrm{minimum}}_{\bar{u}_{[t,t+\Delta t]}} \{ v(t+\Delta t, \bar{x}(t+\Delta t)) + \int_{t}^{t+\Delta t}g(\bar{x}(s),\bar{u}(s))ds\colon \\ 
+v(t,x) = \mathop{\mathrm{minimum}}_{\bar{u}_{[t,t+\Delta t]}} \{ v(t+\Delta t, \bar{x}(t+\Delta t)) + \int_{t}^{t+\Delta t}g(\bar{x}(s),\bar{u}(s))ds\colon \\
 \qquad\qquad\qquad\qquad\qquad\qquad\qquad \frac{d\bar{x}(s)}{ds} = f(\bar{x}(s),\bar{u}(s)), \quad \bar{x}(t)=x\} \\
 = \mathop{\mathrm{minimum}}_{\bar{u}_{[t,t+\Delta t]}} \{
 v(t,x)+\frac{\partial v(t,x)}{\partial t} \Delta t + \frac{\partial v(t,x)}{\partial x} f(x,\bar{u}(t))\Delta t + g(x,\bar{u}(t))\Delta t \colon \\
@@ -1110,14 +1113,14 @@ $$
 \begin{align*}
 v(t,x) =  \mathop{\mathrm{minimum}}_{u} \{ v(t,x)+\frac{\partial v(t,x)}{\partial t} \Delta t + \frac{\partial v(t,x)}{\partial x} f(x,u)\Delta t + g(x,u)\Delta t \}.
 \end{align*}
-$$ 
+$$
 
 Also, notice that
 
 $$
 \begin{align*}
 v(t,x)+\frac{\partial v(t,x)}{\partial t} \Delta t
-\end{align*}$$ 
+\end{align*}$$
 
 does not depend
 on $u$, so it can be brought out of the minimum:
@@ -1126,7 +1129,7 @@ $$
 \begin{align*}
 v(t,x) = v(t,x)+\frac{\partial v(t,x)}{\partial t} \Delta t + \mathop{\mathrm{minimum}}_{u} \{\frac{\partial v(t,x)}{\partial x} f(x,u)\Delta t + g(x,\bar{u}(t))\Delta t\}.
 \end{align*}
-$$ 
+$$
 
 To simplify further, we can
 subtract $v(t,x)$ from both sides, then divide everything by $\Delta t$:
@@ -1137,11 +1140,11 @@ $$
 0 = \frac{\partial v(t,x)}{\partial t} + \mathop{\mathrm{minimum}}_{u} \{
 \frac{\partial v(t,x)}{\partial x} f(x,u) + g(x,u) \}.
 \end{align*}
-$$ 
+$$
 
 The equation is called the *Hamilton-Jacobi-Bellman Equation*, or
 simply the HJB equation. As you can see, it is a partial differential
-equation, so it needs a boundary condition. This is easy to obtain. In particular, going all the way back to the definition (3), we find that 
+equation, so it needs a boundary condition. This is easy to obtain. In particular, going all the way back to the definition (3), we find that
 
 $$
 \begin{align*}
@@ -1161,7 +1164,7 @@ it? Or do you just use it?)
 
 ### Solution approach {#secApproach}
 
-The optimal control problem 
+The optimal control problem
 
 $$\begin{aligned}
 \mathop{\mathrm{minimize}}_{u_{[t_{0},t_{1}]}} &\qquad h(x(t_{1})) + \int_{t_{0}}^{t_{1}}g(x(t),u(t))dt \\
@@ -1169,8 +1172,8 @@ $$\begin{aligned}
 
 can be solved in two steps:
 
--   Find $v$: 
-    
+-   Find $v$:
+
     $$\begin{align*}
     0 = \frac{\partial v(t,x)}{\partial t} + \mathop{\mathrm{minimum}}_{u} \{
     \frac{\partial v(t,x)}{\partial x} f(x,u) + g(x,u) \},
@@ -1179,7 +1182,7 @@ can be solved in two steps:
     \end{align*}$$
 
 -   Find $u$:
-    
+
     $$
     \begin{align*}
     u(t) = \mathop{\mathrm{minimize}}_{u}\; \frac{\partial v(t,x)}{\partial x} f(x,u) + g(x,u)
@@ -1221,7 +1224,7 @@ LQR problem to have a solution:
 $$
 \begin{align*}
 Q \geq 0 \qquad\qquad R>0 \qquad\qquad M\geq 0.
-\end{align*}$$ 
+\end{align*}$$
 
 What this notation
 means is that $Q$ and $M$ are *positive semidefinite* and that $R$ is
@@ -1245,21 +1248,21 @@ $$
 $$
 
 What function $v$ might solve this equation? Look at the boundary
-condition. At time $t_{1}$, 
+condition. At time $t_{1}$,
 
 $$
 \begin{align*}
 v(t_{1},x) = x^{T}Mx.
-\end{align*}$$ 
+\end{align*}$$
 
 This function has
-the form 
+the form
 
 $$
 \begin{align*}
 v(t,x) = x^{T}P(t)x
 \end{align*}
-$$ 
+$$
 
 for some symmetric matrix $P(t)$ that
 satisfies $P(t_{1})=M$. So let's "guess" that this form is the solution
@@ -1277,34 +1280,34 @@ This is matrix calculus (e.g., see
 the left should surprise no one. The result on the right is the matrix
 equivalent of $\partial (px^{2}) / \partial x = 2px$ (you could check
 that this result is correct by considering an example). Plug these
-partial derivatives into HJB and we have 
+partial derivatives into HJB and we have
 
 $$
 \begin{align*}
 \tag{7}
 0 &=  x^{T} \dot{P} x + \mathop{\mathrm{minimum}}_{u} \left\{ 2x^{T}P (Ax+Bu)+x^{T}Qx+u^{T}Ru \right\} \\
 &= x^{T} \dot{P} x + \mathop{\mathrm{minimum}}_{u} \left\{ x^{T} ( 2 P A + \ Q ) x+2x^{T}PBu+u^{T}Ru \right\}
-\end{align*}$$ 
+\end{align*}$$
 
 To evaluate the minimum, we apply the first-derivative
-test (more matrix calculus!): 
+test (more matrix calculus!):
 
 $$\begin{aligned}
 0 = \frac{\partial}{\partial u} \left( x^{T}(2P A + Q)x+2x^{T}PBu+u^{T}Ru \right) \\
 = 2x^{T}PB+2u^{T}R \\
 = 2 \left( B^{T}Px + Ru \right)^{T}.
-\end{aligned}$$ 
+\end{aligned}$$
 
 This equation is
-easily solved: 
+easily solved:
 
 $$
 \begin{align*}
 \tag{8}
 u = -R^{-1}B^{T}Px.
-\end{align*}$$ 
+\end{align*}$$
 
-Plugging this back into (7), we have 
+Plugging this back into (7), we have
 
 $$\begin{aligned}
 0
@@ -1317,20 +1320,20 @@ $$\begin{aligned}
 &= x^{T} \left( \dot{P} + P A+A^{T}P + Q - PBR^{-1}B^{T}P \right)x.\end{aligned}$$
 
 In order for this equation to be true for any $x$, it must be the case
-that 
+that
 
 $$
 \begin{align*}
 \dot{P} = PBR^{-1}B^{T}P-P A-A^{T}P - Q
-\end{align*}$$ 
+\end{align*}$$
 
 In summary, we have
-found that 
+found that
 
 $$
 \begin{align*}
 v(t,x) = x^{T}P x
-\end{align*}$$ 
+\end{align*}$$
 
 solves the HJB equation, where $P$ is
 found by integrating the matrix differential equation
@@ -1338,15 +1341,15 @@ found by integrating the matrix differential equation
 $$
 \begin{align*}
 \dot{P} = PBR^{-1}B^{T}P-P A-A^{T}P - Q
-\end{align*}$$ 
+\end{align*}$$
 
 backward in time, starting
-from 
+from
 
 $$
 \begin{align*}
 P(t_{1}) = M.
-\end{align*}$$ 
+\end{align*}$$
 
 Now that we know $v$, we can find $u$. Wait, we
 already did that! The minimizer in the HJB equation is
@@ -1355,24 +1358,25 @@ already did that! The minimizer in the HJB equation is
 $$
 \begin{equation}
 u = -Kx
-\end{equation}$$ 
+\end{equation}$$
 
-for 
+for
 
 $$ \begin{aligned} K = R^{-1}B^{T}P. \end{aligned}$$
 
 ### LQR Code
 Let's take a look at how to implement LQR using Python. The basic method is shown below:
 
-```
+```python
 import numpy as np
 from scipy import linalg
 
-def LQR(A, B, Q, R):
+def lqr(A, B, Q, R):
     P = linalg.solve_continous_are(A, B, Q, R)  # Solves the continuous algebraic Riccati equation
     K = linalg.inv(R) @ B.T @ P  # Generates gain matrix
     return K
 ```
+
 # State estimation
 
 ## What is a state-space model with output?
@@ -1658,3 +1662,392 @@ when describing a sensor model in state-space form.
 </div>
 
 
+# Optimal Observer Derivation (a.k.a the Kalman Filter, a very famous thing)
+
+These notes were originally written by T. Bretl and were transcribed for this reference page by S. Bout.
+
+## Statement of the problem {#secStatement}
+
+Here is the deterministic, finite-horizon, continuous-time *Kalman
+Filter (KF)* problem---i.e., the optimal control problem that one would
+solve to produce an optimal observer:
+
+$$\begin{aligned}
+\mathop{\mathrm{minimize}}_{x(t_{1}),n_{[t_{0},t_{1}]},d_{[t_{0},t_{1}]}}
+&\qquad
+n(t_{0})^{T}M_{o}n(t_{0})+
+\int_{t_{0}}^{t_{1}} \left( n(t)^{T}Q_{o}n(t)+d(t)^{T}R_{o}d(t) \right) dt \\
+\text{subject to}
+&\qquad
+\dot{x}(t) = Ax(t)+Bu(t)+d(t) \\
+&\qquad
+y(t) = Cx(t)+n(t)\end{aligned}$$
+
+The interpretation of this problem is
+as follows. The current time is $t_{1}$. You have taken measurements
+$y(t)$ over the time interval $[t_{0}, t_{1}]$. You are looking for
+noise $n(t)$ and disturbance $d(t)$ over this same time interval and for
+an estimate $x(t_{1})$ of the current state that would best explain
+these measurements.
+
+The matrices $Q_{o}$, $R_{o}$, and $M_{o}$ are parameters that can be
+used to trade off noise (the difference between the measurements and
+what you expect them to be) with disturbance (the difference between the
+time derivative of the state and what you expect it to be). These
+matrices have to be symmetric, have to be the right size, and also have
+to satisfy the following conditions in order for the KF problem to have
+a solution:
+
+$$Q_{o} \geq 0 \qquad\qquad R_{o}>0 \qquad\qquad M_{o}\geq 0.$$
+
+Just as
+with the LQR problem, this notation means is that $Q_{o}$ and $M_{o}$
+are *positive semidefinite* and that $R_{o}$ is *positive definite*
+([see
+wikipedia](https://en.wikipedia.org/wiki/Positive-definite_matrix)).
+
+By plugging in the expression for $n(t)$ that appears in the constraint,
+this optimal control problem can be rewritten as
+
+$$\begin{aligned}
+\mathop{\mathrm{minimize}}_{x(t_{1}),d_{[t_{0},t_{1}]}}
+&\qquad
+(Cx(t_{0}) - y(t_{0}))^{T}M_{o}(Cx(t_{0}) - y(t_{0}))\\
+&\qquad\qquad
++\int_{t_{0}}^{t_{1}} \left( (Cx(t) - y(t))^{T}Q_{o}(Cx(t) - y(t))+d(t)^{T}R_{o}d(t) \right) dt \\
+\text{subject to}
+&\qquad
+\dot{x}(t) = Ax(t)+Bu(t)+d(t)\end{aligned}$$
+
+It is an optimal control
+problem, just like LQR---if you define
+
+$$\begin{aligned}
+f(t,x,d) &= Ax+Bu(t)+d \\
+g(t,x,d) &= (Cx-y(t))^{T}Q_{o}(Cx-y(t))+d^{T}R_{o}d(t) \\
+h(t,x) &= (Cx-y(t))^{T}M_{o}(Cx-y(t))\end{aligned}$$
+
+then you see that
+this problem has the general form
+
+$$\begin{aligned}
+\underset{x(t_1),d_{[t_0,t_1]}}{\text{minimize}}
+&\qquad
+h(t_0,x(t_{0}))+
+\int_{t_{0}}^{t_{1}} g(t,x(t),d(t)) dt \\
+\text{subject to}
+&\qquad
+\frac{dx(t)}{dt}=f(t,x(t),d(t)).\end{aligned}$$
+
+There are four
+differences between this form and the one we saw when solving the LQR
+problem:
+
+-   The "input" in this problem is $u$, not $d$.
+
+-   The "current time" is $t_{1}$ and not $t_{0}$.
+
+-   The final state---i.e., the state at the current time---is *not*
+    given. Indeed, the point here is to *choose* a final state
+    $x(t_{1})$ that best explains $u(t)$ and $y(t)$.
+
+-   The functions $f$, $g$, and $h$ vary with time (because they have
+    parameters in them---$u(t)$ and $y(t)$---that are functions of
+    time).
+
+Because of these four differences, the HJB equation for a problem of
+this form is
+
+$$0 = -\frac{\partial v(t,x)}{\partial t} + \mathop{\mathrm{minimum}}_{d} \left\{ -\frac{\partial v(t,x)}{\partial x} f(t,x,d)+g(t,x,d) \right\}, \qquad v(t_{0},x) = h(t_{0}, x(t_{0})).$$
+
+Note the change in sign of both the first term outside the minimum and
+the first term inside the minimum---this is because we are effectively
+solving an optimal control problem in which time flows backward (from
+the current time $t_{1}$ to the initial time $t_{0}$, instead of from
+the current time $t_{0}$ to the final time $t_{1}$). It is possible to
+derive this form of the HJB equation in exactly the same way as it was
+done in the notes on LQR.
+
+## Solution to the problem
+
+As usual, our first step is to find a function $v(t, x)$ that satisfies
+the HJB equation. Here is that equation, with the functions $f$, $g$,
+and $h$ filled in:
+
+$$\begin{aligned}
+0 &= -\frac{\partial v(t,x)}{\partial t} + \mathop{\mathrm{minimum}}_{d} \biggl\{ -\frac{\partial v(t,x)}{\partial x} \left(Ax+Bu(t)+d\right) \\
+&\qquad\qquad\qquad\qquad\qquad\qquad\qquad +(Cx-y(t))^{T}Q_{o}(Cx-y(t))+d(t)^{T}R_{o}d(t) \biggr\} \\
+v(t_{0},x) &= (Cx(t_{0})-y(t_{0}))^{T}M_{o}(Cx(t_{0})-y(t_{0})).
+\end{aligned}$$
+
+Expand the boundary condition:
+
+$$\begin{aligned}
+v(t_{0},x)
+&= (Cx(t_{0})-y(t_{0}))^{T}M_{o}(Cx(t_{0})-y(t_{0})) \\
+&= x(t_{0})^{T} C^{T}M_{o}C x(t_{0}) - 2 y(t_{0})^{T}M_{o}C^{T}x(t_{0}) + y(t_{0})^{T}M_{o}y(t_{0})
+\end{aligned}$$
+
+This function has the form
+
+$$v(t, x) = x^{T}P(t)x +2 o(t)^{T} x + w(t)$$
+
+for some symmetric matrix $P(t)$ and some other matrices $o(t)$ and
+$w(t)$ that satisfy the following boundary conditions:
+
+$$P(t_{0}) = C^{T}M_{o}C
+\qquad
+o(t_{0}) = -CM_{o}y(t_{0})
+\qquad
+w(t_{0}) = y(t_{0})^{T}M_{o}y(t_{0}).$$
+
+Let's "guess" that this form of
+$v$ is the solution we are looking for, and see if it satisfies the HJB
+equation. Before proceeding, we need to compute the partial derivatives
+of $v$:
+
+$$\frac{\partial v}{\partial t} = x^{T} \dot{P} x + 2 \dot{o}^{T} x + \dot{w} \qquad\qquad \frac{\partial v}{\partial x} = 2x^{T}P + 2o^{T}$$
+
+Here again---just as for LQR---we are applying [matrix
+calculus](https://en.wikipedia.org/wiki/Matrix_calculus). Plug these
+partial derivatives into HJB and we have
+
+$$\begin{align*}
+0 &=  -\left(x^{T} \dot{P} x + 2 \dot{o}^{T} x + \dot{w}\right) + \mathop{\mathrm{minimum}}_{d} \biggl\{ -\left(2x^{T}P+ 2o^{T}\right) (Ax+Bu+d) \\
+&\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad +(Cx-y)^{T}Q_{o}(Cx-y)+d^{T}R_{o}d \biggr\} \\
+\tag{1}
+&= -\left(x^{T} \dot{P} x + 2 \dot{o}^{T} x + \dot{w}\right) + \mathop{\mathrm{minimum}}_{d} \biggl\{ d^{T}R_{o}d - 2(Px + o)^{T}d \\
+&\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad -2 (x^{T} P+o^{T}) (Ax+Bu) \\
+&\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad + (Cx-y)^{T}Q_{o}(Cx-y) \biggr\}
+\end{align*}$$
+
+To evaluate the minimum, we apply the first-derivative
+test (more matrix calculus!):
+
+$$\begin{aligned}
+0
+&= \frac{\partial}{\partial d} \left( d^{T}R_{o}d - 2(Px + o)^{T}d -2 (x^{T} P+o^{T}) (Ax+Bu) + (Cx-y)^{T}Q_{o}(Cx-y) \right) \\
+&= 2d^{T}R_{o}-2(Px+o)^{T}.
+\end{aligned}$$
+
+This equation is easily
+solved:
+
+$$\begin{align*}
+\tag{2}
+d = R^{-1}(Px+o).
+\end{align*}$$
+
+Plugging this back into (1), we have
+
+$$\begin{aligned}
+0
+&=  -\left(x^{T} \dot{P} x + 2 \dot{o}^{T} x + \dot{w}\right) + \mathop{\mathrm{minimum}}_{d} \biggl\{ -\left(2x^{T}P+ 2o^{T}\right) (Ax+Bu+d) \\
+&\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad +(Cx-y)^{T}Q_{o}(Cx-y)+d^{T}R_{o}d \biggr\} \\
+&= -(x^{T} \dot{P} x + 2 \dot{o}^{T} x + \dot{w}) - (Px+o)^{T}R_{o}^{-1}(Px+o) \\
+&\qquad\qquad -2 (x^{T} P+o^{T}) (Ax+Bu) + (Cx-y)^{T}Q_{o}(Cx-y) \\
+&= x^{T}\left( -\dot{P} - PR_{o}^{-1}P -2PA + C^{T}Q_{o}C \right)x \\
+&\qquad\qquad + 2x^{T} \left( -\dot{o} - PR_{o}^{-1}o - PBu -C^{T}Q_{o}y - A^{T}o \right) \\
+&\qquad\qquad\qquad +\left( -\dot{w} - o^{T}R_{o}^{-1}o -2o^{T}Bu + y^{T}Q_{o}y \right) \\
+&= x^{T}\left( -\dot{P} - PR_{o}^{-1}P -PA - A^{T}P + C^{T}Q_{o}C \right)x \\
+&\qquad\qquad + 2x^{T} \left( -\dot{o} - PR_{o}^{-1}o - PBu -C^{T}Q_{o}y - A^{T}o \right) \\
+&\qquad\qquad\qquad +\left( -\dot{w} - o^{T}R_{o}^{-1}o -2o^{T}Bu + y^{T}Q_{o}y \right)
+\end{aligned}$$
+
+where the last step is because
+
+$$x^{T}(N+N^{T})x=2x^{T}Nx \text{ for any } N \text{ and } x.$$
+
+In order
+for this equation to be true for any $x$, it must be the case that
+
+$$\begin{aligned}
+\dot{P} &= -PR_{o}^{-1}P-P A-A^{T}P +C^{T}Q_{o}C \\
+\dot{o} &= - PR_{o}^{-1}o - PBu -C^{T}Q_{o}y - A^{T}o \\
+\dot{w} &= - o^{T}R_{o}^{-1}o -2o^{T}Bu + y^{T}Q_{o}y.
+\end{aligned}$$
+
+In summary, we have found that
+
+$$v(t, x) = x^{T}P(t)x +2 o(t)^{T} x + w(t)$$
+
+solves the HJB equation,
+where $P$, $o$, and $w$ are found by integrating the above ODEs forward
+in time, starting from
+
+$$P(t_{0}) = C^{T}M_{o}C
+\qquad
+o(t_{0}) = -CM_{o}y(t_{0})
+\qquad
+w(t_{0}) = y(t_{0})^{T}M_{o}y(t_{0}).$$
+
+The optimal choice of state
+estimate at time $t$ is the choice of $x$ that minimizes $v(t, x)$, that
+is, the solution to
+
+$$\mathop{\mathrm{minimize}}_{x} \qquad x^{T}P(t)x +2 o(t)^{T} x + w(t).$$
+
+We can find the solution to this problem by application of the first
+derivative test, with some matrix calculus:
+
+$$\begin{aligned}
+0
+&= \frac{\partial}{\partial x} \left( x^{T}Px +2 o^{T} x + w \right) \\
+&= 2x^{T}P + 2o^{T},
+\end{aligned}$$
+
+ implying that
+
+ $$x = -P^{-1}o.$$
+
+Let's call this solution $\widehat{x}$. Note that we can, equivalently,
+write
+
+$$0 = P\widehat{x} + o.$$
+
+Suppose we take the time derivative of
+this expression, plugging in what we found earlier for $\dot{P}$ and
+$\dot{o},$ as well as plugging in yet another version of this same
+expression, $o = -P\widehat{x}$:
+
+$$\begin{aligned}
+0
+&= \dot{P} \widehat{x} + P\dot{\widehat{x}} + \dot{o} \\
+&= \left( -PR_{o}^{-1}P-P A-A^{T}P +C^{T}Q_{o}C \right)\widehat{x} + P\dot{\widehat{x}} - PR_{o}^{-1}o - PBu -C^{T}Q_{o}y - A^{T}o \\
+&= -PR_{o}^{-1}P\widehat{x}-P A\widehat{x}-A^{T}P\widehat{x} +C^{T}Q_{o}C \widehat{x} + P\dot{\widehat{x}} + PR_{o}^{-1}P\widehat{x} - PBu -C^{T}Q_{o}y + A^{T}P\widehat{x} \\
+&= P\dot{\widehat{x}} -PA\widehat{x}-PBu + C^{T}Q_{o}(C\widehat{x} - y) \\
+&= P \left( \dot{\widehat{x}} - A\widehat{x} - Bu + P^{-1}C^{T}Q_{o}(C\widehat{x} - y) \right).
+\end{aligned}$$
+
+For this equation to hold for any $P$, we must have
+
+$$\dot{\widehat{x}} = A\widehat{x} + Bu - P^{-1}C^{T}Q_{o}(C\widehat{x} - y).$$
+
+**Behold!** This is our expression for an optimal observer, if we define
+
+$$L = P^{-1}C^{T}Q_{o}.$$
+
+Finally, suppose we take the limit as
+$t_{0}\rightarrow-\infty$, so assume an infinite horizon. It is a fact
+that $P$ tends to a steady-state value, and so $L$ does as well. When
+this happens, $\dot{P} = 0$, and so the steady-state value of $P$ is the
+solution to the *algebraic* equation
+
+$$0 = -PR_{o}^{-1}P-P A-A^{T}P +C^{T}Q_{o}C.$$
+
+It is customary to write
+these last two equations in a slightly different way. In particular,
+suppose we pre- and post-multiply both sides of this last equation by
+$P^{-1}$, and define
+
+$$P_{o} = P^{-1}$$
+
+Then, we have
+
+$$L = P_{o}C^{T}Q_{o}$$
+
+and
+
+$$0 = P_{o}C^{T}Q_{o}CP_{o}-AP_{o}-P_{o}A^{T} -R_{o}^{-1}.$$
+
+## Summary
+
+An optimal observer---a deterministic, infinite-horizon, continuous-time
+Kalman Filter---is given by
+
+$$\dot{\widehat{x}} = A\widehat{x} + Bu - L(C\widehat{x} - y).$$
+
+where
+
+$$L = P_{o}C^{T}Q_{o}$$
+
+and $P_{o}$ satisfies
+
+$$0 = P_{o}C^{T}Q_{o}CP_{o}-AP_{o}-P_{o}A^{T} -R_{o}^{-1}.$$
+
+## Comparison between LQR and KF (i.e., why you can use "LQR" in Python to compute an optimal observer)
+
+An optimal controller is given by
+
+$$u = -Kx$$
+
+where
+
+$$\begin{align*}
+\tag{3}
+K = R_{c}^{-1}B^{T}P_{c}
+\end{align*}$$
+
+and $P_{c}$ satisfies
+
+$$\begin{align*}
+\tag{4}
+0 = P_{c}BR_{c}^{-1}B^{T}P_{c} - P_{c}A - A^{T}P_{c}-Q_{c}.
+\end{align*}$$
+
+An optimal observer is given by
+
+$$\dot{\widehat{x}} = A\widehat{x} + Bu - L(C\widehat{x} - y).$$
+
+where
+
+$$\tag{5}
+L = P_{o}C^{T}Q_{o}
+$$
+
+and $P_{o}$ satisfies
+
+$$\tag{6}
+0 = P_{o}C^{T}Q_{o}CP_{o}-AP_{o}-P_{o}A^{T} -R_{o}^{-1}.
+$$
+
+Take the transpose of (5) and---remembering that $P_{o}$ and $Q_{o}$ are symmetric---we get
+
+$$\tag{7}
+L^{T} = Q_{o}CP_{o}.
+$$
+
+Take the transpose of (6)
+and---remembering that $R_{o}$ is also symmetric---we get
+
+$$\tag{8}
+0 = P_{o}C^{T}Q_{o}CP_{o}-P_{o}A^{T}-AP_{o} -R_{o}^{-1}.
+$$
+
+Compare (3) and (4) with (7) and (8). They are **exactly the same** if we make the
+following replacements:
+
+-   replace $K$ with $L^{T}$
+
+-   replace $A$ with $A^{T}$
+
+-   replace $B$ with $C^{T}$
+
+-   replace $Q_{c}$ with $R_{o}^{-1}$
+
+-   replace $R_{c}$ with $Q_{o}^{-1}$
+
+**This** is the reason why
+
+```python
+L = lqr(A.T, C.T, linalg.inv(Ro), linalg.inv(Qo)).T
+```
+
+produces an optimal observer, just like
+
+```python
+K = lqr(A, B, Qc, Rc)
+```
+
+produces an optimal controller. **WWWWWOOOOOWWWWW!!!!!!!**
+
+Remember that:
+```python
+import numpy as np
+from scipy import linalg
+
+def lqr(A,B,Q,R):
+    P=linalg.solve_continuous_are(A,B,Q,R)
+    K=linalg.inv(R) @ B.T @ P
+    return K
+```
