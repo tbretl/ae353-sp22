@@ -13,6 +13,195 @@ description: How to get started on your design projects
 
 ---
 
+## Design Project \#3 (Spacecraft with star tracker)
+
+### The system
+
+The third project that you will complete this semester is to design, implement, and test a controller that enables a spacecraft to maintain a fixed orientation, as pictured below:
+
+![Image of spacecraft](./images/spacecraft.png)
+
+This spacecraft (blue) has four reaction wheels (orange) that are arranged in a pyramid.
+
+The actuators are motors that allow a torque to be applied by the spacecraft to each wheel, up to a maximum of $\pm 1\;\text{N}\cdot\text{m}$. The rotational motion of the system is governed by ordinary differential equations with the following form:
+
+$$\begin{bmatrix} \dot{\psi} \\ \dot{\theta} \\ \dot{\phi} \\ \dot{w_x} \\ \dot{w_y} \\ \dot{w_z} \end{bmatrix} = f\left(\psi, \theta, \phi, w_x, w_y, w_z, \tau_1, \tau_2, \tau_3, \tau_4\right)$$
+
+In these equations:
+
+* $\psi$ is the **yaw angle** (rad)
+* $\phi$ is the **roll angle** (rad)
+* $\theta$ is the **pitch angle** (rad)
+* $w_x$ is the **angular velocity about the body-fixed $x$ axis** (rad/s), which points forward
+* $w_y$ is the **angular velocity about the body-fixed $y$ axis** (rad/s), which points left
+* $w_z$ is the **angular velocity about the body-fixed $z$ axis** (rad/s), which points up
+* $\tau_1$ is the **torque applied to wheel 1** ($N\cdot\text{m}$), which is in front
+* $\tau_2$ is the **torque applied to wheel 2** ($N\cdot\text{m}$), which is in back
+* $\tau_3$ is the **torque applied to wheel 3** ($N\cdot\text{m}$), which is on the left
+* $\tau_4$ is the **torque applied to wheel 4** ($N\cdot\text{m}$), which is on the right
+
+A [symbolic description of these equations of motion]({{ site.github.repository_url }}/tree/main/projects/03_spacecraft/DeriveEOM-Template.ipynb) is provided with the [project code]({{ site.github.repository_url }}/tree/main/projects/03_spacecraft).
+
+The sensor is a star tracker. It measures the position (in an image) of each star in its field of view. This measurement has the following form for each star:
+
+$$\begin{bmatrix} y_\text{star} \\ z_\text{star} \end{bmatrix} = g(\psi, \theta, \phi, \alpha, \delta)$$
+
+You will already recognize the yaw, pitch, and roll angles in this equation. The other variables are:
+
+* $\alpha$ is the **right ascension** (rad) of the star
+* $\delta$ is the **declination** (rad) of the star
+
+Again, a [symbolic description of this equation]({{ site.github.repository_url }}/tree/main/projects/03_spacecraft/DeriveEOM-Template.ipynb) is provided with the [project code]({{ site.github.repository_url }}/tree/main/projects/03_spacecraft). There are seven stars in total — you can find the parameters $\alpha$ and $\delta$ for each one in the [SpacecraftDemo]({{ site.github.repository_url }}/tree/main/projects/03_spacecraft/SpacecraftDemo-Template.ipynb) template.
+
+The code provided [here]({{ site.github.repository_url }}/tree/main/projects/03_spacecraft) simulates the motion of this system ([SpacecraftDemo]({{ site.github.repository_url }}/tree/main/projects/03_spacecraft/SpacecraftDemo-Template.ipynb)) and also derives both the equations of motion and the sensor model in symbolic form ([DeriveEOM]({{ site.github.repository_url }}/tree/main/projects/03_spacecraft/DeriveEOM-Template.ipynb)).
+
+The goal is to keep the spacecraft close to zero yaw, pitch, and roll **for as long as possible** despite noisy sensor measurements and a shooting star (!?!).
+
+Why do I say "for as long as possible?" Because the simulator will quit and the spacecraft mission will be declared over when one of two conditions are met:
+
+* Any star leaves the star tracker's field of view.
+* Any reaction wheel has angular velocity that exceeds $\pm 50\;\text{rad}/\text{s}$.
+
+Since you have no way to do momentum dumping (or... do you?), it is inevitable that one of the wheels will eventually spin too fast. Just try to hang on as long as you can.
+
+
+### Your tasks
+
+The focus of your analysis this time will be on data collection. The initial conditions, the sensor measurements, and the disturbances are random. So, for a given control design, your results will vary (perhaps significantly). It is not enough to look at the results of one simulation---you will have to look at the results of many simulations. At minimum, for each design you consider, you should do the following:
+
+* Collect data from at least 100 simulations that run until failure (i.e., with a very large `max_time`).
+* Plot a histogram of the time until failure across all simulations.
+* Plot a histogram of the root-mean-square error (RMSE) in yaw, pitch, and roll angles across all simulations.
+
+Remember that the simulation code provides an option to turn the display off, which can speed up data collection a lot.
+
+#### Things you need to do
+
+Please do the following things:
+
+* Define a [requirement](#what-is-a-requirement) and a [verification](#what-is-a-verification), just as you did in the [second design project](#design-project-2-differential-drive-robot-in-artificial-gravity).
+* Linearize the equations of motion and the sensor model.
+* Show that the linearized system is both controllable and observable.
+* Design a stable controller and a stable observer.
+* Implement both the controller and observer and test them in simulation.
+* Follow the instructions you wrote to verify that your requirement is (or is not) satisfied.
+* Include at least one figure of aggregate results (e.g., a histogram).
+* Include at least one figure that provides evidence the observer is working (e.g., a plot of error in the state estimation as a function of time).
+
+An exceptional response to this project would go beyond minimum requirements and consider one or more questions like the following:
+
+* How do your results change with different amounts of sensor noise?
+* How do your results change with a different number or arrangement of stars? (This is something you can choose, if you want.)
+* Is there a tradeoff between "time until failure" and "RMSE in yaw, pitch, and roll" or can both measures of performance be improved together?
+
+There are many other opportunities --- let us know what strikes you as interesting.
+
+
+### Your deliverables
+
+##### Draft report with theory (by 11:59pm on Friday, March 25)
+
+Submit a first draft of your [report (see below for guidelines)](#final-report-by-1159pm-on-friday-april-8) that includes, at minimum, a complete "Theory" section. This draft must also include the appendix with your log of all work done so far by each group member.
+
+Upload it to the **DP3 Draft 1** assignment on [Gradescope](https://www.gradescope.com/courses/355834). This is a group assignment, so please be sure to [add your partner to your submission](https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members).
+
+##### Draft report with results (by 11:59pm on Friday, April 1)
+
+Submit a second draft of your [report (see below for guidelines)](#final-report-by-1159pm-on-friday-april-8) that includes, at minimum, a complete "Experimental methods" section and a complete "Results and discussion" section. This draft must also include the appendix with your log of all work done so far by each group member.
+
+Upload it to the **DP3 Draft 2** assignment on [Gradescope](https://www.gradescope.com/courses/355834). This is a group assignment, so please be sure to [add your partner to your submission](https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members).
+
+##### Final report (by 11:59pm on Friday, April 8)
+
+This report will satisfy the following requirements:
+
+* It must be a single PDF document that conforms to the guidelines for [Preparation of Papers for AIAA Technical Conferences](https://www.aiaa.org/events-learning/events/Technical-Presenter-Resources). In particular, you **must** use either the [Word](https://www.aiaa.org/docs/default-source/uploadedfiles/aiaa-forums-shared-universal-content/preparation-of-papers-for-technical-conferences.docx?sfvrsn=e9a97512_10) or [LaTeX](https://www.overleaf.com/latex/templates/latex-template-for-the-preparation-of-papers-for-aiaa-technical-conferences/rsssbwthkptn#.WbgUXMiGNPZ) manuscript template.
+* It must have a descriptive title that begins with "DP3" (e.g., "DP3: Control of a spacecraft with reaction wheels and a star tracker").
+* It must have a list of author names and affiliations.
+* It must contain the following sections:
+  * *Abstract.* Summarize your entire report in one short paragraph.
+  * *Nomenclature.* List all symbols used in your report, with units.
+  * *Introduction.* Prepare the reader to understand the rest of your report and how it fits within a broader context.
+  * *Theory.* Derive a model and do control design.
+  * *Experimental methods.* Describe the experiments you performed in simulation in enough detail that they could be understood and repeated by a colleague.
+  * *Results and discussion.* Show the results of your experiments in simulation (e.g., with plots and tables) and discuss the extent to which they validate your control design.
+  * *Conclusion.* Summarize key conclusions and identify ways that others could improve or build upon your work.
+  * *Acknowledgements.* Thank anyone outside your group with whom you discussed this project and clearly describe what you are thanking them for.
+  * *References.* Cite any sources, including the work of your colleagues.
+  * *Appendix.* See below.
+* It must be a maximum of 6 pages.
+
+The appendix, which does not count against your page limit, must have a table (with as many rows as necessary) that logs all of the work done by each group member on the project:
+
+| Day | Task | Person or People |
+| :-: | :-: | :-: |
+| | | |
+| | | |
+
+<br>
+
+Submit your report by uploading it to the **DP3 Report** assignment on [Gradescope](https://www.gradescope.com/courses/355834). This is a group assignment, so please be sure to [add your partner to your submission](https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members).
+
+##### Final video (by 11:59pm on Friday, April 8)
+
+This video will satisfy the following requirements:
+
+* It must be 70 seconds in length.
+* The first and last 5 seconds must include text with a descriptive title (the same title as your report), your names, and the following words somewhere in some order:
+  * AE353: Aerospace Control Systems
+  * Spring 2022
+  * Department of Aerospace Engineering
+  * University of Illinois at Urbana-Champaign
+* The middle 60 seconds must *clearly* communicate what you did, why you did it, how you did it, and what the results were.
+* It must show at least one simulation of your working control system.
+* It must stay professional (use good sense, please).
+
+Submit your video by uploading it to the [AE353 (Spring 2022) Project Videos](https://mediaspace.illinois.edu/channel/channelid/245771012) channel on Illinois Media Space. Please take care to do the following:
+
+* Use the same descriptive title as your report, appended with your names in parentheses --- for example, "DP3: Control of a spacecraft with reaction wheels and a star tracker (Tim Bretl and Jacob Kraft)".
+* Add the tag `dp3` (a **lower case** "dp" followed by the number "3"), so viewers can filter by project number.
+
+You are welcome to resubmit your video at any time before the deadline. To do so, please "Edit" your **existing** video and then do "Replace Media". Please do **not** create a whole new submission.
+
+We realize that 60 seconds is short! Think carefully about what to include (what to show and what to say) and anticipate the need for multiple "takes" and for time spent editing.
+
+##### Final code (by 11:59pm on Friday, April 8)
+
+This code will satisfy the following requirements:
+
+* It must be a single jupyter notebook (with the extension `.ipynb`) that, if placed in the `projects/03_spacecraft` directory and run from start to finish, would reproduce *all* of the results that you show in your report.
+* It must not rely on any dependencies other than those associated with the [`ae353` conda environment](setup).
+* It must be organized and clearly documented, with a mix of markdown cells and inline comments.
+
+Submit your code by uploading it to the **DP3 Code** assignment on [Gradescope](https://www.gradescope.com/courses/355834). This is a group assignment, so please be sure to [add your partner to your submission](https://help.gradescope.com/article/m5qz2xsnjy-student-add-group-members).
+
+### Evaluation
+
+Your project grade will be weighted as follows:
+
+* (10%) Draft report with theory
+* (10%) Draft report with results
+* (50%) Final report
+* (20%) Final video
+* (10%) Final code
+
+Rubrics will be discussed in class.
+
+### Frequently asked questions
+
+##### May I watch videos that are submitted by other students?
+
+Yes. All videos will be available in the [AE353 (Spring 2022) Project Videos](https://mediaspace.illinois.edu/channel/channelid/245771012) channel on Illinois Media Space as soon as they are submitted by your colleagues (see the [Video](#final-video-by-1159pm-on-friday-april-8) deliverable). You may watch these videos whenever you want, even before you submit your own.
+
+If you are inspired by a video, or if watching a video strongly influences the way you proceed with your own design project, then you must **acknowledge and cite** this video in your report (and in your own video, if appropriate). Failure to do so would be considered [plagiarism](https://studentcode.illinois.edu/article1/part4/1-402/).
+
+##### How do I get started?
+
+The first thing you should do is [follow the instructions to download and run course code](setup), verify that you can run the simulation, and mess around a little bit with different actuator commands (e.g., constant wheel torques) to get a sense for how the system responds.
+
+After that, if you have read the entire [project description](#design-project-3-spacecraft-with-star-tracker) and are not sure how to proceed, then take your best guess and ask a question on [Campuswire](https://campuswire.com/c/GF2D039DE). Improving your ability to get unstuck by asking a good question is an explicit goal of this course.
+
+
 ## Design Project \#2 (Differential-drive robot in artificial gravity)
 
 ### The system
@@ -345,7 +534,7 @@ This report will satisfy the following requirements:
   * *Introduction.* Prepare the reader to understand the rest of your report and how it fits within a broader context.
   * *Theory.* Derive a model and do control design.
   * *Experimental methods.* Describe the experiments you performed in simulation in enough detail that they could be understood and repeated by a colleague.
-  * *Results and discussion.* Show the results of your experiments in simulation (e.g., with plots and tables) and discuss the extent to which they validate your control design. Remember to [focus on establishing limits of performance](#your-tasks-1).
+  * *Results and discussion.* Show the results of your experiments in simulation (e.g., with plots and tables) and discuss the extent to which they validate your control design. Remember to [focus on establishing limits of performance](#your-tasks-2).
   * *Conclusion.* Summarize key conclusions and identify ways that others could improve or build upon your work.
   * *Acknowledgements.* Thank anyone outside your group with whom you discussed this project and clearly describe what you are thanking them for.
   * *References.* Cite any sources, including the work of your colleagues.
