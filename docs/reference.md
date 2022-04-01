@@ -592,6 +592,9 @@ We may not have a systematic way of *finding* a matrix $K$ to make the closed-lo
 
 
 # Optimization and Optimal Control
+
+These notes were originally written by T. Bretl and were transcribed for this reference page by S. Bout.
+
 ## Optimization
 
 The following thing is called an *optimization problem*:
@@ -1658,15 +1661,11 @@ $$y = Cx + Du$$
 when describing a sensor model in state-space form.
 </div>
 
----
-author:
-- T. Bretl
-title: |
-  AE353: Notes on Deriving an Optimal Observer\
-  (a.k.a., the Kalman Filter, a very famous thing)
----
 
 # Optimal Observer Derivation (a.k.a the Kalman Filter, a very famous thing)
+
+These notes were originally written by T. Bretl and were transcribed for this reference page by S. Bout.
+
 ## Statement of the problem {#secStatement}
 
 Here is the deterministic, finite-horizon, continuous-time *Kalman
@@ -1902,9 +1901,13 @@ $$\begin{aligned}
  $$x = -P^{-1}o.$$
 
 Let's call this solution $\widehat{x}$. Note that we can, equivalently,
-write $$0 = P\widehat{x} + o.$$ Suppose we take the time derivative of
+write
+
+$$0 = P\widehat{x} + o.$$
+
+Suppose we take the time derivative of
 this expression, plugging in what we found earlier for $\dot{P}$ and
-$\dot{o}$, as well as plugging in yet another version of this same
+$\dot{o},$ as well as plugging in yet another version of this same
 expression, $o = -P\widehat{x}$:
 
 $$\begin{aligned}
