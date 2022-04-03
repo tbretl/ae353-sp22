@@ -620,7 +620,7 @@ two different ways to arrive at this result:
 
 -   We could plot the cost function. It is clear from the plot that the
     minimum is at $u=1$.\
-    ![image](optim01.jpg)
+    ![image](./images/optim01.jpg)
 
 -   We could apply the first derivative test. We compute the first
     derivative:
@@ -643,7 +643,7 @@ two different ways to arrive at this result:
     Here's a plot of the cost function and of it's derivative. Note
     that, clearly, the derivative is equal to zero when the cost
     function is minimized:\
-    ![image](optim03.jpg)
+    ![image](./images/optim03.jpg)
 
 In general, we write optimization problems like this:
 
@@ -689,7 +689,7 @@ there are at least two ways of finding the solution to this problem:
     contours of the cost function underneath. "Contours" are like the
     lines on a topographic map. From the contours, it looks like the
     minimum is at $(u_{1},u_{2})=(-2,-1)$.\
-    ![image](optim04.jpg)
+    ![image](./images/optim04.jpg)
 
 -   We could apply the first derivative test. We compute the partial
     derivative of $g(u_{1},u_{2})$ with respect to both $u_{1}$ and
@@ -718,7 +718,7 @@ there are at least two ways of finding the solution to this problem:
     observed above. Here is a plot of each partial derivative as a
     function of $u_{1}$ and $u_{2}$. The shape of each plot is a plane
     (i.e., a flat surface). Both planes are zero at $(-2,-1)$:\
-    ![image](optim05.jpg)
+    ![image](./images/optim05.jpg)
 
 An equivalent way of stating this same optimization problem would have
 been as follows:
