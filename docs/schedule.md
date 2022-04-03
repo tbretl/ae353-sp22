@@ -62,7 +62,10 @@ description: What we will do from day to day
 * [Day 21 (observer implementation, design, and analysis)](notes/Day21-MoreObservers.pdf)
 * [Day 22 (more about observer implementation, design, and analysis)](notes/Day22-EvenMoreObservers.pdf)
 * [Day 23 (nonlinear sensor models)](notes/Day23-NonlinearSensorModels.pdf)
-* Day 27
+* [Day 24 (observer implementation)](notes/Day24-ObserverImplementation.pdf)
+* [Day 25 (optimal observers)](notes/Day25-OptimalObservers.pdf)
+* [Day 26 (more about optimal observers)](notes/Day26-MoreOptimalObservers.pdf)
+* Day 28
     * Some old reports for in-class discussion:
         - <a role="button" data-bs-toggle="collapse" href="#report01" aria-expanded="false" aria-controls="report01">Report 01</a>
         - <a role="button" data-bs-toggle="collapse" href="#report02" aria-expanded="false" aria-controls="report02">Report 02</a>
@@ -121,6 +124,10 @@ description: What we will do from day to day
 * [Day 21 (observer implementation, design, and analysis)](https://mediaspace.illinois.edu/media/t/1_ycmlgk8m/243767652)
 * [Day 22 (more about observer implementation, design, and analysis)](https://mediaspace.illinois.edu/media/t/1_zznp17o8/243767652)
 * [Day 23 (nonlinear sensor models)](https://mediaspace.illinois.edu/media/t/1_hu9beo6t/243767652)
+* [Day 24 (observer implementation)](https://mediaspace.illinois.edu/media/t/1_u8f9jr7i/243767652)
+* [Day 25 (introduction to optimal observers)](https://mediaspace.illinois.edu/media/t/1_n9274dis/243767652)
+* [Day 26 (more about optimal observers)](https://mediaspace.illinois.edu/media/t/1_y87beelw/243767652)
+* [Day 27 (summary of optimal observers, and random number generation)](https://mediaspace.illinois.edu/media/t/1_15bjvo5o/243767652)
 
 # Supplementary Videos
 
