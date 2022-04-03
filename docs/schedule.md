@@ -62,6 +62,42 @@ description: What we will do from day to day
 * [Day 21 (observer implementation, design, and analysis)](notes/Day21-MoreObservers.pdf)
 * [Day 22 (more about observer implementation, design, and analysis)](notes/Day22-EvenMoreObservers.pdf)
 * [Day 23 (nonlinear sensor models)](notes/Day23-NonlinearSensorModels.pdf)
+* [Day 24 (observer implementation)](notes/Day24-ObserverImplementation.pdf)
+* [Day 25 (optimal observers)](notes/Day25-OptimalObservers.pdf)
+* [Day 26 (more about optimal observers)](notes/Day26-MoreOptimalObservers.pdf)
+* Day 28
+    * Some old reports for in-class discussion:
+        - <a role="button" data-bs-toggle="collapse" href="#report01" aria-expanded="false" aria-controls="report01">Report 01</a>
+        - <a role="button" data-bs-toggle="collapse" href="#report02" aria-expanded="false" aria-controls="report02">Report 02</a>
+        - <a role="button" data-bs-toggle="collapse" href="#report03" aria-expanded="false" aria-controls="report03">Report 03</a>
+    * Some old code for in-class discussion:
+        - <a role="button" data-bs-toggle="collapse" href="#code01" aria-expanded="false" aria-controls="code01">Code 01</a>
+        - <a role="button" data-bs-toggle="collapse" href="#code02" aria-expanded="false" aria-controls="code02">Code 02</a>
+        - <a role="button" data-bs-toggle="collapse" href="#code03" aria-expanded="false" aria-controls="code03">Code 03</a>
+
+{: .collapse #report01 .card .card-body}
+**REPORT 01**
+![Report 01](images/report01.png)
+
+{: .collapse #report02 .card .card-body}
+**REPORT 02**
+![Report 02](images/report02.png)
+
+{: .collapse #report03 .card .card-body}
+**REPORT 03**
+![Report 03](images/report03.png)
+
+{: .collapse #code01 .card .card-body}
+**CODE 01**
+![Code 01](images/code01.png)
+
+{: .collapse #code02 .card .card-body}
+**CODE 02**
+![Code 02](images/code02.png)
+
+{: .collapse #code03 .card .card-body}
+**CODE 03**
+![Code 03](images/code03.png)
 
 # Videos
 
@@ -88,6 +124,10 @@ description: What we will do from day to day
 * [Day 21 (observer implementation, design, and analysis)](https://mediaspace.illinois.edu/media/t/1_ycmlgk8m/243767652)
 * [Day 22 (more about observer implementation, design, and analysis)](https://mediaspace.illinois.edu/media/t/1_zznp17o8/243767652)
 * [Day 23 (nonlinear sensor models)](https://mediaspace.illinois.edu/media/t/1_hu9beo6t/243767652)
+* [Day 24 (observer implementation)](https://mediaspace.illinois.edu/media/t/1_u8f9jr7i/243767652)
+* [Day 25 (introduction to optimal observers)](https://mediaspace.illinois.edu/media/t/1_n9274dis/243767652)
+* [Day 26 (more about optimal observers)](https://mediaspace.illinois.edu/media/t/1_y87beelw/243767652)
+* [Day 27 (summary of optimal observers, and random number generation)](https://mediaspace.illinois.edu/media/t/1_15bjvo5o/243767652)
 
 # Supplementary Videos
 
