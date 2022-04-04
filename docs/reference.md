@@ -823,13 +823,13 @@ function as small as possible:
 
 -   The solution to
 
-$$
-\begin{align*}
-\mathop{\mathrm{minimize}}_{u} \qquad u^{2}-2u+3
-\end{align*}
-$$
+    $$
+    \begin{align*}
+    \mathop{\mathrm{minimize}}_{u} \qquad u^{2}-2u+3
+    \end{align*}
+    $$
 
-was $u=1$.
+    was $u=1$.
 
 -   The solution to
 
@@ -838,15 +838,15 @@ was $u=1$.
     \mathop{\mathrm{minimize}}_{u_{1},u_{2}} \qquad u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6
     \end{align*}$$
 
-was $(u_{1},u_{2})=(-2,-1)$.
+    was $(u_{1},u_{2})=(-2,-1)$.
 
 -   The solution to
 
-$$\begin{aligned}
+    $$\begin{aligned}
     \mathop{\mathrm{minimize}}_{u} &\qquad u^{2}+3x^{2}-2ux+2u+2x+6 \\
     \text{subject to} &\qquad u+x=3\end{aligned}$$
 
-was $(u,x)=(2,1)$.
+    was $(u,x)=(2,1)$.
 
 It is sometimes useful to focus on the minimum instead of on the
 minimizer, i.e., what the "smallest value" was that we were able to
@@ -855,50 +855,50 @@ notation" instead:
 
 -   The problem
 
-$$
-\begin{align*}
-\mathop{\mathrm{minimize}}_{u} \qquad u^{2}-2u+3
-\end{align*}$$
+    $$
+    \begin{align*}
+    \mathop{\mathrm{minimize}}_{u} \qquad u^{2}-2u+3
+    \end{align*}$$
 
-is rewritten
+    is rewritten
 
-$$
-\begin{align*}
-\mathop{\mathrm{minimum}}_{u} \left\{ u^{2}-2u+3 \right\}.
-\end{align*}$$
+    $$
+    \begin{align*}
+    \mathop{\mathrm{minimum}}_{u} \left\{ u^{2}-2u+3 \right\}.
+    \end{align*}$$
 
-The meaning is---find the minimum value of $u^{2}-2u+3$ over all choices of $u$. The solution to this problem can be found by plugging in what we already know is the minimizer, $u=1$. In particular, we find that the solution is $2$.
-
--   The problem
-
-$$
-\begin{align*}
-\mathop{\mathrm{minimize}}_{u_{1},u_{2}} \qquad u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6
-\end{align*}$$
-
-is rewritten
-
-$$
-\begin{align*}
-\mathop{\mathrm{minimum}}_{u_{1},u_{2}} \left\{ u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6 \right\}.
-\end{align*}$$
-
-Again, the meaning is---find the minimum value of $u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6$ over all choices of $u_{1}$ and $u_{2}$. We plug in what we already know is the minimizer $(u_{1},u_{2})=(-2,-1)$ to find the solution---it is $3$.
+    The meaning is---find the minimum value of $u^{2}-2u+3$ over all choices of $u$. The solution to this problem can be found by plugging in what we already know is the minimizer, $u=1$. In particular, we find that the solution is $2$.
 
 -   The problem
 
-$$\begin{aligned}
-\mathop{\mathrm{minimize}}_{u} &\qquad u^{2}+3x^{2}-2ux+2u+2x+6 \\
-\text{subject to} &\qquad u+x=3\end{aligned}$$
+    $$
+    \begin{align*}
+    \mathop{\mathrm{minimize}}_{u_{1},u_{2}} \qquad u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6
+    \end{align*}$$
 
-is rewritten
+    is rewritten
 
-$$
-\begin{align*}
-\mathop{\mathrm{minimum}}_{u} \left\{ u^{2}+3x^{2}-2ux+2u+2x+6 \;\colon\; u+x=3  \right\}.
-\end{align*}$$
+    $$
+    \begin{align*}
+    \mathop{\mathrm{minimum}}_{u_{1},u_{2}} \left\{ u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6 \right\}.
+    \end{align*}$$
 
-And again, the meaning is---find the minimum value of $u^{2}+3x^{2}-2ux+2u+2x+6$ over all choices of $u$ for which there exists $x$ satisfying $u+x=3$. Plug in the known minimizer, $(u,x)=(2,1)$, and we find that the solution is 15.
+    Again, the meaning is---find the minimum value of $u_{1}^{2}+3u_{2}^{2}-2u_{1}u_{2}+2u_{1}+2u_{2}+6$ over all choices of $u_{1}$ and $u_{2}$. We plug in what we already know is the minimizer $(u_{1},u_{2})=(-2,-1)$ to find the solution---it is $3$.
+
+-   The problem
+
+    $$\begin{aligned}
+    \mathop{\mathrm{minimize}}_{u} &\qquad u^{2}+3x^{2}-2ux+2u+2x+6 \\
+    \text{subject to} &\qquad u+x=3\end{aligned}$$
+
+    is rewritten
+
+    $$
+    \begin{align*}
+    \mathop{\mathrm{minimum}}_{u} \left\{ u^{2}+3x^{2}-2ux+2u+2x+6 \;\colon\; u+x=3  \right\}.
+    \end{align*}$$
+
+    And again, the meaning is---find the minimum value of $u^{2}+3x^{2}-2ux+2u+2x+6$ over all choices of $u$ for which there exists $x$ satisfying $u+x=3$. Plug in the known minimizer, $(u,x)=(2,1)$, and we find that the solution is 15.
 
 The important thing here is to understand the notation and to understand
 the difference between a "minimum" and a "minimizer."
@@ -920,67 +920,67 @@ Let's try to understand what it means.
 
 -   The statement
 
-$$\begin{align*}
-\mathop{\mathrm{minimize}}_{u_{[t_{0},t_{1}]}}
-\end{align*}$$
+    $$\begin{align*}
+    \mathop{\mathrm{minimize}}_{u_{[t_{0},t_{1}]}}
+    \end{align*}$$
 
-says that we are being asked to choose an input trajectory $u$ that
-minimizes something. Unlike in the optimization problems we saw
-before, the decision variable $u$ in this problem is a function of
-time. The notation $u_{[t_{0},t_{1}]}$ is one way of indicating
-this. Given an initial time $t_{0}$ and a final time $t_{1}$, we are
-being asked to choose the value of $u(t)$ at all times in between,
-i.e., for all $t\in[t_{0},t_{1}]$.
-
--   The statement
-
-$$
-\begin{align*}
-\frac{dx(t)}{dt} = f(x(t),u(t)), \quad x(t_{0})=x_{0}
-\end{align*}$$
-
-is a
-constraint. It implies that we are restricted to choices of $u$ for
-which there exists an $x$ satisfying a given initial condition
-
-$$
-\begin{align*}
-x(t_{0}) = x_{0}
-\end{align*}$$
-
-and satisfying the ordinary differential
-equation
-
-$$
-\begin{align*}
-\frac{dx(t)}{dt} = f(x(t),u(t)).
-\end{align*}$$
-
-One example of an
-ordinary differential equation that looks like this is our usual
-description of a system in state-space form:
-
-$$
-\begin{align*}
-\dot{x} = Ax+Bu,
-\end{align*}$$
+    says that we are being asked to choose an input trajectory $u$ that
+    minimizes something. Unlike in the optimization problems we saw
+    before, the decision variable $u$ in this problem is a function of
+    time. The notation $u_{[t_{0},t_{1}]}$ is one way of indicating
+    this. Given an initial time $t_{0}$ and a final time $t_{1}$, we are
+    being asked to choose the value of $u(t)$ at all times in between,
+    i.e., for all $t\in[t_{0},t_{1}]$.
 
 -   The statement
 
-$$
-\begin{align*}
-h(x(t_{1})) + \int_{t_{0}}^{t_{1}}g(x(t),u(t))dt
-\end{align*}$$
+    $$
+    \begin{align*}
+    \frac{dx(t)}{dt} = f(x(t),u(t)), \quad x(t_{0})=x_{0}
+    \end{align*}$$
 
-says what we are trying to minimize---it is the cost function in
-this problem. Notice that the cost function depends on both $x$ and
-$u$. Part of it---$g(\cdot)$---is integrated (i.e., "added up") over
-time. Part of it---$h(\cdot)$---is applied only at the final time.
-One example of a cost function that looks like this is
+    is a
+    constraint. It implies that we are restricted to choices of $u$ for
+    which there exists an $x$ satisfying a given initial condition
 
-$$\begin{align*}
-x(t_{1})^{T}Mx(t_{1}) + \int_{t_{0}}^{t_{1}} \left( x(t)^{T}Qx(t)+u(t)^{T}Ru(t) \right) dt
-\end{align*}$$
+    $$
+    \begin{align*}
+    x(t_{0}) = x_{0}
+    \end{align*}$$
+
+    and satisfying the ordinary differential
+    equation
+
+    $$
+    \begin{align*}
+    \frac{dx(t)}{dt} = f(x(t),u(t)).
+    \end{align*}$$
+
+    One example of an
+    ordinary differential equation that looks like this is our usual
+    description of a system in state-space form:
+
+    $$
+    \begin{align*}
+    \dot{x} = Ax+Bu,
+    \end{align*}$$
+
+-   The statement
+
+    $$
+    \begin{align*}
+    h(x(t_{1})) + \int_{t_{0}}^{t_{1}}g(x(t),u(t))dt
+    \end{align*}$$
+
+    says what we are trying to minimize---it is the cost function in
+    this problem. Notice that the cost function depends on both $x$ and
+    $u$. Part of it---$g(\cdot)$---is integrated (i.e., "added up") over
+    time. Part of it---$h(\cdot)$---is applied only at the final time.
+    One example of a cost function that looks like this is
+
+    $$\begin{align*}
+    x(t_{1})^{T}Mx(t_{1}) + \int_{t_{0}}^{t_{1}} \left( x(t)^{T}Qx(t)+u(t)^{T}Ru(t) \right) dt
+    \end{align*}$$
 
 ### The HJB equation (our new "first-derivative test")
 
