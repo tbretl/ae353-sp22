@@ -130,6 +130,8 @@ description: What we will do from day to day
 * [Day 27 (summary of optimal observers, and random number generation)](https://mediaspace.illinois.edu/media/t/1_15bjvo5o/243767652)
 * [Day 28 (plagiarism)](https://mediaspace.illinois.edu/media/t/1_f7i0pcwr/243767652)
 * [Day 29 (tracking)](https://mediaspace.illinois.edu/media/t/1_0n41gmav/243767652)
+* [Day 30 (DP4)](https://mediaspace.illinois.edu/media/t/1_kfbeokbn/243767652)
+* [Day 31 (choosing what to track)](https://mediaspace.illinois.edu/media/t/1_t8zkpvgy/243767652)
 
 # Supplementary Videos
 
