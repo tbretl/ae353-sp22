@@ -132,6 +132,9 @@ description: What we will do from day to day
 * [Day 29 (tracking)](https://mediaspace.illinois.edu/media/t/1_0n41gmav/243767652)
 * [Day 30 (DP4)](https://mediaspace.illinois.edu/media/t/1_kfbeokbn/243767652)
 * [Day 31 (choosing what to track)](https://mediaspace.illinois.edu/media/t/1_t8zkpvgy/243767652)
+* [Day 32 (frequency response)](https://mediaspace.illinois.edu/media/t/1_du8g02fi/243767652)
+* [Day 33 (transfer functions)](https://mediaspace.illinois.edu/media/t/1_uv6fyy7c/243767652)
+
 
 # Supplementary Videos
 
@@ -149,6 +152,15 @@ description: What we will do from day to day
 * [What is an optimal observer?](https://mediaspace.illinois.edu/media/t/1_m5ku4a2i/243767652)
 * [What problem is solved to produce an optimal observer?](https://mediaspace.illinois.edu/media/t/1_cvfqo0i0/243767652)
 * [Do optimal observers make any sense at all?](https://mediaspace.illinois.edu/media/t/1_axx6h2yg/243767652)
+
+##### Frequency response
+
+* [What is the transfer function? What is the frequency response? Why are these things important?](https://mediaspace.illinois.edu/media/t/1_oljuanym/243767652)
+* [What is the solution to a system with input?](https://mediaspace.illinois.edu/media/t/0_29rmp7ql/243767652)
+* [What is a complex number?](https://mediaspace.illinois.edu/media/t/1_h4sfjfwc/243767652)
+* [How do I derive the transfer function?](https://mediaspace.illinois.edu/media/t/1_xzp809m6/243767652)
+* [How do I derive the frequency response?](https://mediaspace.illinois.edu/media/t/1_xmptsbkg/243767652)
+
 
 # Examples
 
