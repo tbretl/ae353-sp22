@@ -31,6 +31,7 @@ description: What we will do from day to day
 * [HW22](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318052)
 * [HW23](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318085)
 * [HW24](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318114)
+* [HW33](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318452)
 
 # Activities
 
@@ -74,6 +75,10 @@ description: What we will do from day to day
         - <a role="button" data-bs-toggle="collapse" href="#code01" aria-expanded="false" aria-controls="code01">Code 01</a>
         - <a role="button" data-bs-toggle="collapse" href="#code02" aria-expanded="false" aria-controls="code02">Code 02</a>
         - <a role="button" data-bs-toggle="collapse" href="#code03" aria-expanded="false" aria-controls="code03">Code 03</a>
+* [Day 29 (tracking)](notes/Day29-Tracking.pdf)
+* [Day 31 (planning)](notes/Day31-Planning.pdf)
+* [Day 32 (frequency response)](notes/Day32-FrequencyResponse.pdf)
+* [Day 33 (transfer functions)](notes/Day33-TransferFunctions.pdf)
 
 {: .collapse #report01 .card .card-body}
 **REPORT 01**
