@@ -2051,3 +2051,681 @@ def lqr(A,B,Q,R):
     K=linalg.inv(R) @ B.T @ P
     return K
 ```
+
+
+# Observers
+T. Bretl, S. Bout, J. Virklan
+
+## What is an observer?
+
+Consider the usual state space system 
+
+$$\begin{align*}
+    \dot{x} = Ax + Bu
+\end{align*}$$ 
+        
+The controller $u = -Kx$
+assumes complete knowledge of the state $x$. In reality, this is almost
+never the case. In the scenario where complete knowledge of the state is
+not known, an observer is used. An observer is the \"best guess\", or
+the best estimate of the state based on the information available. The
+state estimate is denoted as $\hat{x}$, and the choice of input $u$ will
+be based on the state estimate instead of the state. The controller
+
+$$\begin{aligned}
+    u = -Kx
+\end{aligned}$$ 
+        
+becomes 
+
+$$\begin{aligned}
+    u = -K \hat{x}
+\end{aligned}$$ 
+
+The primary source of the
+information used to determine $\hat{x}$ comes from sensors. If these
+measurements from the sensors are denoted as $y$, then the goal is to
+somehow go from these measurements $y$, to the state $\hat{x}$. The
+relationship between the measurements and the state can be formulated as
+
+$$\begin{aligned}
+    y = C \hat{x}
+\end{aligned}$$ 
+
+An approach we might consider is
+
+$$\begin{aligned}
+    \hat{x}(t) = C^{-1}y(t)
+\end{aligned}$$ 
+
+The reason this will not
+generally work is because the $C$ matrix may not be square or
+invertible.\
+The approach that will generally work, is an observer. An observer is
+defined as a set of ordinary differential equations that look very
+similar to the original state space model, but has $\hat{x}$ instead of
+$x$. A corrective term that is proportional to $C\hat{x} - y$ is added.
+The resulting formula is called an observer 
+
+$$\begin{aligned}
+    \dot{\hat{x}} = A \hat{x} + Bu - L(C \hat{x} - y)
+\end{aligned}$$
+
+If the measurements $y$ and the inputs $u$ are plugged in, and
+$\dot{\hat{x}}$ is integrated, this will produce a very good state
+estimate which will allow for performance similar to control applied to
+the exact value of the state itself.
+
+## Do observers make sense?
+
+So far, we have shown that if we integrate the observer
+
+$$\begin{aligned}
+    \dot{\hat{x}} = A\hat{x} + Bu - L(C \hat{x} - y)
+\end{aligned}$$
+
+it will produce an estimate of the state of the system 
+
+$$\begin{aligned}
+    \dot{x} = Ax + Bu \\
+    y = Cx
+\end{aligned}$$ 
+
+Why is this the case? And where does this
+expression for an observer come from? To understand this, we must look
+back to how controllers are designed. In the absence of a controller
+where there is no input, the state would behave as 
+
+$$\begin{aligned}
+    \dot{x} = Ax
+\end{aligned}$$ 
+
+If we want the system to behave in a
+different manner, such as to achieve a stable system where it was
+unstable, we add an expression that is negatively proportional to the
+error 
+
+$$\begin{aligned}
+    \dot{x} = Ax - BK(x - x_{desired})
+\end{aligned}$$
+
+where error is
+the difference between the actual state, and the desired state. In the
+case of control, the desired state is 0, at least in the context of
+state feedback to generate the usual expression for a closed-loop system
+
+$$\begin{aligned}
+    \dot{x} = (A - BK)x 
+\end{aligned}$$ 
+
+What about in the case of
+state estimation? In the absence of any other information, the best
+guess for the state is produced by integrating the state space model
+from some initial condition 
+
+$$\begin{aligned}
+    \dot{x} = A\hat{x} + Bu, \; \hat{x}(0) = x_{0}
+\end{aligned}$$ 
+
+If
+the guess at the initial condition is perfect, and the state space model
+is perfect, than integrating (1) would produce an exact estimate of the
+state. In reality, the estimate of the initial condition and the model
+are never perfect. One way to address that problem is to add a term to
+the state space model that is negatively proportional to the error, the
+difference between the state estimate and the actual state, resulting in
+
+$$\begin{aligned}
+    \dot{\hat{x}} = A\hat{x} + Bu - L(\hat{x} - x)
+\end{aligned}$$
+
+This is something that cannot be implemented because in order to
+implement it, we would have to know the value of $x$, which of course we
+do not know because that is the whole point of finding the estimate of
+the state $x$. However, we can do something similar, where a term is
+added to the state space model that is negatively proportional to some
+measure of error, but instead of the measure of error between the state
+estimate and the actual state, which cannot be implemented, the term
+added is negatively proportional to the difference between what the
+model tells us our measurement would be, $C\hat{x}$ if $\hat{x}$ were
+the state, and what the measurement actually is $y$. The resulting
+observer is 
+
+$$\begin{aligned}
+    \dot{\hat{x}} = A\hat{x} + Bu - L(C \hat{x} - y)
+\end{aligned}$$
+
+where $C \hat{x} - y$ is the error in prediction of the measurement $y$.
+So we see just like in the case of control, we take some nominal
+behaviour and correct it by adding a term that is negatively
+proportional to some measure of error. Observers make sense!
+
+## When does an observer work?
+
+One way to decide if an observer is going to work is to predict what the
+error in the observer measurements is, that is to say: 
+
+$$\begin{aligned}
+    e &= (x - \hat{x})\\
+    x &= Ax + Bu\\
+    \dot{\hat{x}} &= A\hat{x} + Bu - L(Cx - C\hat{x})
+\end{aligned}$$
+
+subtracting the 2nd and 3rd equation above yields an equation that can be
+described purely in terms of the error and its time derivative, that is:
+
+$$\begin{aligned}
+    \dot{e} = (A-LC)e
+\end{aligned}$$ 
+
+The error equation is similar to
+the case for controller design where $\dot{x} = (A-BK)x$, and the system
+can be analyzed for asymptotic stability in the same way. By defining
+the characteristic equation: 
+
+$$\begin{aligned}
+    0 = det(sI - (A-LC))
+\end{aligned}$$ 
+
+the solution to this equation is
+the eigenvalues of $A-LC$, and similar to control design, if the real
+parts of those eigenvalues are all negative, the system will be
+asymptotically stable through time.
+
+## How to choose L for an observer
+
+The fact that negative real parts of the eigenvalues of $A-LC$ leads to
+a stable system leads one to desire a method similar to Ackerman's
+method for controller design. Approaching the problem in this context,
+we desire to place poles for the system such that stability is achieved
+in the observer. The issue in the equations given and applying those to
+Ackerman's method is that the scripts developed for Ackerman's method
+take specific sized matrices to translate to a properly sized K matrix.
+We can resolve these issues by transposing the characteristic equation
+of $A-LC$ yielding $A^T - C^TL^T$, and now the system looks exactly like
+that of $A-BK$, but transposed to fit properly. When placing this into
+the acker() algorithm, this yields $L^T =$ acker($A^T$, $C^T$,
+$p_{obs}$) where $p_{obs}$ are the desired poles to place. We want L and
+not the transpose of L, but this can be resolved by taking the
+transpose of acker().
+
+## Do observers break controllers
+
+Given the overarching model with the controller and observer design
+implemented together, its important that we check that for any observer
+designed separately from the controller in this context maintains
+overall system stability. we know that: 
+
+$$\begin{aligned}
+    x & = A + Bu\\
+    y & = Cx\\
+    u &= -Kx\\
+    \dot{\hat{x}} &= A\hat{x} + Bu - L(y-C\hat{x})
+\end{aligned}$$
+
+Combining these equations together, we can get: 
+
+$$\begin{aligned}
+    \begin{bmatrix}
+    \dot{x} \\
+    \dot{e}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    [A-BK] & [-BK]\\
+    [0] & [A-LC]
+    \end{bmatrix}
+    \begin{bmatrix}
+    x \\
+    e
+    \end{bmatrix}
+    =
+    [H]q
+\end{aligned}$$ 
+
+with \[0\] being an appropriately sized matrix
+to make the overall structure of the block matrix square. Taking the
+roots of the block matrix yields: 
+
+$$\begin{aligned}
+    0 = det(sI - H)
+\end{aligned}$$ 
+
+One important concept from linear
+algebra has to deal with manipulation of block matrices within
+determinants, that rule is: 
+
+$$\begin{aligned}
+    det(\begin{bmatrix}
+    F & E \\
+    0 & G
+    \end{bmatrix} = det(F)det(G)
+\end{aligned}$$ 
+
+applying this to the
+block matrix H yields: 
+
+$$\begin{aligned}
+    det(sI-H) = det(sI-(A-BK))det(sI-(A-LC))
+\end{aligned}$$ 
+
+The roots of
+both determinants are given by the eigenvalues of their respective
+matrices. This means that if both determinants present an asymptotically
+stable system, then the overarching system will remain stable in time.
+This gives rise to the Separation Principle, that is, one can design an
+observer and controller separately while maintaining the stability of
+each and merge them together while and still achieve overall stability.
+We can design the controller and observer while ignoring that the other
+even exists.
+
+## When is observer design possible
+
+We know of the controllability matrix from controller design
+$W_c = [B AB ... A^{n-1}B]$ which tells whether the system is
+controllable given as the controllability matrix being of full rank.
+Similarly, we can construct an observability matrix as:
+
+$$\begin{aligned}
+    W_o = \begin{bmatrix}
+    C^{T} &
+    A^{T} C^{T} &
+    . . .  &
+    A^{n-1T} C^T
+    \end{bmatrix}
+\end{aligned}$$
+
+Wishing to eliminate the messiness of the transposes, we rewrite $W_o$
+as: 
+
+$$\begin{aligned}
+    W_o^T = \begin{bmatrix}
+        C \\
+    CA\\
+    \vdots \\
+    CA^{n-1}
+    \end{bmatrix}
+\end{aligned}$$ 
+
+similar to the control problem, the
+system is observable if $W_o^T$ is of full rank. One should always check
+the observability of a system before trying to design an observer for
+it.
+
+# Optimal observers
+
+## What is an optimal observer?
+
+Consider the usual state space system 
+
+$$\begin{aligned}
+    \dot{x} = Ax + Bu \\ 
+    y = Cx
+\end{aligned}$$ 
+
+let us denote $n_{x}$ as the number of
+states in that system, $n_{u}$ as the number of inputs, and $n_{y}$ as
+the number of outputs. The optimal controller 
+
+$$\begin{aligned}
+    u = -Kx
+\end{aligned}$$ 
+
+where $K$ can be found using the Python LQR()
+function we defined earlier in the \"LQR Code\" section under \"LQR\" in
+the \"Optimization and Optimal Control\" section. 
+
+```
+K=LQR(A, B, Qc, Rc)
+```
+
+$Q_{c}$ is size $n_x$ x
+$n_x$ and $R_{c}$ is size $n_{u}$ x $n_{u}$. We know these matrices have
+to satisfy certain properties. In particular, $Q_{c}$ must be positive
+semidefinite, $R_{c}$ must be positive definite. An easy way to ensure
+these properties are satisfied is to choose both of these matrices as
+diagonal with positive numbers (i.e. identity matrix). What optimal
+means is that the choice of $K$ is making the best trade-off it can
+between error, which is being penalized by $Q_{c}$, and effort, which is
+being penalized by $R_{c}$. If we increase the numbers in the diagonal
+of either matrix, the resulting $K$ is going to be making a different
+trade-off between error and effort depending on those numbers. The same
+approach can be used to design an optimal observer. Any observer has the
+form 
+
+$$\begin{aligned}
+    \dot{\hat{x}} = A\hat{x} + Bu - L(C \hat{x} - y)
+\end{aligned}$$ 
+
+An
+optimal observer is where L is chosen using the Python function LQR
+
+```
+L = LQR(A.T, B.T, linalg.inv(Qo), linalg.inv(Ro)).T
+```
+
+Notice $A$ and $B$ are transposed, and that $Q_{o}$ and $R_{o}$ are
+inverted. This LQR function produced the transpose of $L$, so we need to
+take the transpose to get our final $L$. $Q_{o}$ is size $n_y$ x $n_y$
+and $R_{o}$ is size $n_{x}$ x $n_{x}$. The matrices need to satisfy
+certain properties. An easy way to ensure this is to choose diagonal
+matrices with positive numbers. An identity matrix is a good place to
+start. $Q_{o}$ penalizes sensor noise, and $R_{o}$ penalized process
+noise. Increasing the numbers in $Q_{o}$ means we trust the sensors more
+because we are penalizing the noise that we are allowing the observer
+design process to assume is happening. Similarly, increasing the numbers
+in $R_{o}$, we are trusting our state space model more, and
+de-emphasizing the information we are getting from the sensors. The nice
+part about this design is that LQR can be used to design both the
+controller and the optimal observer.
+
+## What problem is solved to produce an optimal observer?
+
+This is the optimal control problem that is solved to produce an optimal
+controller 
+
+$$\begin{aligned}
+\mathop{\mathrm{minimize}}_{u_[t_0, \infty)}
+&\qquad
+\int_{t_{0}}^{\infty} \left( x(t)^{T}Q_{c}x(t)+u(t)^{T}R_{c}u(t) \right) dt \\
+\text{subject to}
+&\qquad
+\dot{x}(t) = Ax(t)+Bu(t) \qquad \text{for} \qquad t \epsilon [t_0, \infty] \\
+&\qquad
+x(t_0) = x_0
+\end{aligned}$$
+
+. This optimal controller
+has the form 
+
+$$\begin{aligned}
+    u = -Kx
+\end{aligned}$$ 
+
+where K can be found using the LQR() Python
+function we previously defined. This is the optimal control problem that
+is solved to produce an optimal observer 
+
+$$\begin{aligned}
+\mathop{\mathrm{minimize}}_{x(t_{1}),n_{(- \infty,t_{1}]},d_{(- \infty,t_{1}]}}
+&\qquad
+\int_{- \infty}^{t_{1}} \left( n(t)^{T}Q_{o}n(t)+d(t)^{T}R_{o}d(t) \right) dt \\
+\text{subject to}
+&\qquad
+\dot{x}(t) = Ax(t)+Bu(t)+d(t) \qquad for \qquad t \epsilon (- \infty, t_{1}]\\
+&\qquad
+y(t) = Cx(t)+n(t)\end{aligned}$$
+
+Here again, the solution
+involves using a gain matrix, in this case we call this matrix L, which
+can also be found using the LQR() Python function we previously defined.
+L in this case enters into a set of ordinary differential equations
+
+$$\begin{aligned}
+    \dot{\hat{x}} = A\hat{x}+Bu-L(c\hat{x}-y)
+\end{aligned}$$ 
+
+Let's take
+a look at some differences between these two problems. In the optimal
+control problem, the term, $x(t)^TQ_c x(t)$, penalizes error. The goal
+of the controller is to drive $x$ to zero, and when that is not zero,
+this error grows quadratically. The term $u(t)^TR_c u(t)$ penalizes
+effort quadratically as well, but this time on the choice of input $u$.
+Now if we take a look at our optimal observer problem, instead of
+penalizing error and effort, the term $n(t)^T Q_o n(t)$ penalizes sensor
+noise and the term $d(t)^T R_o d(t)$ penalizes the process disturbance.
+These variables $n(t)$ and $d(t)$ are variables we are adding to the
+state space model to capture real world faults. The disturbance $d(t)$
+captures how the inputs we apply are always corrupted in some way in the
+real world. We can see this 
+
+$$\begin{aligned}
+    d(t) = \dot{x}(t) - (Ax(t)+Bu(t)
+\end{aligned}$$ 
+
+from this we see
+$d(t)$ captures the error in our model of the dynamics. If our model of
+the dynamics was perfect, $\dot{x}(t) = (Ax(t) + Bu(t)$. The fact that
+it is not, is represented by $d(t)$. The term $d(t)^T R_o d(t)$
+recognizes this an imposes a quadratic penalty on the extent to which
+our model of the dynamics is wrong. Similarly, $n(t)$ captures the
+extent to which our sensor measurements are wrong in the real world.
+
+$$\begin{aligned}
+    -n(t) = Cx(t) - y(t)
+\end{aligned}$$ 
+
+We see again, similar to
+disturbance, this is the error in our prediction of what the measurement
+should be. So, while the optimal controller quadratically penalizes
+error and effort, the optimal observer quadratically penalizes the
+sensor noise and process disturbance. For the optimal controller, we
+integrate from the current time $t_0$ to the end of time $\infty$. For
+the optimal observer, we integrate from the beginning of time $-\infty$
+of the system, to the current time. In particular, for the optimal
+controller, the value we are fundamentally trying to find, is the choice
+of input $u$, while for the optimal observer, the value we are
+fundamentally trying to find, is the current state. We might notice that
+there is given current state $x(t_0)$ in the optimal observer as we see
+in the optimal controller. This is the whole point of an optimal
+observer. The optimal observer gives the best estimate of the current
+state, which allows the controller to give the best inputs based on this
+reported current state. The two complement each other.
+
+We see that the optimal observer also minimizes over the noise and the
+disturbance. This is because we want the optimal observer to also
+explain the best estimate it has arrived to. The noise and the
+disturbance effectively explain the differences between the expected and
+actual measurements and model dynamics respectively. The last difference
+between the optimal controller and optimal observer is a bit more
+subtle. The final result of the optimal controller is the formula
+
+$$\begin{aligned}
+u = -Kx
+\end{aligned}$$ 
+
+The optimal observer does not have such a
+declarative formula. While there is a similar expression for state
+estimate, the formula would be dependent on inputs and measurements that
+have been chosen and observed respectively from the beginning of time
+$-\infty$. This means that in order to evaluate this expression, we
+would need to keep track of every single input and measurement since the
+beginning of time of that system. If that sounds ridiculous, it's
+because it is. The best we can do is an expression that explains how the
+observer evolves over time in the form of the ordinary differential
+equation 
+
+$$\begin{align*}
+\tag{1}
+    \dot{\hat{x}} = A\hat{x} + Bu - L (C\hat{x} - y)
+\end{align*}$$
+
+Suppose we were to solve the optimal observer problem, we notice it has
+an upper limit of integration $t_1$ which we consider the \"current
+time\", it produces an estimate of the current state $x(t_1)$. For
+example, if we solved the optimal observer problem such that
+$t_1 = t_\alpha$, then $x(t_1) = \alpha$, and we solved it again such
+that $t_1 = t_\beta$, then $x(t_1) = \beta$. If we integrate (1)
+starting at $\hat{x}(t_\alpha) = \alpha$ then the solution is
+$\hat{x}(t_\beta) = \beta$. This can effectively be considered an update
+expression. It allows us to go from a solution at one time of the
+observer problem, and produces a new solution at another time, without
+having to track all the inputs and measurements from the beginning of
+time. Instead, we only need to know the inputs and measurements from
+time $t_\alpha$ to time $t_\beta$ in this scenario. This is why we see
+an explicit formula for the optimal controller, and a more subtle
+\"update expression\" for the optimal observer.
+
+## Do optimal observers make any sense at all?
+
+The equations that govern optimal observers may appear confusing. Using
+a simple model 
+
+$$\begin{aligned}
+    y = x
+\end{aligned}$$
+
+ and a simple sensor measurement $y = 10$ it is
+safe to assume the state estimate $\hat{x} = 10$. Now assume there are
+two sensors $y_1 = 10$ and $y_2 = 20$. The state estimate is no longer
+so easy. Some might consider $\hat{x} = 15$, an average between the two.
+Let's say for example, these sensor measurements record altitude. $y_1$
+measures the value from an altimeter, and $y_2$ measures the value from
+a laser range finder. Those with some familiarity of these two sensors
+will know that a laser range finder tends to be significantly more
+accurate, so $\hat{x} = 15$ is not really a reasonable choice of state
+estimate. Instead, we would prefer to choose a value much closer to the
+more accurate sensor, in this scenario the laser range finder. For
+example, we would decide $\hat{x} = 19$ instead, to reflect the higher
+accuracy of the laser range finder over the altimeter. This could still
+be described as an average, but it is now a weighted average. In this
+scenario 
+
+$$\begin{align*}
+\tag{2}
+    \hat{x} = 0.1y_1 + 0.9y_2
+\end{align*}$$ 
+
+This raises the question:
+is there a best, or optimal, choice of weights for this particular case,
+or for a more general case? Hint: the answer is yes. One way to see that
+would be to minimize the cost such that we can derive the weighted
+average as a consequence. One way to do that would be to extend the
+sensor models. Suppose we add a term to each sensor 
+
+$$\begin{aligned}
+    y_1=x+n_1 \\
+    y_2 = x + n_2
+\end{aligned}$$
+
+ where $y_1$ is the altimeter, $y_2$ is
+the laser range finder, and the added terms $n_1$ and $n_2$ is the noise
+of the sensor. Sensor noise is a way of acknowledging that real world
+sensor measurements are never perfect and explicitly modeling how much
+noise is being added to the state in order to produce each measurement.
+For any given guess at what the state is, we can quantify how much noise
+must have been added to produce the first measurement, and how much
+noise must have been added to produce the second measurement. For
+example, if we assume the actual state $x = 19$, and the altimeter
+measures $\hat{x} = 10$, then the measurement from the altimeter, $y_1$,
+
+$$\begin{aligned}
+    n_1 = y_1 - x \\
+    -9 = 10 - 19
+\end{aligned}$$
+
+ is off by a value of -9, and the
+measurements from the laser range finder measure $\hat{x} = 20$, then
+$y_2$ 
+
+$$\begin{aligned}
+    n_2 = y_2 - x \\
+    1 = 20 - 19
+\end{aligned}$$ 
+
+is only off by a value of 1. A trade-off
+occurs between the assumed noise of the two measurements, in this case
+the altimeter and the laser range finder, in order to explain the
+measurements we see for a given choice of the actual state. The best
+choice of state estimate, a choice that minimizes the noise of both
+measurements. Here is the cost that quantifies that. We want to minimize
+over all possible choices of $x$, $n_1$, and $n_2$: 
+
+$$\begin{aligned}
+\mathop{\mathrm{minimize}}_{x, n_1, n_2}
+&\qquad
+q_1(n_1)^2 + q_2(n_2)^2 \\
+\text{subject to}
+&\qquad
+y_1 = x + n_1\\
+&\qquad
+y_2 = x+n_2\end{aligned}$$
+
+where $q_1$ and $q_2$ are
+weights. So for a state estimate $x$ to be good, we have to minimize the
+sum squared of the noise from the first and second sensor. This
+optimization problem is easily simplified and solved. The first step is
+to replace the noise variables with the measurements and state
+equivalent: 
+
+$$\begin{aligned}
+\mathop{\mathrm{minimize}}_{x}
+&\qquad
+q_1(y_1-x)^2 + q_2(y_2-x)^2
+\end{aligned}$$
+
+Let's call this function $f(x)$. This allows us to eliminate our constraints and the ends to our
+minimization. We can now recognize that this function we are minimizing
+is a single scalar valued function of $x$. We know how to minimize
+single scalar valued functions. We set the first derivative of that
+function to zero 
+
+$$\begin{aligned}
+    0 = \frac{df}{dx} = -2q_1(y_1-x) - 2q_2(y_2-x) \\
+    = -2 (q_1(y_1-x)+q_2(y_2-x)) \\
+    =-2((q_1 y_1 + q_2 y_2) - (q_1 + q_2) x)
+\end{aligned}$$ 
+
+which
+ultimately leads to 
+
+$$\begin{aligned}
+    x = (\frac{q_1}{q_1+q_2})y_1 + (\frac{q_2}{q_1+q_2})y_2 
+\end{aligned}$$
+
+A couple things to note. We have derived the same weighted expression
+earlier as shown in (2). This means taking a weighted average is
+equivalent to minimizing a sum squared cost on the amount of noise we
+would have to assume to explain the measurements we see. But how do we
+choose these weights? Choosing $q_1$ and $q_2$ is quite easy in
+practice. The right way to choose these weights is to take
+
+$$\begin{align*}
+\tag{3}
+    \frac{1}{\sigma^2}
+\end{align*}$$ 
+
+where $\sigma$ is the associated
+standard deviation with a given sensor. This means, if we assume the
+noise in the laser range finder is normally distributed with a zero mean
+and a standard deviation $\sigma_2$, then the right way to take the
+weight $q_2$ is by using equation (3). Looking back at the optimal observer
+function 
+
+$$\begin{aligned}
+\mathop{\mathrm{minimize}}_{x(t_{1}),n_{(- \infty,t_{1}]},d_{(- \infty,t_{1}]}}
+&\qquad
+\int_{- \infty}^{t_{1}} \left( n(t)^{T}Q_{o}n(t)+d(t)^{T}R_{o}d(t) \right) dt \\
+\text{subject to}
+&\qquad
+\dot{x}(t) = Ax(t)+Bu(t)+d(t) \qquad for \qquad t \epsilon (- \infty, t_{1}]\\
+&\qquad
+y(t) = Cx(t)+n(t)\end{aligned}$$
+
+
+ we can see we are minimizing
+over all possible choices of state estimate, the sum squared of the
+noise $n(t)$ and the disturbance $d(t)$ that would have to be assumed in
+order to explain the differences we observe between $\dot{x}(t)$ and
+$Ax(t) + Bu(t)$ and the differences we observe between $y(t)$ and
+$Cx(t)$. In exactly the same way that in order to derive the weighted
+average to combine the measurements between the altimeter and the laser
+range finder in our example, we minimized the weighted sum squared of
+the noises that we would have to assume to explain the differences
+between the measurements and the state. A note: While taking the inverse
+squared standard deviation to find the optimal weights for $q_1$ and
+$q_2$, we can apply this to the matrices $Q_o$ and $R_o$ such that
+
+$$\begin{aligned}
+    Q_o = \sum_{n}^{-1} \\
+    R_o = \sum_{d}^{-1}
+\end{aligned}$$ 
+
+where $\sum_{n}^{-1}$ is the
+inverse of the covariance matrix that is associated with the noise $n$
+and $\sum_{d}^{-1}$ is the inverse of the covariance matrix that is
+associated with the disturbance $d$. We can see it is advantageous to
+use this method rather than a simple weighted average because there is a
+direct way to find the weights to minimize the observer function.
+Ultimately, all an optimal observer is doing, is computing a more
+complicated weighted average.
