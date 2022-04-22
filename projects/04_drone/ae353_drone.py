@@ -599,7 +599,6 @@ class Simulator:
             drone['cur_ring'] += 1
         if drone['cur_ring'] == len(self.rings):
             drone['finish_time'] = self.t
-            print(f'FINISHED: drone "{drone["name"]}" at time {drone["finish_time"]:.2f}')
             return True
         else:
             return False
@@ -636,7 +635,7 @@ class Simulator:
             w.append_data(rgba)
 
         while True:
-            all_done = self.step(contestview=contestview)
+            all_done = self.step(contestview=contestview, print_debug=print_debug)
 
             if video_filename is not None:
                 if self.time_step % 100 == 0:
@@ -710,7 +709,7 @@ class Simulator:
         return failed, finished, finish_time
 
 
-    def step(self, contestview=False):
+    def step(self, contestview=False, print_debug=False):
         """
         does one step in the simulation
         """
@@ -733,6 +732,8 @@ class Simulator:
 
             # check if the drone has just now finished, and if so ignore it
             if self.check_ring(drone):
+                if print_debug:
+                    print(f'FINISHED: drone "{drone["name"]}" at time {drone["finish_time"]:.2f}')
                 drone['running'] = False
                 continue
 
