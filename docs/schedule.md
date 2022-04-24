@@ -32,6 +32,7 @@ description: What we will do from day to day
 * [HW23](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318085)
 * [HW24](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318114)
 * [HW33](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318452)
+* [HW34](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318518)
 
 # Activities
 
@@ -45,6 +46,7 @@ description: What we will do from day to day
 * [WS15](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317632)
 * [WS21](https://www.prairielearn.org/pl/course_instance/129078/assessment/2317861)
 * [WS23](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318057)
+* [WS29](https://www.prairielearn.org/pl/course_instance/129078/assessment/2318300)
 
 # Notes
 
@@ -79,6 +81,7 @@ description: What we will do from day to day
 * [Day 31 (planning)](notes/Day31-Planning.pdf)
 * [Day 32 (frequency response)](notes/Day32-FrequencyResponse.pdf)
 * [Day 33 (transfer functions)](notes/Day33-TransferFunctions.pdf)
+* [Day 34 (application of frequency response analysis to drone)](notes/Day34-FreqRespOfDrone.pdf)
 
 {: .collapse #report01 .card .card-body}
 **REPORT 01**
@@ -139,7 +142,8 @@ description: What we will do from day to day
 * [Day 31 (choosing what to track)](https://mediaspace.illinois.edu/media/t/1_t8zkpvgy/243767652)
 * [Day 32 (frequency response)](https://mediaspace.illinois.edu/media/t/1_du8g02fi/243767652)
 * [Day 33 (transfer functions)](https://mediaspace.illinois.edu/media/t/1_uv6fyy7c/243767652)
-
+* [Day 34 (application of frequency response analysis to drone)](https://mediaspace.illinois.edu/media/t/1_0egnz0ya/243767652)
+* [Day 35 (review)](https://mediaspace.illinois.edu/media/t/1_p5e4vmrr/243767652)
 
 # Supplementary Videos
 
