@@ -36,18 +36,18 @@ Mr. Jacob Kraft
 
 ## Aerolab Schedule
 
-|              |        **Mon**         |          **Tues**         |      **Wed**     |         **Thurs**         |     **Fri**     |
-|:------------:|:----------------------:|:-------------------------:|:----------------:|:-------------------------:|:---------------:|
-| **11:00 AM** |        **Class**       |                           |     **Class**    | Prof. Bretl (Talbot 321A) |    **Class**    |
-| **12:00 PM** |     Michael Beshara    |                           |  Michael Beshara |       Dennis McCann       | Michael Beshara |
-|  **1:00 PM** |     Michael Beshara    | Prof. Bretl (Talbot 321A) |                  |                           | Michael Beshara |
-|  **2:00 PM** | Konstantinos Morakalis |                           |   Dennis McCann  |                           | Parthiv Kukadia |
-|  **3:00 PM** |    Jacob Kraft (TA)    |       Dennis McCann       | Jacob Kraft (TA) |    Anshuk Chigullapalli   | Parthiv Kukadia |
-|  **4:00 PM** |  Anshuk Chigullapalli  |       Dennis McCann       |  Parthiv Kukadia |    Anshuk Chigullapalli   | Parthiv Kukadia |
-|  **5:00 PM** |  Anshuk Chigullapalli  |      Parthiv Kukadia      |                  |       Rahul Navadgi       |  Pallavi Ravada |
-|  **6:00 PM** |     Pallavi Ravada     |       Dennis McCann       |  Pallavi Ravada  |       Rahul Navadgi       |    Eric Dobek   |
-|  **7:00 PM** |     Pallavi Ravada     |         Eric Dobek        |   Rahul Navadgi  |   Konstantinos Morakalis  |    Eric Dobek   |
-|  **8:00 PM** |      Rahul Navadgi     |         Eric Dobek        |   Rahul Navadgi  |   Konstantinos Morakalis  |    Eric Dobek   |
+|              |        **Mon**         |          **Tues**         |      **Wed**     |                **Thurs**               |     **Fri**     |
+|:------------:|:----------------------:|:-------------------------:|:----------------:|:--------------------------------------:|:---------------:|
+| **11:00 AM** |        **Class**       |                           |     **Class**    |        Prof. Bretl (Talbot 321A)       |    **Class**    |
+| **12:00 PM** |     Michael Beshara    |                           |  Michael Beshara |              Dennis McCann             | Michael Beshara |
+|  **1:00 PM** |     Michael Beshara    | Prof. Bretl (Talbot 321A) |                  |                                        | Michael Beshara |
+|  **2:00 PM** | Konstantinos Morakalis |                           |                  |                                        | Parthiv Kukadia |
+|  **3:00 PM** |    Jacob Kraft (TA)    |                           | Jacob Kraft (TA) |          Anshuk Chigullapalli          | Parthiv Kukadia |
+|  **4:00 PM** |  Anshuk Chigullapalli  |                           |  Parthiv Kukadia |          Anshuk Chigullapalli          | Parthiv Kukadia |
+|  **5:00 PM** |  Anshuk Chigullapalli  |      Parthiv Kukadia      |                  |              Rahul Navadgi             |  Pallavi Ravada |
+|  **6:00 PM** |     Pallavi Ravada     |                           |  Pallavi Ravada  |      Rahul Navadgi & Dennis McCann     |    Eric Dobek   |
+|  **7:00 PM** |     Pallavi Ravada     |         Eric Dobek        |   Rahul Navadgi  | Konstantinos Morakalis & Dennis McCann |    Eric Dobek   |
+|  **8:00 PM** |      Rahul Navadgi     |         Eric Dobek        |   Rahul Navadgi  | Konstantinos Morakalis & Dennis McCann |    Eric Dobek   |
 
 ## Time and Place
 
