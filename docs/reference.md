@@ -2051,3 +2051,1877 @@ def lqr(A,B,Q,R):
     K=linalg.inv(R) @ B.T @ P
     return K
 ```
+
+
+
+# Python Tutorials
+T. Bretl, S. Bout, J. Virklan
+## Lists and Numpy Arrays
+
+A basic object in python is a list. Lists are used for storing data
+related to a variable. An example of a list is:
+
+``` {language="Python"}
+x = [3, 1, -1, 10]
+```
+
+The indices of a list are stored like an array in other languages. To
+access the values in the list, one would type the variable with the list
+index in square brackets. Python indexes start at zero, so the first
+element of a list is the 0th index, the second is the 1st index and so
+on. To access the 1 stored in the second index of the list above, one
+would write x\[1\], and this would return the value of 1. Lists in
+python require no packages to utilize as they are a base feature of
+python.
+
+Not all indices of a list need be number values, the lists can store any
+number of data types, for instance, a string. Lists can also store
+values in 2-dimensions, much like a 2d array. In python, these are
+called list of lists and an example of one is shown below.
+
+``` python
+x = [[1, 2], [3, 4]]
+```
+
+In the example above, the list of lists, x, has 2 elements. The first
+element is the list \[1, 2\] and the second element is \[3, 4\]. To
+print out the variable x, one would use the print() function. an example
+of printing x is shown below.
+
+``` python
+print(x)
+```
+
+Python has various packages that can be imported and utilized. One key
+package used in scientific computing is NumPy. An example of bringing
+NumPy to utilize in code is shown below.
+
+``` python
+import numpy as np
+```
+
+This brings numpy into the code it is being utilized in. As np allows
+the user to call numpy's libraries using np as a shortened phrase. To
+call a function or variable from numpy, one would use np.FUNCTION. the
+np tells Python where the function is located to utilize it. An example
+is shown below.
+
+``` python
+pi = np.pi
+```
+
+This brings a value for pi that is stored in the numpy packages as
+python does not automatically store pi in a variable. The value for pi
+can now be used as pi throughout the code, and printing this value would
+show pi's value of 3.14\...
+
+A more valuable use of numpy comes from the numpy arrays, and is what
+makes numpy so valuable. An example of a list of lists being used to
+create a numpy array is shown below.
+
+``` python
+import numpy as np
+
+x = [[1, 2], [3, 4]]
+A = np.array(x)
+```
+
+Numpy need only be imported once in a document or file utilizing python
+code. the list of lists, x, from above is now stored in a numpy array
+and can be utilized with numpy's matrix operations (these will be
+discussed below). All numbers in numpy arrays must have the same data
+type, and are typically stored as float64 if a decimal point is used in
+their values, giving a high number of precision. If no decimal point is
+used in the values, they are stored as an integer by default. In the
+example above, the element \[1, 2\] is the first row of the array.
+Subsequent rows must be separated by a comma before defining the next
+row. While numpy arrays utilize a list of lists to create an array, they
+are two separate objects, and this should be kept in mind when using
+list of lists to create a numpy array.
+
+## The Sympy Package
+
+Another useful package from python utilized in science and engineering
+is the SymPy package. This package allows creation of symbolic variables
+that can be used for things such as linearization and solving equations.
+Symbolic variables are stored in their own type of matrix from sympy's
+libraries called a symbolic matrix. An example of creating symbolic
+variables and storing them in a symbolic matrix is shown below:
+
+``` python
+import sympy as sym
+import numpy as np
+
+q, v, tau = sym.symbols('q, v, tau')
+
+f = sym.Matrix([v, -3*sym.sin(q) + tau]
+```
+
+Note that q, v, and tau are defined using comma separated variable
+definitions, and the sym.symbols package takes each stored in a string
+separated by commas to create the symbolics. This principle can be
+extended to however many variables are necessary.
+
+To linearize the matrix, equilibrium values must be defined to input
+into the linearized matrix and create a matrix of purely numbers. Next,
+sympy's lamdify function is used to create a function from the symbolics
+that values can be input in. Finally, this function can substitute the
+equilibrium values and return a equilibrium points from the function.
+
+``` python
+q_e = 0.5 * np.pi
+v_e = 0.
+tau_e = 3.
+
+f_num = sym.lamdify([q, v, tau], f)
+
+f_num(q_e, v_e, tau_e)
+```
+
+here, sym.lamdify takes the arguments of symbolic variables utilized in
+f as a list and the function of those symbolic variables f. Lamdify then
+creates a function that can be used to plug in choices of equilibrium
+values.
+
+We can use this, and the jacobian function from sympy to create
+linearized matrices.
+
+``` python
+f.jacobian([q,v])
+```
+
+creates a matrix of partial derivatives with respect to q and v from f.
+
+This can be extended to a state space model for the A matrix as:
+
+``` python
+# create lambda function
+A_num = sym.lamdify([q, v, tau], f.jacobian([q,v]))
+
+# evaluate lambda function at the specified equilibrium points
+A = A_num(q_e, v_e, tau_e)
+
+print(A)
+
+np.set_printoptions(suppress=True)
+print(A)
+```
+
+The latter portion of the code suppresses scientific notation to make
+the matrix more readable when printing. We have now created an A matrix
+for the state-space model. The B matrix is, likewise, created as:
+
+``` python
+B_num = sym.lamdify([q, v, tau], f.jacobian([tau]), 'numpy')
+
+B = B_num(q_e, v_e, tau_e)
+
+print(B)
+```
+
+The values printed as B are not floats in this case, so they must be
+converted before using.
+
+``` python
+A = A.astype(float)
+B = B.astype(float)
+
+print(A)
+print(B)
+```
+
+For the purposes of entering data in prarielearn, it is desired to print
+the numpy arrays to python lists. This can be done easily.
+
+``` python
+print(A.tolist())
+print(B.tolist())
+```
+
+## Matrix Operations
+
+Matrices in numpy can be added and subtracted given they have the same
+dimensions. Be warned, matrices that aren't the same size can still be
+added and subtracted in Python without an error being thrown. It is
+important to be careful as to what matrices are being utilized in
+computation. an example of adding and subtracting matrices is shown
+below, along with an example of adding non-compatible sized matrices.
+
+``` python
+import numpy as np
+
+L = np.array([[0., 1.], [-3., 2.]])
+M = np.array([[2., 0.], [-1., 1.]])
+N = np.array([[-1.], [4.]])
+
+# compatible sizes
+print(L+M)
+print(L-M)
+
+print(M+N) # non-compatible size
+```
+
+The non-compatible size calculation, in this case, adds N to each column
+of N. This is because the shape of N is broadcast to the shape of M.
+This speeds up computation, but can introduce bugs in python code if
+care is not taken.
+
+Another three operations that can be performed in numpy are transpose,
+matrix multiplication and element-wise multiplication. Examples of each
+are shown below.
+
+``` python
+# Transpose of M
+Mtranspose = M.T
+print(M)
+print(Mtranspose)
+
+# matrix multiplication of M and N
+print(M @ N)
+
+# Elementwise multiplication of M and N
+print(M * N)
+```
+
+It is important to not perform element-wise multiplication when matrix
+multiplication is necessary. The @ operator in numpy performs matrix
+multiplication while the \* operator will perform element-wise
+multiplication. Another way of performing matrix multiplication in numpy
+is the matmul() function. The matrix multiplication of M with N in this
+case would be np.matmul(M, N).
+
+Multiplying a matrix by a constant value is simply the matrix times the
+value using the \* operator. This will broadcast the single dimensional
+constant to the entire shape of the matrix.
+
+### Matrix vector operations
+
+In Python, one can define a vector using a single list, or a list of
+lists. It is better, in most cases, to define the vector using a single
+list. This will reduce potential bugs in the code in terms of matrix
+sizes when multiplying the matrices by vectors. An example of how a
+vector should be defined is done below with a matrix that will be
+multiplied by the vector.
+
+``` python
+# Define the 1d vector
+v = np.array([2., -3.])
+
+# Define a matrix
+L = np.array([0., 1.],[-3., 2.])
+
+print(L @ v)
+```
+
+this will print an array as \[\[-3.\],\[-12\]\], the matrix
+multiplication of L and v. The matrix multiplication operator will not
+work with matrices and/or vectors with incompatible sizes, for instance,
+the matrix N from above multiplied with v. We can, however, perform this
+operation:
+
+``` python
+print(N.T @ v)
+```
+
+because transposing the matrix N makes the size compatible with the
+vector v.
+
+### Matrix Exponential
+
+suppose we want to find $e^M$, the exponentiation of a matrix M. This
+can be done using the scipy's linalg module. If numpy's exp() function
+is used, the returned matrix will not be the matrix exponential.
+
+``` python
+from scipy import linalg
+
+# the matrix exponential
+expM = linalg.expm(M)
+print(expM)
+
+# not the matrix exponential
+print(np.exp(M)) 
+```
+
+Use numpy's exponential for scalar exponentiation and scipy's
+exponential for matrix exponentiation.
+
+### Application to a linear system (numerical)
+
+We desire to solve: 
+
+$$\begin{aligned}
+    \dot{x} = Fx
+\end{aligned}$$
+
+with an initial condition $x(0) = x_0$. The solution to this linear
+system is:
+
+$$\begin{aligned}
+    x(t) = e^{Ft}x_0
+\end{aligned}$$
+
+This can be evaluated numerically with given values using numpy and
+scipy:
+
+``` python
+F = np.array([[0., 1.],[4., 3.]])
+t = 0.5
+x0 = np.array([-1., 2.])
+
+x = linalg.expM(F*t)@x0
+print(x)
+```
+
+### Matrix operations using sympy
+
+The same solution can be found using sympy:
+
+``` python
+L = sym.Matrix(L)
+M = sym.Matrix(M)
+N = sym.Matrix(N)
+```
+
+The stored values have floating-point numbers and it is best to be
+working with rational numbers in sympy. Luckily, these can be easily
+converted as shown below.
+
+``` python
+L = sym.nsimplify(L, rational=True)
+M = sym.nsimplify(M, rational=True)
+N = sym.nsimplify(N, rational=True)
+```
+
+The same rules for adding and subtracting matrices in numpy also apply
+in sympy. Matrix multiplication can be performed using the @ operator.
+However, matrix multiplication in sympy can also be performed using the
+\* operator. It is STRONGLY encouraged that the @ operator is used to
+stay consistent when writing code. Sympy also has a matrix exponential
+operator, that is:
+
+``` python
+# perform matrix exponentiation in sympy
+expM = sym.exp(M)
+print(expM)
+
+# it is helpful to simplify the answer
+expM = sym.simplify(expM)
+print(expM)
+
+# convert to numpy array to compare to prior result
+expMnp = np.array(expM, dtype=np.float64)
+print(expMnp)
+```
+
+If we desire to create the matrix exponential of M multiplied by some
+time t, we can create a symbolic for t and exponentiate that.
+
+``` python
+t = sym.symbols('t', real=True)
+Mt = sym.exp(M * t)
+
+# simplify the exponential
+print(sym.simplify(Mt))
+
+# convert simplified exponential to a list
+print(Mt.tolist())
+```
+
+By establishing the symbol t as real=True, we tell sympy that we don't
+want imaginary values to be taken in to the simplify function. This
+doesn't necessarily work in all cases, but can be remedied using the
+code provided below.
+
+``` python
+# sym.I is the imaginary unit in sympy
+complex = sym.exp((-1 + 2*sym.I) * t) + sym.exp((-1 -2*sym.I) * t)
+
+# simplifying does not get rid of complex exponentials:
+print(sym.simplify(complex))
+
+# utilizing expand_complex, the expression is simplified using Euler's formula
+print(sym.expand_complex(complex))
+```
+
+This would not work at all if we hadn't told sympy to assume that $t$
+was real-valued.
+
+## Eigenvalues
+
+Start by importing numpy (for matrix manipulation) and scipy.linalg
+(for computing eigenvalues).
+
+``` python
+import numpy as np
+from scipy import linalg
+```
+
+Define two square matrices to use as examples: 
+
+$$\begin{aligned}
+    F = 
+    \begin{bmatrix}
+    -2 & 0 \\
+    3 & -1
+    \end{bmatrix}
+    \qquad
+    G =
+    \begin{bmatrix}
+    3/2 & 17/2 \\
+    -5/2 & -15/2
+    \end{bmatrix}\end{aligned}$$
+
+``` python
+F = np.array([[-2.0, 0.0], [3.0, -1.0]])
+G = np.array([[1.5, 8.5], [-2.5, -7.5]])
+```
+
+An eigenvalue of a square matrix $M$ is a complex number $s$ for which
+there exists a nonzero column matrix $v≠0$ such that
+
+$$\begin{aligned}
+    Mv=vs\end{aligned}$$
+
+Any such $v$ is called an eigenvector of $M$ that is associated with the
+eigenvalue $s$. We will ignore eigenvectors for now, and focus only on
+the eigenvalues.
+
+If $M$ has size n x n , then $M$ has n eigenvalues (some of which may
+be the same).
+
+Here is how to find the two eigenvalues of the matrix $F$ for example:
+
+``` python
+s = linalg.eigvals(F)
+```
+
+The eigenvalues are returned in a 1D numpy array:
+
+``` python
+print(s)
+```
+
+The elements of this array - the eigenvalues - are complex numbers:
+
+``` python
+print(s.dtype)
+```
+
+Note that $1j$ is the imaginary unit in Python:
+
+``` python
+1j
+```
+
+To create the complex number $3−5j$, for example, we could write either
+of the following things:
+
+``` python
+print(3. - 5.j)
+print(3. - (5. * 1j))
+```
+
+Note that $j$ alone is not defined - you have to write $1j$:
+
+``` python
+j
+```
+
+We can get the real part of each eigenvalue:
+
+``` python
+print(s.real)
+```
+
+We can also get the imaginary part of each eigenvalue:
+
+``` python
+print(s.imag)
+```
+
+In this particular case, both eigenvalues have zero imaginary part. They
+are still represented as complex numbers, however.
+
+We can check if each eigenvalue has negative real part:
+
+``` python
+s.real < 0
+```
+
+Note the result is another array of the same length as s, with element i
+containing True if s.real\[i\] \< 0 and False otherwise.
+
+We can check if all eigenvalues have negative real part:
+
+$$\begin{aligned}
+    (s.real < 0).all()
+\end{aligned}$$ 
+    
+This is very useful when checking
+if a linear system is stable, for instance.
+
+What about the eigenvalues of $G$? Again, this is a 2×2 matrix, so there
+are two eigenvalues:
+
+``` python
+s = linalg.eigvals(G)
+print(s)
+```
+
+In this case, the eigenvalues are really, truly complex, having non-zero
+imaginary part. Note that the two eigenvalues are complex conjugates -
+that is to say, one has the same real part and negative the imaginary
+part of the other.
+
+Again, we can easily check if all eigenvalues have negative real part:
+
+``` python
+(s.real < 0).all()
+```
+
+Why find these eigenvalues? Recall that the closed-loop system is
+asymptotically stable (i.e., \"the controller works\") if and only if
+all eigenvalues of $F$ have negative real part. Do you remember how to
+check this condition? (If you don't, then read through this tutorial one
+more time.) Is the closed-loop system stable?
+
+## Eigenvectors
+
+Start by importing numpy (for matrix manipulation) and scipy.linalg
+(for computing eigenvalues).
+
+``` python
+import numpy as np
+from scipy import linalg
+
+# Suppress the use of scientific notation when printing small numbers
+np.set_printoptions(suppress=True)
+```
+
+Define a square matrix to use as an example: 
+
+$$\begin{aligned}
+    F = 
+    \begin{bmatrix}
+    -2 & 0\\
+    3 & -1
+    \end{bmatrix}
+\end{aligned}$$
+
+``` python
+F = np.array([[-2.0, 0.0], [3.0, -1.0]])
+```
+
+An eigenvalue of a square matrix $M$ is a complex number $s$ for which
+there exists a nonzero column matrix $v≠0$ such that
+
+$$\begin{aligned}
+    Mv=vs\end{aligned}$$
+
+Any such $v$ is called an eigenvector of $M$ that is associated with the
+eigenvalue $s$. We will ignore eigenvectors for now, and focus only on
+the eigenvalues.
+
+If $M$ has size $n×n$ , then $M$ has $n$ eigenvalues. If all $n$
+eigenvalues are distinct (so, no two eigenvalues are the same) then all
+$n$ eigenvectors will be linearly independent (so, no two eigenvalues
+$i$ and $j$ satisfy $v_i=kv_j$ for some non-zero real number $k∈ℝ$ ).
+
+You have already seen how to find the eigenvalues of a square matrix:
+
+``` python
+s = linalg.eigvals(F)
+print(s)
+```
+
+Here is how to find the eigenvectors of this same matrix:
+
+``` python
+s, V = linalg.eig(F)
+```
+
+The eigenvectors are returned as the columns of a 2D numpy array:
+
+``` python
+print(V)
+```
+
+The eigenvalues are also returned, in a 1D numpy array just as if we had
+used linalg.eigvals:
+
+    print(s)
+
+Suppose we wanted to look at just the first eigenvalue. Python indices
+start at zero, so the \"first eigenvalue\" is at index 0 in s:
+
+``` python
+s1 = s[0]
+print(s1)
+```
+
+Similarly, the second eigenvalue is at index 1:
+
+``` python
+s2 = s[1]
+print(s2)
+```
+
+Suppose we wanted to look at just the first eigenvector. This is in the
+first column of $V$ . Let's sneak up on this.
+
+The matrix $V$ is described by the 2D numpy array V. To access elements
+of this array, we use the syntax
+
+V\[row, col\]
+
+where row is the index of a row and col is the index of a column. For
+example, here is how we get the number in the first row (index 0) and
+first column (index 0) of V:
+
+``` python
+print(V[0, 0])
+```
+
+Here is how we get the number in the second row (index one) and first
+column (index zero) of V:
+
+``` python
+print(V[1, 0])
+```
+
+What if we want both of these numbers, so the entire first column? We do
+this as follows:
+
+``` python
+v1 = V[:, 0]
+print(v1)
+```
+
+The colon symbol : means \"all\". In particular, V\[:, 0\] means we want
+all rows of the first column. Note that the result is a 1D numpy array.
+
+As another example, suppose we want all columns (:) of the second row
+(index 1) --- that's easy too:
+
+``` python
+print(V[1, :])
+```
+
+Let's use this syntax to also find the second eigenvector, the one in
+the second column (index 1) of V:
+
+``` python
+v2 = V[:, 1]
+print(v2)
+```
+
+These eigenvalues and eigenvectors are ordered so that the eigenvalue s1
+corresponds to the eigenvector v1, and the eigenvalue s2 corresponds to
+the eigenvector v2.
+
+Remember that these are eigenvectors and eigenvalues of the matrix $F$.
+They should satisfy
+
+$$\begin{aligned}
+    Fv_{1}=s_{1}v_{1}\end{aligned}$$
+
+and
+
+$$\begin{aligned}
+    Fv_{2}=s_{2}v_{2}.\end{aligned}$$
+
+Let's check:
+
+``` python
+print(F @ v1)
+print(s1 * v1)
+
+print(F @ v2)
+print(s2 * v2)
+```
+
+Looks good!
+
+You might be confused at first because, in this case, F @ v1 produces
+real (floating-point) numbers and s1 \* v1 produces complex numbers.
+However, notice that these complex numbers have zero real part --- -1.
+and -1.+0.j are \"the same\" even if one is represented as a real number
+and the other as a complex number.
+
+Did you know that there is an easy way to decide if two numpy arrays
+have the same values? Here is a little bonus for you careful readers!
+
+``` python
+np.allclose(F @ v1, s1 * v1)
+```
+
+Wow! See the docs on numpy.allclose for more information. You might be
+interested to know that this function is what's being used to do a lot
+of the autograding in PrairieLearn.
+
+We have seen that eigenvalues and eigenvectors can be used to
+diagonalize a square matrix. In particular, for our 2×2 matrix $F$, we
+should find:
+
+$$\begin{aligned}
+    diag(s_{1}, s_{2}) = V^{-1}FV\end{aligned}$$
+
+Let's check:
+
+``` python
+print(np.diag(s))
+print(linalg.inv(V) @ F @ V)
+```
+
+Two notes:
+
+-   The function numpy.diag creates a diagonal matrix (if you pass it a 1D array, the elements of this 
+    array will be used for the diagonal entries of the matrix).
+
+-   The function scipy.linalg.inv takes the inverse of a square matrix.
+
+Again, you may be confused because (in this case) the first result has
+complex numbers but the second result has real numbers. Let's make sure
+they are the same:
+
+``` python
+np.allclose(np.diag(s), linalg.inv(V) @ F @ V)
+```
+
+Our ability to diagonalize a matrix depends on being able to take the
+inverse of $V$ --- otherwise, we couldn't evaluate
+
+$$\begin{aligned}
+    V^{-1}FV\end{aligned}$$
+
+It is a fact that $V$ will be invertible if all eigenvalues are distinct
+(and so all columns of $V$ are linearly independent). That is true in
+this case. We could double-check that $V$ is invertible by computing its
+determinant using scipy.linalg.det:
+
+``` python
+linalg.det(V)
+```
+
+Since the determinant $det(V)$ is non-zero, the matrix $V$ is
+invertible.
+
+One reason why diagonalization is so helpful is that it is easy to take
+the matrix exponential of a diagonal matrix. For example, suppose we
+define
+
+$$\begin{aligned}
+    S = diag(s_{1}, s_{2}) = \begin{bmatrix}
+    s_{1} & 0 \\
+    0 & s_{2}
+    \end{bmatrix}.\end{aligned}$$
+
+Then we know immediately that
+
+$$\begin{aligned}
+    e^{St}=\begin{bmatrix}
+    e^{s_{1}t} & 0 \\
+    0 & e^{s_{2}t}
+    \end{bmatrix}\end{aligned}$$
+
+where the terms $e^{s_{1}t}$ and $e^{s_{2}t}$ are defined in terms of
+the scalar exponential function.
+
+In particular, suppose
+
+$$\begin{aligned}
+    \dot{x} = Fx.\end{aligned}$$
+
+Then, as we have seen in class,
+
+$$\begin{aligned}
+    x(t)=e^{Ft}x(0)=Ve^{St}V^{-1}x(0)\end{aligned}$$
+
+where
+
+$$\begin{aligned}
+    S=V^{-1}FV=diag(s_{1}, s_{2}).\end{aligned}$$
+
+That is to say, all of the time-dependent terms in the solution $x(t)$
+are scalar exponentials of the eigenvalues of $F$. This, again, is the
+basis for our result about asymptotic stability:
+
+The system $\dot{x} = Fx$ is asymptotically stable if and only if all
+eigenvalues of $F$ have negative real part.
+
+Let's check that this is true for the following choice of time and of
+initial condition (these were chosen arbitrarily as examples):
+
+``` python
+# These are just examples - could be any values
+t = 0.1
+x0 = np.array([[-2.], [1.]])
+
+# Compute a diagonal matrix with eigenvalues in the diagonal
+S = np.diag(s)
+
+# Compute solution in two different ways - both should give the same result
+print(linalg.expm(F * t) @ x0)
+print(V @ linalg.expm(S * t) @ linalg.inv(V) @ x0)
+```
+
+Are they really all the same?
+
+``` python
+np.allclose(linalg.expm(F * t) @ x0, V @ linalg.expm(S * t) @ linalg.inv(V) @ x0)
+```
+
+### What if the eigenvalues are not all distinct
+
+Consider the following matrix:
+
+$$\begin{aligned}
+    H = \begin{bmatrix}
+    0 & 1 \\
+    -4 & 4
+    \end{bmatrix}\end{aligned}$$
+
+``` python
+H = np.array([[0., 1.], [-4., -4.]])
+```
+
+Find the eqigenvalues and eigenvectors of $H$:
+
+``` python
+s, V = linalg.eig(H)
+```
+
+Are all the eigenvalues distinct?
+
+``` python
+print(s)
+```
+
+Apparently not. Is $V$ invertible? Let's check the determinant:
+
+``` python
+linalg.det(V)
+```
+
+It isn't exactly zero, but it's really, really close. We would say that
+this is zero to numerical precision. Bottom line, $V$ is not invertible.
+
+Let's see what happens if we try to take the inverse:
+
+``` python
+linalg.inv(V)
+```
+
+That doesn't look good. Let's see what happens if we try to verify that
+
+$$\begin{aligned}
+    diag(s_{1}, s_{2}) = V^{-1}HV\end{aligned}$$
+
+``` python
+print(np.diag(s))
+print(linalg.inv(V) @ H @ V)
+```
+
+Wow, those two things do not look the same. We could make sure:
+
+``` python
+np.allclose(np.diag(s), linalg.inv(V) @ H @ V)
+```
+
+OK, so what we have discovered is that some matrices cannot be
+diagonalized. What then?
+
+In this case, one can compute what is called the Jordan normal form of
+the matrix (see also Chapter 6 of Astrom and Murray). We can do this
+using SymPy.
+
+``` python
+import sympy as sym
+
+H = sym.nsimplify(sym.Matrix(H), rational=True)
+V, S = H.jordan_form()
+```
+
+Notice that $S$ is still a 2×2 matrix with eigenvalues in the diagonal,
+but now there is a 1 in the upper-right corner instead of a 0.
+
+Notice that $V$ is now invertible (and is not a matrix with eigenvectors
+in each column any more). We can check it's determinant:
+
+``` python
+print(V.det())
+```
+
+And, we can take its inverse:
+
+``` python
+print(V.inv())
+```
+
+We can verify that $V$ and $S$ can be used the same was as before, as if
+$H$ were diagonalizable, by checking that $V^{-1}HV=S$:
+
+``` python
+V.inv() * H * V
+```
+
+Yep, looks good.
+
+And finally, see what happens if we take the matrix exponential of $St$
+(remembering to tell SymPy it can assume that $t$ is real-valued):
+
+``` python
+t = sym.symbols('t', real=True)
+sym.exp(S * t)
+```
+
+Cool, right? The scalar exponential terms still have eigenvalues of $H$
+in the exponent. The only difference between this and if $S$ were
+diagonal is that some of the scalar exponential terms are multiplied by
+powers of $t$. Since
+
+$$\begin{aligned}
+    e^{-2t}\end{aligned}$$
+
+goes to zero a lot quicker than any power of $t$ gets large, the result
+about asymptotic stability still holds:
+
+The system $\dot{x}=Hx$ is asymptotically stable if and only if all
+eigenvalues of $H$ have negative real part (even if $H$ is not
+diagonalizable!).
+
+## Functions
+
+Start by importing $numpy$ (for matrix manipulation) and $scipy.linalg$
+(for computing eigenvalues).
+
+``` python
+import numpy as np
+from scipy import linalg
+```
+
+### The basics
+
+Suppose we want to compute the sum of two particular numbers:
+
+$$\begin{aligned}
+2+5\end{aligned}$$
+
+Here is how to do that:
+
+``` python
+2 + 5
+```
+
+Suppose we want to compute the sum of any two numbers: 
+
+$$\begin{aligned}
+    x + y\end{aligned}$$
+    
+Here is how to do that:
+
+``` python
+def compute_sum(x, y):
+    return x + y
+```
+
+In particular, we have created a function called compute_sum that
+takes two arguments called x and y and that returns their sum x + y. We
+can now use this function to compute sums:
+
+``` python
+compute_sum(2, 5)
+```
+
+Note the syntax for defining a function:
+
+- It starts with the keyword def
+- After this keyword is the function name
+- After the function name, inside parentheses, is a list of
+  comma-separated arguments
+- After the list of arguments is a colon (and a line break)
+- The code inside the function is indented
+- The keyword return is used to indicate what value the function will
+produce
+- There are often many different ways to implement a function. For
+example, here is another way to implement the function that computes a
+sum:
+
+``` python
+def compute_sum(x, y):
+    z = x + y
+    return z
+```
+
+What we have done here is create a variable z inside the function to
+hold the result before we return it. Let's check we get the same results
+as before:
+
+``` python
+print(compute_sum(2, 5))
+print(compute_sum(-3, 4))
+print(compute_sum(1.234, 5.678))
+```
+
+It is important to understand that the variable z --- just like the
+other two variables x and y --- are not available outside the function
+compute_sum. They exist only in the world of this function.
+
+Let's make this explicit by redefining compute_sum yet again, to print
+the value of z inside the function.
+
+``` python
+def compute_sum(x, y):
+    # Compute the sum
+    z = x + y
+    # Print the sum
+    print(z)
+    # Return the sum
+    return z
+```
+
+First, run compute_sum to verify that we have access to z inside the
+function:
+
+``` python
+compute_sum(2, 5)
+```
+
+Now check if we have access to z outside the function:
+
+``` python
+print(z)
+```
+
+We should get an error. This goes both ways. Suppose we define two
+numbers x and y, then call the function to compute a sum of two
+different numbers:
+
+``` python
+x = 10
+y = 20
+
+compute_sum(2, 5)
+```
+
+See what happened there? The function compute_sum completely ignored
+the \"global\" values of x and y in favor of the \"local\" values that
+were assigned to the function's arguments.
+
+Be careful! Functions in python can make use of variables that are
+defined elsewhere. Suppose we had defined compute_sum with different
+argument names as follows:
+
+``` python
+def compute_sum(a, b):
+    return x + y
+```
+
+This is clearly a mistake. We called the arguments a and b but returned
+x + y. But look:
+
+``` python
+compute_sum(2, 5)
+```
+
+The reason this happened is that x and y were defined outside the
+function --- we had set x = 10 and y = 20. This can cause a lot of
+confusion. There are rules for what you can and cannot do inside a
+function with variables that are defined outside --- but do yourself a
+favor and only use local variables inside functions.
+
+Note that it makes no difference at all what we call these local
+variables. For example, here is a correct implementation of
+compute_sum with the arguments a and b instead of x and y:
+
+``` python
+def compute_sum(a, b):
+    return a + b
+    
+compute_sum(2, 5)
+```
+
+### Using functions to make life easier
+
+Functions are great because they allow you to use the same code over and
+over but only write that code once.
+
+Consider the problem of deciding whether or not a linear system is
+stable. In particular, suppose we want to decide of the system
+
+$$\begin{aligned}
+    \dot{x}=Fx\end{aligned}$$
+
+is asymptotically stable, where
+
+$$\begin{aligned}
+    F = 
+    \begin{bmatrix}
+    1 & 3 \\
+    -5 & 2
+    \end{bmatrix}\end{aligned}$$
+
+We know how to do this. First, we define F:
+
+``` python
+F = np.array([[1., 3.], [-5., 2.]])
+```
+
+Now, we write the code to check stability:
+
+``` python
+# Find eigenvalues of M
+s = linalg.eigvals(F)
+
+# Check if all eigenvalues of M have negative real part
+(s.real < 0).all()
+```
+
+This is a check we will probably do over, and over, and over. It would
+be nice to define a function that takes in a square matrix and that
+returns True if that matrix defines a stable system, and False
+otherwise.
+
+## Ackermann's method
+
+Start by importing the following:
+
+``` python
+import numpy as np
+from scipy import linalg
+from scipy import signal
+
+# Suppress the use of scientific notation when printing small numbers
+np.set_printoptions(suppress=True)
+```
+
+Consider the application of state feedback 
+
+$$\begin{aligned}
+    u=-Kx\end{aligned}$$ 
+    
+to the open-loop system 
+    
+$$\begin{aligned}
+    \dot{x}=Ax+Bu\end{aligned}$$ 
+    
+where 
+
+$$\begin{aligned}
+A = 
+\begin{bmatrix}
+-1 & 1 \\
+1 & 2
+\end{bmatrix}
+B = 
+\begin{bmatrix}
+1 \\
+3
+\end{bmatrix}\end{aligned}$$ 
+
+As you know, the function
+signal.place_poles will find a choice of gain matrix K that puts the
+closed-loop eigenvalues anywhere you want (so long as they are not both
+in the same location and so long as, if they have a non-zero imaginary
+part, the two eigenvalues are a conjugate pair).
+
+In particular, suppose we want to put eigenvalues at −2 and −5 . We
+would do this:
+
+``` python
+# Define A and B
+A = np.array([[-1., 1.], [1., 2.]])
+B = np.array([[1.], [3.]])
+
+# Do eigenvalue placement
+fbk = signal.place_poles(A, B, [-2., -5.])
+
+# Extract the gain matrix
+K = fbk.gain_matrix
+
+# Display the result
+print(K)
+```
+
+Let's check that it worked:
+
+``` python
+print(linalg.eigvals(A - B @ K))
+```
+
+### Find the characteristic polynomial that has a given set of roots
+
+Suppose we want to find the coefficients $r_1$ and $r_2$ for which the
+polynomial
+
+$$\begin{aligned}
+s^2 + r_1s + r_2\end{aligned}$$
+
+would have roots at −2 and −5 . To find these coefficients by hand, we
+note that any such polynomial could be factored as
+
+$$\begin{aligned}
+    (s - (-2))(s - (-5)) = (s + 2)(s + 5).\end{aligned}$$
+
+Multiplying out, we get
+
+$$\begin{aligned}
+    s^2 + r_1s + r_2\end{aligned}$$
+
+Equating coefficients with
+
+$$\begin{aligned}
+    s^2 + 7s + 10.\end{aligned}$$
+
+we see that
+
+$$\begin{aligned}
+    r_1 = 7 \qquad and \qquad r_2 = 10.\end{aligned}$$
+
+It is easy to automate this process with numpy.poly. Check it out:
+
+``` python
+np.poly([-2., -5.])
+```
+
+Do you see what happened there? The function np.poly returned a 1d array
+with the coefficients of the polynomial that has the given roots. The
+first element of this array is the leading coefficient of this
+polynomial --- by convention, this coefficient is always 1 . We can
+extract the rest of the array as follows:
+
+``` python
+r = np.poly([-2., -5.])[1:]
+```
+
+The syntax \[1:\] means \"all elements starting at index 1\" (see docs
+on numpy indexing). Here is the result:
+
+``` python
+print(r)
+```
+
+This approach works fine for complex eigenvalues too, so long as they
+are in complex conjugate pairs:
+
+``` python
+np.poly([-2. + 3.j, -2. - 3.j])
+```
+
+You have to be careful though --- suppose there is just a little bit of
+numerical imprecision:
+
+``` python
+np.poly([-2. + 3.j, -2. - 3.00000001j])
+```
+
+Now the coefficients are complex numbers. That's a problem, because no
+real-valued choice of $K$ will ever be able to produce a characteristic
+polynomial of $A - BK$ with complex coefficients.
+
+To avoid this problem and make our approach more robust to numerical
+imprecision, we can simply take the real part of the coefficients:
+
+``` python
+np.poly([-2. + 3.j, -2. - 3.00000001j]).real
+```
+
+This is something we might as well always do, whether or not the
+eigenvalue locations we want are complex --- it will not affect the
+result for real eigenvalues, in any case.
+
+``` python
+r = np.poly([-2., -5.])[1:].real
+print(r)
+```
+
+### Find the characteristic polynomial of the open-loop system
+
+The characteristic polynomial of the matrix $A$ is
+
+$$\begin{aligned}
+    det(sI-H) = det(s \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{bmatrix}-\begin{bmatrix}
+    -1 & 1 \\
+    1 & 2
+    \end{bmatrix}) \\
+    = det(\begin{bmatrix}
+    s + 1 & -1 \\
+    -1 & s - 2
+    \end{bmatrix}) \\
+    = (s + 1)(s - 2)-(-1)(-1) \\
+    =s^{2}-s-3\end{aligned}$$
+
+Again, it is easy to automate this process with numpy.poly. Check it
+out:
+
+``` python
+np.poly(A)
+```
+
+Wow! Apparently, when applied to a matrix (instead of a list), the
+function np.poly returns a 1d array with the coefficients of the
+characteristic polynomial of that matrix. Just like before, the first
+element is the leading coefficient (in this case, the coefficient of
+$s^2$ ), which is always 1 . We can extract the rest of the array as
+follows:
+
+``` python
+a = np.poly(A)[1:]
+```
+
+Here is the result:
+``` python
+print(a)
+```
+
+### Find an equivalent system in controllable canonical form
+
+The open-loop system
+
+$$\begin{aligned}
+    \dot{z} = A_{ccf}z + B_{ccf}u\end{aligned}$$
+
+is equivalent to the open-loop system
+
+$$\begin{aligned}
+    \dot{x} = Ax + Bu\end{aligned}$$
+
+if
+
+$$\begin{aligned}
+    A_{ccf} = 
+    \begin{bmatrix}
+    -a_{1} & -a_{2} & ... & -a_{n-1} & -a_{n} \\
+    1 & 0 & ... & 0 & 0 \\
+    0 & 1 & ... & 0 & 0 \\
+    \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & .. & 1 & 0
+    \end{bmatrix}
+    \qquad
+    B_{ccf} =
+    \begin{bmatrix}
+    1 \\
+    0 \\
+    0 \\
+    \vdots \\
+    0
+    \end{bmatrix}\end{aligned}$$
+
+where $a_1, ..., a_n$ are the coefficients of the characteristic
+polynomial of $A$ . By \"equivalent,\" we mean that $x=Vz$ for some
+invertible matrix $V$ .
+
+Since we have already find the coefficients $a_1=-1$ and $a_2=-3$ of the
+characteristic polynomial of the particular matrix we have been using in
+our running example, we can immediately write
+
+$$\begin{aligned}
+    A_{ccf} = \begin{bmatrix}
+    1 & 3 \\
+    1 & 0
+    \end{bmatrix}
+    \qquad
+    and
+    \qquad
+    B_{ccf} = \begin{bmatrix}
+    1 \\
+    0
+    \end{bmatrix}\end{aligned}$$
+
+for this example. Guess what, it is easy to automate this process with
+numpy.block. This function is exactly the same as np.array, but allows
+you to construct a big matrix from smaller matrices rather than from
+numbers. Observe:
+
+``` python
+Accf = np.block([[-a], [np.eye(1), np.zeros((1, 1))]])
+Bccf = np.block([[1.], [np.zeros((1, 1))]])
+```
+
+What did we do here?
+
+The matrix $A_{ccf}$ has $-a$ in the top row, the identity matrix (in
+this case of size 1×1 , produced by numpy.eye) in the bottom left, and a
+column of zeros (in this case of size 1×1 , produced by numpy.zeros) in
+the bottom right.
+
+The matrix $B_{ccf}$ has a \"1\" in the top row, and a column of zeros
+(in this case of size 1×1 , produced by numpy.zeros) underneath.
+
+Extending this same approach to produce $A_{ccf}$ and $B_{ccf}$ for
+systems $(A, B)$ with an arbitrary number of states is only a matter of
+changing the sizes of the identity matrix and of the columns of zeros in
+the above expressions. Remember that you can find the size of $A$ using
+A.shape.
+
+### Design a controller for the equivalent system
+
+If $A_{ccf}$ and $B_{ccf}$ are defined as given above, then it is easy
+to show that the gain matrix
+
+$$\begin{aligned}
+    K_{ccf} = \begin{bmatrix}
+    r_{1} - a_{1} & r_{2} - a_{2} ... & r_{n} - a_{n}
+    \end{bmatrix}\end{aligned}$$
+
+puts the eigenvalues of
+
+$$\begin{aligned}
+    A_{ccf} - B_{ccf}K_{ccf}\end{aligned}$$
+
+at the roots of
+
+$$\begin{aligned}
+    s^{n} + r_{1}s^{n-1} + r_{2}s^{n-2} + ... + r_{n-1}s + r_{n}\end{aligned}$$
+
+Let's compute this gain matrix for our example:
+
+``` python
+Kccf = r - a
+```
+
+Here is the result:
+
+``` python
+print(Kccf)
+```
+
+Let's check that it does what it is supposed to do:
+
+``` python
+print(linalg.eigvals(Accf - Bccf @ Kccf))
+```
+
+Hmm\... that's not good! Something about sizes\... let's check the shape
+of $K$:
+
+``` python
+print(Kccf.shape)
+```
+
+Oh! The problem is that Kccf, as we've defined it, is a 1d array and not
+a 2d array like it should be. This is obvious in hindsight, because we
+took the difference of two 1d arrays to produce Kccf. This is easy to
+fix using numpy.reshape:
+
+``` python
+Kccf = (r - a).reshape([1, -1])
+```
+
+The function reshape accepts one argument, a list of dimensions. The
+first element says the number of rows, in this case \"1\". The second
+element says the number of columns --- the \"-1\" means \"however many
+it takes\" (sort of like a wild card).
+
+Here is the result:
+
+``` python
+print(Kccf)
+```
+
+That looks better. Let's try it now:
+
+``` python
+print(linalg.eigvals(Accf - Bccf @ Kccf))
+```
+
+perfect!
+
+### Find the coordinate transformation between equivalent systems
+
+As you know, if the coordinate transformation
+
+$$\begin{aligned}
+    x = Vz\end{aligned}$$
+
+is applied to the system
+
+$$\begin{aligned}
+    \dot{x} = Ax + Bu\end{aligned}$$
+
+then the result is the equivalent system
+
+$$\begin{aligned}
+    \dot{z} = V^{-1}AVz+V^{-1}Bu\end{aligned}$$
+
+Define the controllability matrix that is associated with A and B as
+
+$$\begin{aligned}
+    W = \begin{bmatrix}
+    B & AB & A^{2}B .. A^{n-1}B
+    \end{bmatrix}.\end{aligned}$$
+
+Since $A$ is n x n and $B$ is n x 1, then $W$ is n x n. Similarly, we
+define the controllability matrix that is associated with $A_{ccf}$ and
+$B_{ccf}$ as
+
+$$\begin{aligned}
+    W_{ccf} = \begin{bmatrix}
+    B_{ccf} & A_{ccf}B_{ccf} & A^{2}_{ccf}B_{ccf} .. A^{n-1}_{ccf}B_{ccf}
+    \end{bmatrix}\end{aligned}$$
+
+It is a fact that choosing $V$ so that
+
+$$\begin{aligned}
+    V^{-1} = W_{ccf}W^{-1}\end{aligned}$$
+
+will establish an equivalence between
+
+$$\begin{aligned}
+    \dot{x}=Ax + Bu\end{aligned}$$
+
+and
+
+$$\begin{aligned}
+    \dot{z} = A_{ccf}z + B_{ccf}u\end{aligned}$$
+
+That is to say, this choice of $V$ will result in
+
+$$\begin{aligned}
+    V^{-1}AV = A_{ccf} 
+    \qquad
+    and
+    \qquad
+    V^{-1}B=B_{ccf}\end{aligned}$$
+
+Here is one way to find the controllability matrix $W$ that is
+associated with $A$ and $B$ in our example:
+
+``` python
+# Find the number of states
+n = A.shape[0]
+
+# Initialize W with its first column
+W = B
+
+# Create W one column at a time by iterating over i from 1 to n-1
+for i in range(1, n):
+    col = np.linalg.matrix_power(A, i) @ B
+    W = np.block([W, col])
+```
+
+The idea is:
+- Initialize $W$ with its first column as
+
+$$\begin{aligned}
+    \begin{bmatrix}
+    B
+    \end{bmatrix}\end{aligned}$$
+
+- Iterate from $i=1$ to $i=n-1$, computing the column
+
+    $$\begin{aligned}
+        A^{i}B
+    \end{aligned}$$
+
+    using numpy.linalg.matrix_power --- sadly, scipy.linalg does not have
+    this function --- and then appending this column to $W$ using
+    numpy.block, which you've seen before
+
+We can do exactly the same thing to find $W_{ccf}$:
+
+``` python
+# Initialize Wccf with its first column
+Wccf = Bccf
+
+# Create W one column at a time by iterating over i from 1 to n-1
+for i in range(1, n):
+    col = np.linalg.matrix_power(Accf, i) @ Bccf
+    Wccf = np.block([Wccf, col])
+```
+
+(This is, of course, begging for you to wrap it in a function.)
+
+And now, it is a simple matter to find $V^{-1}$:
+
+``` python
+inverse_of_V = Wccf @ linalg.inv(W)
+```
+
+We are finding $V^{-1}$ instead of $V$ because it is the inverse that we
+will need later.
+
+Does it actually work? Remember, we want
+
+$$\begin{aligned}
+    V^{-1}AV=A_{ccf}
+    \qquad
+    and
+    \qquad
+    V^{-1}B=B_{ccf}.\end{aligned}$$
+
+Let's check:
+
+``` python
+print(inverse_of_V @ A @ linalg.inv(inverse_of_V))
+print(Accf)
+
+print(inverse_of_V @ B)
+print(Bccf)
+```
+
+Apparently it does!
+
+### Find equivalent state feedback
+
+If
+
+$$\begin{aligned}
+    x = Vz\end{aligned}$$
+
+then
+
+$$\begin{aligned}
+    u = -K_{ccf}z = -K_{ccf}(V^{-1}x)=-(K_{ccf}V^{-1})x.\end{aligned}$$
+
+For what gain matrix K would
+
+$$\begin{aligned}
+    u=-Kx\end{aligned}$$
+
+be equivalent to this choice of input? Obviously this one (by equating
+coefficients):
+
+$$\begin{aligned}
+    K=K_{ccf}V^{-1}\end{aligned}$$
+
+Let's find it, for our example:
+
+``` python
+K = Kccf @ inverse_of_V
+```
+
+Does it work? In particular, does it put the eigenvalues of $A-BK$ at −2
+and −5 , like we wanted? Let's check:
+
+``` python
+print(linalg.eigvals(A - B @ K))
+```
+
+Yep! How lovely.
+
+### Finish up and test
+
+Your implementation of acker is now complete. Test it:
+
+``` python
+K = acker(A, B, [-2., -5.])
+print(K)
+print(linalg.eigvals(A - B @ K))
+```
+
+Does it work for complex eigenvalues?
+
+``` python
+K = acker(A, B, [-5. + 10.j, -5. - 10.j])
+print(K)
+print(linalg.eigvals(A - B @ K))
+```
+
+What about for eigenvalues at the same location?
+
+``` python
+K = acker(A, B, [-3., -3.])
+print(K)
+print(linalg.eigvals(A - B @ K))
+```
+
+Wow, not even signal.place_poles does that! Observe:
+
+``` python
+fbk = signal.place_poles(A, B, [-3., -3.])
+```
+
+Note, however, that there can be some numerical error when you ask for
+eigenvalues at the same location:
+
+``` python
+K = acker(A, B, [-1., -1.])
+print(K)
+print(linalg.eigvals(A - B @ K))
+```
+
+This is a clue about why place_poles does not allow you to ask for
+this.
+
+## LQR
+
+Start by importing the following:
+
+``` python
+import numpy as np
+from scipy import linalg
+```
+
+This is the infinite-horizon Linear Quadratic Regulator (LQR) optimal
+control problem: 
+
+$$\begin{aligned}
+\mathop{\mathrm{minimize}}_{x(t_{1}),n_{(- \infty,t_{1}]},d_{(- \infty,t_{1}]}}
+&\qquad
+\int_{- \infty}^{t_{1}} \left( n(t)^{T}Q_{o}n(t)+d(t)^{T}R_{o}d(t) \right) dt \\
+\text{subject to}
+&\qquad
+\dot{x}(t) = Ax(t)+Bu(t)+d(t) \qquad for \qquad t \epsilon (- \infty, t_{1}]\\
+&\qquad
+y(t) = Cx(t)+n(t)\end{aligned}$$
+
+The integrand is cost. The integral is total cost. The square matrices Q
+and R are weights --- you, as a control designer, get to choose these
+weights. The minimizer (i.e., the input that achieves minimum total
+cost) is
+
+$$\begin{aligned}
+    u(t)=-Kx(t)\end{aligned}$$
+
+and the minimum (i.e., the minimum total cost) is
+
+$$\begin{aligned}
+    x_{0}^{T}Px_{0}\end{aligned}$$
+
+where P and K can be found in python as follows:
+
+``` python
+P = linalg.solve_continuous_are(A, B, Q, R)
+K = linalg.inv(R) @  B.T @ P
+```
+
+There are a number of reasons why LQR is a good choice for control
+design. At this point, we will simply say that LQR makes it easy to get
+a working controller.
+
+Why? Notice that, for this optimal control problem to make any sense,
+its minimum total cost --- i.e., the value of the integral for the
+\"best\" choice of K --- has to be finite. Since the upper limit of the
+integral is infinity, then --- in order for the integral to be finite
+--- the integrand has to converge to zero (quickly). The only way for it
+to do that is if the closed-loop system is asymptotically stable. In
+other words, the \"best\" choice of has to produce a closed-loop system
+that is asymptotically stable.
+
+Put simply, the solution to the LQR problem, for any choice of weights,
+is a controller that produces a stable closed-loop system --- i.e., a
+\"working controller.\"
+
+Let's look at an example.
+
+Suppose we want to design a controller by solving the LQR problem for
+the system described by
+
+$$\begin{aligned}
+A = 
+\begin{bmatrix}
+0 & 1 \\
+0 & 0
+\end{bmatrix}
+B = 
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}\end{aligned}$$
+
+and for weights that are both identity matrices: 
+
+$$\begin{aligned}
+Q = I_{2x2} =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+R = I_{1x1}
+\begin{bmatrix}
+1
+\end{bmatrix}\end{aligned}$$
+
+First, we define the system:
+
+``` python
+A = np.array([[0., 1.], [0., 0.]])
+print(f'A = {A.tolist()}')
+
+B = np.array([[0.], [1.]])
+print(f'B = {B.tolist()}')
+```
+
+Second, we define the weights:
+
+``` python
+Q = np.eye(2)
+print(f'Q = {Q.tolist()}')
+
+R = np.eye(1)
+print(f'R = {R.tolist()}')
+```
+
+Third, we find the optimal cost matrix:
+
+``` python
+P = linalg.solve_continuous_are(A, B, Q, R)
+print(f'P = {P.tolist()}')
+```
+
+Fourth, and finally, we find the optimal gain matrix:
+
+``` python
+K = linalg.inv(R) @  B.T @ P
+print(f'K = {K.tolist()}')
+```
+
+As we claimed, this gain matrix makes the closed-loop system stable:
+
+``` python
+linalg.eigvals(A - B @ K)
+```
+
+Suppose we start with the following initial condition: 
+
+$$\begin{aligned}
+    x_{0}=
+    \begin{bmatrix}
+    1\\
+    -2
+    \end{bmatrix}\end{aligned}$$
+
+``` python
+x0 = np.array([1., -2.])
+```
+
+The input that we would apply at the time $t_0$ is, of course, the
+following: 
+
+$$\begin{aligned}
+    u(t_{0})=-Kx(t_{0})=-Kx_{0}\end{aligned}$$ 
+    
+Let's compute it:
+
+``` python
+u = - K @ x0
+print(f'u = {u.tolist()}')
+```
+
+Let's also compute the total cost 
+
+$$\begin{aligned}
+    x_{0}^{T}Px_{0}\end{aligned}$$ 
+    
+that we would accumulate if we continued to apply this same controller 
+
+$$\begin{aligned}
+    u(t)=-Kx(t)\end{aligned}$$ 
+    
+for all time, starting from
+
+$$\begin{aligned}
+    x(t_{0})=x_{0}\end{aligned}$$
+
+``` python
+total_cost = x0.T @ P @ x0
+print(f'total_cost = {total_cost}')
+```
+
+Note that the total cost is a scalar quantity (just one real number, not
+a vector or matrix).
