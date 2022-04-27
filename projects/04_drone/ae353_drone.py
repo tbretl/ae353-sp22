@@ -37,10 +37,11 @@ class Simulator:
         # Whether or not to error on controller print or timeout
         self.error_on_print = True
         self.error_on_timeout = True
-        self.max_controller_run_time=5e-3
+        self.max_controller_run_time=1e-2
         self.max_controller_reset_time=1e0
         self.max_controller_init_time=1e0
         self.max_controller_load_time=5e0
+        self.max_run_time_violations=10
 
         # Create empty list of drones
         self.drones = []
@@ -515,6 +516,8 @@ class Simulator:
             drone['finish_time'] = None
             # Still running
             drone['running'] = True
+            # Number of run time violations
+            drone['num_run_time_violations'] = 0
             # Initialize controller
             try:
                 pos_meas = pos + self.pos_noise * self.rng.standard_normal(3)
@@ -788,8 +791,10 @@ class Simulator:
                         np.delete(all_pos, index, axis=0),
                     )
                 controller_run_time = time.time() - controller_start_time
-                if (controller_run_time > self.max_controller_run_time) and self.error_on_timeout:
-                    raise Exception(f'Run timeout exceeded: {controller_run_time} > {self.max_controller_run_time}')
+                if (controller_run_time > self.max_controller_run_time):
+                    drone['num_run_time_violations'] += 1
+                if (drone['num_run_time_violations'] >= self.max_run_time_violations) and self.error_on_timeout:
+                    raise Exception(f'Maximum run time of {self.max_controller_run_time} was exceeded on {self.max_run_time_violations} occasions')
 
                 (
                     tau_x,
